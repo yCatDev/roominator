@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "/home/ycatdev/.dotnet/store/|arch|/|tfm|",
+      "/home/ycatdev/.nuget/packages"
+    ]
+  }
+}
