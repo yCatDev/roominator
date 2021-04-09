@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/home/ycatdev/Projects/Nure/Roominator/Roominator/Roominator.csproj": {}
+    "C:\\Users\\ycatdev\\Documents\\GitHub\\roominator\\Roominator\\Roominator.csproj": {}
   },
   "projects": {
-    "/home/ycatdev/Projects/Nure/Roominator/Roominator/Roominator.csproj": {
+    "C:\\Users\\ycatdev\\Documents\\GitHub\\roominator\\Roominator\\Roominator.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/ycatdev/Projects/Nure/Roominator/Roominator/Roominator.csproj",
+        "projectUniqueName": "C:\\Users\\ycatdev\\Documents\\GitHub\\roominator\\Roominator\\Roominator.csproj",
         "projectName": "Roominator",
-        "projectPath": "/home/ycatdev/Projects/Nure/Roominator/Roominator/Roominator.csproj",
-        "packagesPath": "/home/ycatdev/.nuget/packages/",
-        "outputPath": "/home/ycatdev/Projects/Nure/Roominator/Roominator/obj/",
+        "projectPath": "C:\\Users\\ycatdev\\Documents\\GitHub\\roominator\\Roominator\\Roominator.csproj",
+        "packagesPath": "C:\\Users\\ycatdev\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ycatdev\\Documents\\GitHub\\roominator\\Roominator\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/ycatdev/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\ycatdev\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -55,7 +57,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.103/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }
