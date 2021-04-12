@@ -8,19 +8,19 @@
     "net5.0": []
   },
   "packageFolders": {
-    "C:\\Users\\ycatdev\\.nuget\\packages\\": {}
+    "C:\\Users\\Home\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ycatdev\\Documents\\GitHub\\roominator\\Roominator\\Roominator.csproj",
+      "projectUniqueName": "D:\\Roominator\\roominator\\Roominator\\Roominator.csproj",
       "projectName": "Roominator",
-      "projectPath": "C:\\Users\\ycatdev\\Documents\\GitHub\\roominator\\Roominator\\Roominator.csproj",
-      "packagesPath": "C:\\Users\\ycatdev\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ycatdev\\Documents\\GitHub\\roominator\\Roominator\\obj\\",
+      "projectPath": "D:\\Roominator\\roominator\\Roominator\\Roominator.csproj",
+      "packagesPath": "C:\\Users\\Home\\.nuget\\packages\\",
+      "outputPath": "D:\\Roominator\\roominator\\Roominator\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ycatdev\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Home\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

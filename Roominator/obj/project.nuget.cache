@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "FxuCsGg1dS2eU1FhFhYaH9A7+KP+Y9Y7OI/0+VRaM5gg97zJgmbEGONSro9cCvBa+2S+vkySouGq+OjBzOdVEQ==",
+  "dgSpecHash": "uKeslAQtDo91se2xeYW6IjDPEZp9U1Sr1BQ3ytAg5GO0fVt/mYyyFCJ4torm9MkP8sceZVaQ7ajxnXoDGlApIQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ycatdev\\Documents\\GitHub\\roominator\\Roominator\\Roominator.csproj",
+  "projectFilePath": "D:\\Roominator\\roominator\\Roominator\\Roominator.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
