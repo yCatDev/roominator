@@ -42,9 +42,32 @@ a, .btn-link {
     z-index: 1000;
 }
 
-    #blazor-error-ui .dismiss {
+#blazor-error-ui .dismiss {
         cursor: pointer;
         position: absolute;
         right: 0.75rem;
         top: 0.5rem;
-    }
+}
+
+/*---------------------------------CSS BEGIN---------------------------------*/
+
+.debug {
+    border: solid black 1px !important;
+}
+
+/*---------------------------------LoginAndRegistration---------------------------------*/
+.BluePrintWindow {
+    /*на весь экран*/
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    /*стиль*/
+    border: solid black 0px;
+    background-image: url(/images/background/tile_blue.png);
+    background-repeat: round;
+    background-position: -5% -5%;
+}

@@ -288,3 +288,5 @@ C:\Users\ycatdev\RiderProjects\roominator\Roominator\obj\Debug\net5.0\ref\Roomin
 C:\Users\ycatdev\RiderProjects\roominator\Roominator\obj\Debug\net5.0\Roominator.pdb
 C:\Users\ycatdev\RiderProjects\roominator\Roominator\obj\Debug\net5.0\Roominator.genruntimeconfig.cache
 C:\Users\ycatdev\RiderProjects\roominator\Roominator\obj\Debug\net5.0\Roominator.csproj.CopyComplete
+D:\Roominator\roominator\Roominator\obj\Debug\net5.0\RazorDeclaration\Pages\Login.razor.g.cs
+D:\Roominator\roominator\Roominator\obj\Debug\net5.0\Razor\Pages\Login.razor.g.cs
