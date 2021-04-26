@@ -50,13 +50,63 @@ a, .btn-link {
 }
 
 /*---------------------------------CSS BEGIN---------------------------------*/
+@font-face {
+    font-family: 'GothamPro';
+    src: url('/fonts/GothamPro.eot');
+    src: url('/fonts/GothamPro.eot?#iefix') format('embedded-opentype'), url('/fonts/GothamPro.woff') format('woff'), url('/fonts/GothamPro.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 
 .debug {
     border: solid black 1px !important;
 }
 
+/*Пренастройки*/
+input {
+    outline: none;
+}
+button {
+    outline: none;
+}
+button:active {
+    outline: none;
+}
+button:focus {
+    outline: none;
+}
+/*---------------------------------Кнопки---------------------------------*/
+.BlueButton {
+    background-color: #2665b8;
+    color: white;
+    border: solid white 2px;
+    border-radius: 15px;
+    font-family: 'GothamPro', sans-serif;
+    font-size: 20px;
+}
+
+.BlueButton:hover {
+    background-color: #548cd2;
+    color: white;
+    font-family: 'GothamPro', sans-serif;
+    font-size: 20px;
+}
+
+.LinkButton {
+    color: white;
+    border: 0;
+    font-family: 'GothamPro', sans-serif;
+    font-size: 20px;
+    background: transparent;
+}
+
+.LinkButton:hover {
+    text-decoration: underline;
+}
+
+
 /*---------------------------------LoginAndRegistration---------------------------------*/
-.BluePrintWindow {
+.AuthWindow {
     /*на весь экран*/
     position: fixed;
     top: 0;
@@ -68,4 +118,38 @@ a, .btn-link {
     /*стиль*/
     border: solid black 0px;
     background-image: url(/images/background/tile_blue.png);
+}
+
+.AuthLogo {
+    display: block;
+    width: 40%;
+    padding: 0;
+    margin: auto;
+    margin-top: 4%;
+    margin-bottom: 2%;
+}
+
+.AuthTitle {
+    text-align: center;
+    color: white;
+    font-family: 'GothamPro', sans-serif;
+    font-size: 28px;
+}
+
+.AuthInput {
+    border-radius: 20px;
+    background: linear-gradient( 180deg, #e6e6e6, #ffffff);
+    box-shadow: 4px 4px 9px #2b5080;
+    border: solid white 0px;
+    padding: 5px 15px;
+    display: block;
+    margin: auto;
+    /* текст*/
+    color: #2665b8;
+    font-family: 'GothamPro', sans-serif;
+    font-size: 20px;
+}
+
+::placeholder {
+    color: #b4b9bf;
 }
