@@ -2,5 +2,5 @@
 
  
     <TargetFramework>net5.0</TargetFramework>
-    <EnvironmentName>Development</EnvironmentName>
+    
   </Project>
