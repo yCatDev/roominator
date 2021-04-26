@@ -68,6 +68,4 @@ a, .btn-link {
     /*стиль*/
     border: solid black 0px;
     background-image: url(/images/background/tile_blue.png);
-    background-repeat: round;
-    background-position: -5% -5%;
 }
