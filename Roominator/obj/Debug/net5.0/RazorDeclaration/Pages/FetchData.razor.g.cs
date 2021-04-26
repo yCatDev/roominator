@@ -13,77 +13,77 @@ namespace Roominator.Pages
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "D:\Roominator\roominator\Roominator\_Imports.razor"
+#line 1 "C:\Users\ycatdev\RiderProjects\roominator\Roominator\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "D:\Roominator\roominator\Roominator\_Imports.razor"
+#line 2 "C:\Users\ycatdev\RiderProjects\roominator\Roominator\_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "D:\Roominator\roominator\Roominator\_Imports.razor"
+#line 3 "C:\Users\ycatdev\RiderProjects\roominator\Roominator\_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "D:\Roominator\roominator\Roominator\_Imports.razor"
+#line 4 "C:\Users\ycatdev\RiderProjects\roominator\Roominator\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "D:\Roominator\roominator\Roominator\_Imports.razor"
+#line 5 "C:\Users\ycatdev\RiderProjects\roominator\Roominator\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "D:\Roominator\roominator\Roominator\_Imports.razor"
+#line 6 "C:\Users\ycatdev\RiderProjects\roominator\Roominator\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "D:\Roominator\roominator\Roominator\_Imports.razor"
+#line 7 "C:\Users\ycatdev\RiderProjects\roominator\Roominator\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "D:\Roominator\roominator\Roominator\_Imports.razor"
+#line 8 "C:\Users\ycatdev\RiderProjects\roominator\Roominator\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "D:\Roominator\roominator\Roominator\_Imports.razor"
+#line 9 "C:\Users\ycatdev\RiderProjects\roominator\Roominator\_Imports.razor"
 using Roominator;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "D:\Roominator\roominator\Roominator\_Imports.razor"
+#line 10 "C:\Users\ycatdev\RiderProjects\roominator\Roominator\_Imports.razor"
 using Roominator.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "D:\Roominator\roominator\Roominator\Pages\FetchData.razor"
+#line 3 "C:\Users\ycatdev\RiderProjects\roominator\Roominator\Pages\FetchData.razor"
 using Roominator.Data;
 
 #line default
@@ -98,7 +98,7 @@ using Roominator.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 39 "D:\Roominator\roominator\Roominator\Pages\FetchData.razor"
+#line 39 "C:\Users\ycatdev\RiderProjects\roominator\Roominator\Pages\FetchData.razor"
        
     private WeatherForecast[] forecasts;
 
