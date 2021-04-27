@@ -49,7 +49,9 @@ a, .btn-link {
         top: 0.5rem;
 }
 
-/*---------------------------------CSS BEGIN---------------------------------*/
+/*---------------------------------  CSS BEGIN ---------------------------------*/
+
+/*------------------------------------  Фоны -----------------------------------*/
 @font-face {
     font-family: 'GothamPro';
     src: url('/fonts/GothamPro.eot');
@@ -58,11 +60,7 @@ a, .btn-link {
     font-style: normal;
 }
 
-.debug {
-    border: solid black 1px !important;
-}
-
-/*Пренастройки*/
+/*----------------  Отключение мусора и обнуление настроек -------------------*/
 input {
     outline: none;
 }
@@ -75,7 +73,22 @@ button:active {
 button:focus {
     outline: none;
 }
-/*---------------------------------Кнопки---------------------------------*/
+p{
+    margin: 0;
+    padding: 0;
+}
+/*--------------------------  Конструктор-блок  --------------------------------*/
+/*Этот стиль нужен для блоков которые служат для 
+    построения страницы и расположения елементов*/
+
+.Constructor {
+    border: solid black 1px;
+    padding: 1px;
+    margin: 0px;
+}
+
+
+/*---------------------------------  Кнопки  ---------------------------------*/
 .BlueButton {
     background-color: #2665b8;
     color: white;
@@ -83,6 +96,8 @@ button:focus {
     border-radius: 15px;
     font-family: 'GothamPro', sans-serif;
     font-size: 20px;
+    padding: 1px 15px;
+    transition-duration: 0.2s;
 }
 
 .BlueButton:hover {
@@ -101,12 +116,17 @@ button:focus {
 }
 
 .LinkButton:hover {
+    color: white;
     text-decoration: underline;
+}
+.LinkButton:visited {
+    color: white;
 }
 
 
-/*---------------------------------LoginAndRegistration---------------------------------*/
-.AuthWindow {
+/*--------------------------------- Логин и Регистрация---------------------------------*/
+/*-------> Стили                                                */
+.BluePrintWindow {
     /*на весь экран*/
     position: fixed;
     top: 0;
@@ -137,19 +157,84 @@ button:focus {
 }
 
 .AuthInput {
-    border-radius: 20px;
+    border-radius: 15px;
     background: linear-gradient( 180deg, #e6e6e6, #ffffff);
     box-shadow: 4px 4px 9px #2b5080;
     border: solid white 0px;
-    padding: 5px 15px;
+    padding: 3px 15px;
     display: block;
-    margin: auto;
     /* текст*/
     color: #2665b8;
     font-family: 'GothamPro', sans-serif;
     font-size: 20px;
+
+    width: 100%;
+    margin-top: 2%;
 }
 
 ::placeholder {
     color: #b4b9bf;
+}
+
+/*-------> Структура                                                 */
+.AuthFormLine {
+    width: 100%;
+    display: flex ;
+    justify-content: space-between;
+    margin-top: 2%;
+}
+
+.AuthSocial {
+    width: 49%;
+    text-align: left;
+}
+
+#SigninButton{
+    width: 35%;
+}
+
+#ForgetPass {
+    font-size: 18px;
+}
+
+.AuthMainBlock {
+    width: 40%;
+    margin: auto;
+}
+.AuthForm {
+    display: inline-block;
+    width: 80%;
+    vertical-align: middle
+}
+.AuthSigns {
+    display: inline-block;
+    width: 9%;
+    vertical-align: middle
+}
+
+.AuthSocialIcon {
+    width: 20px;
+    margin-bottom: 2px;
+}
+
+/* Футер и сообщение об ошибке */
+
+.AuthFooter {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.AuthWarningIcon {
+    width: 40px;
+    margin-top:10px;
+}
+
+.AuthErrorMessage {
+    width: 100%;
+    text-align: center;
+    background-color: white;
+    color: #2665b8;
+    font-family: 'GothamPro', sans-serif;
 }

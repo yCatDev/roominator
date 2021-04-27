@@ -1,11 +1,41 @@
 ﻿@page "/login"
 
-<div class="AuthWindow">
+<div class="BluePrintWindow">
 
     <img src="/images/logo/logo_shadow.png" alt="Roominator logo" class="AuthLogo">
     <p class="AuthTitle">Вход</p>
-    <input type="text" placeholder="Логін" id="SigninLogin" class="AuthInput">
-    <input type="password" placeholder="Пароль" id="SigninPassword" class="AuthInput">
-    <button class="LinkButton"> Вхід </button>
-    <button class="BlueButton"> Вхід </button>
+
+    <p class="AuthErrorMessage">Вы ввели что-то неправильно</p>
+
+    <div class="Constructor AuthMainBlock">
+        <div class="Constructor AuthSigns">
+        </div>
+        <div class="Constructor AuthForm">
+            <div class="Constructor AuthFormLine">
+
+                <button class="BlueButton AuthSocial">
+                    <img src="/images/icons/login/google.png" alt="Google" class="AuthSocialIcon">| Google
+                </button>
+                <button class="BlueButton AuthSocial">
+                    <img src="/images/icons/login/facebook.png" alt="Facebook" class="AuthSocialIcon">| Facebook
+                </button>
+
+            </div>
+
+            <input type="text" placeholder="Логін" id="SigninLogin" class="AuthInput">
+            <input type="password" placeholder="Пароль" id="SigninPassword" class="AuthInput">
+
+            <div class="Constructor AuthFormLine">
+                <button class="LinkButton" id="ForgetPass"> Забули пароль? </button>
+                <button class="BlueButton" id="SigninButton"> Вхід </button>
+            </div>
+        </div>
+        <div class="Constructor AuthSigns">
+            <img src="/images/icons/login/attention.png" alt="X" class="AuthWarningIcon" id="SigninLoginWarning">
+            <img src="/images/icons/login/attention.png" alt="X" class="AuthWarningIcon" id="SigninPassworfWarning">
+        </div>
+
+    </div>
+
+    <a href="https://www.google.com.ua" class="LinkButton AuthFooter">Немає аккаунту? Реєстрація</a>
 </div>
