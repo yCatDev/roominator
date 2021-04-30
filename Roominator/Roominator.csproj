@@ -5,6 +5,11 @@
     <TargetFramework>net5.0</TargetFramework>
      <EnvironmentName>Development</EnvironmentName>
   </PropertyGroup>
+
+ 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\controls\" />
+  </ItemGroup>
   
     
   </Project>

@@ -290,3 +290,5 @@ C:\Users\ycatdev\RiderProjects\roominator\Roominator\obj\Debug\net5.0\Roominator
 C:\Users\ycatdev\RiderProjects\roominator\Roominator\obj\Debug\net5.0\Roominator.csproj.CopyComplete
 D:\Roominator\roominator\Roominator\obj\Debug\net5.0\RazorDeclaration\Pages\Login.razor.g.cs
 D:\Roominator\roominator\Roominator\obj\Debug\net5.0\Razor\Pages\Login.razor.g.cs
+D:\Roominator\roominator\Roominator\obj\Debug\net5.0\RazorDeclaration\Pages\Register.razor.g.cs
+D:\Roominator\roominator\Roominator\obj\Debug\net5.0\Razor\Pages\Register.razor.g.cs

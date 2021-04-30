@@ -1,9 +1,9 @@
-﻿@page "/login"
+﻿@page "/register"
 
 <div class="BluePrintWindow">
 
     <img src="/images/logo/logo_shadow.png" alt="Roominator logo" class="AuthLogo">
-    <p class="AuthTitle Unselectable">Вхід</p>
+    <p class="AuthTitle Unselectable">Реєстрація</p>
 
     <p class="AuthErrorMessage @MessageLine Unselectable">@ErrorMessage</p>
 
@@ -22,22 +22,24 @@
 
             </div>
 
-            <input type="email" placeholder="Пошта" id="SigninMail" class="AuthInput">
-            <input type="password" placeholder="Пароль" id="SigninPassword" class="AuthInput">
+            <input type="email" placeholder="Пошта" id="SignupMail" class="AuthInput">
+            <input type="password" placeholder="Пароль" id="SignupPassword" class="AuthInput">
+            <input type="password" placeholder="Повтор паролю" id="SignupConfirmPassword" class="AuthInput">
 
             <div class="Constructor AuthFormLine">
-                <button class="LinkButton" id="ForgetPass"> Забули пароль? </button>
-                <button class="BlueButton" id="SigninButton"> Вхід </button>
+                <p class="AuthCheckboxText"><input type="checkbox" value="agree" name="TermsAgree" id="TermsAgree"> Я погоджуюсь з умовами </p>
+                <button class="BlueButton" id="SignupButton"> Реєстрація </button>
             </div>
         </div>
         <div class="Constructor AuthSigns">
-            <img src="/images/icons/login/attention.png" alt="X" class="AuthWarningIcon @MailWarning" id="SigninMailWarning">
-            <img src="/images/icons/login/attention.png" alt="X" class="AuthWarningIcon @PasswordWarning" id="SigninPassworfWarning">
+            <img src="/images/icons/login/attention.png" alt="X" class="AuthWarningIcon @MailWarning" id="SignupMailWarning">
+            <img src="/images/icons/login/attention.png" alt="X" class="AuthWarningIcon @PasswordWarning" id="SignupPassworfWarning">
+            <img src="/images/icons/login/attention.png" alt="X" class="AuthWarningIcon @ConfirmPasswordWarning" id="SignupConfirmPasswordWarning">
         </div>
 
     </div>
 
-    <a href="/register" class="LinkButton AuthFooter" >Немає аккаунту? Реєстрація</a>
+    <a href="/login" class="LinkButton AuthFooter" >Є аккаунт? Вхід</a>
 </div>
 
 @code{
@@ -52,9 +54,9 @@
     //Hidden-начальное состояние / скрыто / без анимаций
     private string MailWarning = "Hidden"; //Иконка логина
     private string PasswordWarning = "Hidden"; //Иконка пароля
-
+    private string ConfirmPasswordWarning = "Hidden"; //Иконка подтверждения
     //Для запуска анимации нужно присвоить соответствующее значени переменной
     //Меняйте текст ошибки ДО показа, и ПОСЛЕ скрытия
 
-    
+
 }

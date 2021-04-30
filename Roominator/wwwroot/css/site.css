@@ -49,9 +49,10 @@ a, .btn-link {
         top: 0.5rem;
 }
 
-/*---------------------------------  CSS BEGIN ---------------------------------*/
+/*=================================  CSS BEGIN ================================*/
 
-/*------------------------------------  Фоны -----------------------------------*/
+/*=====================================  ОБЩЕЕ ===================================*/
+/*------------------------------------  Шрифты -----------------------------------*/
 @font-face {
     font-family: 'GothamPro';
     src: url('/fonts/GothamPro.eot');
@@ -77,16 +78,22 @@ p{
     margin: 0;
     padding: 0;
 }
-/*--------------------------  Конструктор-блок  --------------------------------*/
-/*Этот стиль нужен для блоков которые служат для 
-    построения страницы и расположения елементов*/
+/*--------------------------  Служебное  --------------------------------*/
+
 
 .Constructor {
-    border: solid black 1px;
-    padding: 1px;
+    border: solid black 0px;
+    padding: 0px;
     margin: 0px;
 }
 
+.Unselectable {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 
 /*---------------------------------  Кнопки  ---------------------------------*/
 .BlueButton {
@@ -122,10 +129,42 @@ p{
 .LinkButton:visited {
     color: white;
 }
+/*---------------------------------  Анимации  ---------------------------------*/
+.Hidden { opacity: 0 }
+.Invisible { opacity: 0 }
+.Showed { opacity: 0 }
+.Visible { opacity: 1 }
 
+.Show {
+    animation: Show 500ms linear 0s 1 normal forwards;
+}
 
-/*--------------------------------- Логин и Регистрация---------------------------------*/
-/*-------> Стили                                                */
+@keyframes Show {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.Hide {
+    animation: Hide 500ms linear 0s 1 normal forwards;
+}
+
+@keyframes Hide {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+/*================================ Логин и Регистрация========================*/
+/*-------------------------------------> Стиль <-----------------------------*/
 .BluePrintWindow {
     /*на весь экран*/
     position: fixed;
@@ -176,7 +215,7 @@ p{
     color: #b4b9bf;
 }
 
-/*-------> Структура                                                 */
+/*-------------------------------------> Структура <-----------------------------*/
 .AuthFormLine {
     width: 100%;
     display: flex ;
@@ -217,7 +256,7 @@ p{
     margin-bottom: 2px;
 }
 
-/* Футер и сообщение об ошибке */
+/*-------------------------------------> Футер <-----------------------------*/
 
 .AuthFooter {
     position: fixed;
@@ -226,15 +265,99 @@ p{
     text-align: center;
 }
 
+/*-------------------------------------> Ошибки <-----------------------------*/
 .AuthWarningIcon {
     width: 40px;
-    margin-top:10px;
+    margin-top:5px;
 }
 
 .AuthErrorMessage {
     width: 100%;
     text-align: center;
     background-color: white;
-    color: #2665b8;
     font-family: 'GothamPro', sans-serif;
+}
+
+.AuthCollapsedLine {
+    height: 0;
+    margin-bottom: 24px;
+    color: transparent;
+}
+
+.AuthCollapseLine {
+    animation: AuthCollapseLine 500ms linear 0s 1 normal forwards;
+}
+
+@keyframes AuthCollapseLine {
+    from {
+        height: 24px;
+        margin-bottom: 0;
+        color: #2665b8;
+    }
+    50% {
+        height: 24px;
+        margin-bottom: 0;
+        color: transparent;
+    }
+    to {
+        height: 0;
+        margin-bottom: 24px;
+        color: transparent;
+    }
+}
+
+.AuthExpandLine {
+    animation: AuthExpandLine 500ms linear 0s 1 normal forwards;
+}
+
+@keyframes AuthExpandLine {
+    from {
+        height: 0;
+        margin-bottom: 24px;
+        color: transparent;
+    }
+    50% {
+        height: 24px;
+        margin-bottom: 0;
+        color: transparent;
+    }
+    to {
+        height: 24px;
+        margin-bottom: 0;
+        color: #2665b8;
+    }
+}
+
+/*---------------------Чекбоксы---------------------*/
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: url(/images/controls/checkbox.png)center no-repeat;
+    background-size: 20px;
+    vertical-align: text-bottom;
+}
+
+    input[type="checkbox"]:checked {
+        background: url(/images/controls/checkbox_checked.png)center no-repeat;
+        background-size: 20px;
+    }
+
+    input[type="checkbox"]:hover {
+        filter: contrast(110%) brightness(110%);
+        background-size: 20px;
+        cursor: pointer;
+    }
+
+    input[type="checkbox"]:checked:hover {
+        filter: contrast(110%) brightness(110%);
+        background-size: 20px;
+        cursor: pointer;
+    }
+
+.AuthCheckboxText {
+    color: white;
+    border: 0;
+    font-family: 'GothamPro', sans-serif;
+    font-size: 16px;
 }
