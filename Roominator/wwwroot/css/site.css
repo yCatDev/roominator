@@ -367,10 +367,13 @@ input[type="checkbox"] {
     position: absolute;
     width: 100%;
     height: 100%;
+    overflow: hidden;
 }
 
 .fullsize{
     width:  100% !important;
     height: 100% !important;
     margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden;
 }
