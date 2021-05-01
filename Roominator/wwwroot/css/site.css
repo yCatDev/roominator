@@ -42,9 +42,322 @@ a, .btn-link {
     z-index: 1000;
 }
 
-    #blazor-error-ui .dismiss {
+#blazor-error-ui .dismiss {
         cursor: pointer;
         position: absolute;
         right: 0.75rem;
         top: 0.5rem;
+}
+
+/*=================================  CSS BEGIN ================================*/
+
+/*=====================================  ОБЩЕЕ ===================================*/
+/*------------------------------------  Шрифты -----------------------------------*/
+@font-face {
+    font-family: 'GothamPro';
+    src: url('/fonts/GothamPro.eot');
+    src: url('/fonts/GothamPro.eot?#iefix') format('embedded-opentype'), url('/fonts/GothamPro.woff') format('woff'), url('/fonts/GothamPro.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*----------------  Отключение мусора и обнуление настроек -------------------*/
+input {
+    outline: none;
+}
+button {
+    outline: none;
+}
+button:active {
+    outline: none;
+}
+button:focus {
+    outline: none;
+}
+p{
+    margin: 0;
+    padding: 0;
+}
+/*--------------------------  Служебное  --------------------------------*/
+
+
+.Constructor {
+    border: solid black 0px;
+    padding: 0px;
+    margin: 0px;
+}
+
+.Unselectable {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/*---------------------------------  Кнопки  ---------------------------------*/
+.BlueButton {
+    background-color: #2665b8;
+    color: white;
+    border: solid white 2px;
+    border-radius: 15px;
+    font-family: 'GothamPro', sans-serif;
+    font-size: 20px;
+    padding: 1px 15px;
+    transition-duration: 0.2s;
+}
+
+.BlueButton:hover {
+    background-color: #548cd2;
+    color: white;
+    font-family: 'GothamPro', sans-serif;
+    font-size: 20px;
+}
+
+.LinkButton {
+    color: white;
+    border: 0;
+    font-family: 'GothamPro', sans-serif;
+    font-size: 20px;
+    background: transparent;
+}
+
+.LinkButton:hover {
+    color: white;
+    text-decoration: underline;
+}
+.LinkButton:visited {
+    color: white;
+}
+/*---------------------------------  Анимации  ---------------------------------*/
+.Hidden { opacity: 0 }
+.Invisible { opacity: 0 }
+.Showed { opacity: 0 }
+.Visible { opacity: 1 }
+
+.Show {
+    animation: Show 500ms linear 0s 1 normal forwards;
+}
+
+@keyframes Show {
+    from {
+        opacity: 0;
     }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.Hide {
+    animation: Hide 500ms linear 0s 1 normal forwards;
+}
+
+@keyframes Hide {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+/*================================ Логин и Регистрация========================*/
+/*-------------------------------------> Стиль <-----------------------------*/
+.BluePrintWindow {
+    /*на весь экран*/
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    /*стиль*/
+    border: solid black 0px;
+    background-image: url(/images/background/tile_blue.png);
+}
+
+.AuthLogo {
+    display: block;
+    width: 40%;
+    padding: 0;
+    margin: auto;
+    margin-top: 4%;
+    margin-bottom: 2%;
+}
+
+.AuthTitle {
+    text-align: center;
+    color: white;
+    font-family: 'GothamPro', sans-serif;
+    font-size: 28px;
+}
+
+.AuthInput {
+    border-radius: 15px;
+    background: linear-gradient( 180deg, #e6e6e6, #ffffff);
+    box-shadow: 4px 4px 9px #2b5080;
+    border: solid white 0px;
+    padding: 3px 15px;
+    display: block;
+    /* текст*/
+    color: #2665b8;
+    font-family: 'GothamPro', sans-serif;
+    font-size: 20px;
+
+    width: 100%;
+    margin-top: 2%;
+}
+
+::placeholder {
+    color: #b4b9bf;
+}
+
+/*-------------------------------------> Структура <-----------------------------*/
+.AuthFormLine {
+    width: 100%;
+    display: flex ;
+    justify-content: space-between;
+    margin-top: 2%;
+}
+
+.AuthSocial {
+    width: 49%;
+    text-align: left;
+}
+
+#SigninButton{
+    width: 35%;
+}
+
+#ForgetPass {
+    font-size: 18px;
+}
+
+.AuthMainBlock {
+    width: 40%;
+    margin: auto;
+}
+.AuthForm {
+    display: inline-block;
+    width: 80%;
+    vertical-align: middle
+}
+.AuthSigns {
+    display: inline-block;
+    width: 9%;
+    vertical-align: middle
+}
+
+.AuthSocialIcon {
+    width: 20px;
+    margin-bottom: 2px;
+}
+
+/*-------------------------------------> Футер <-----------------------------*/
+
+.AuthFooter {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+/*-------------------------------------> Ошибки <-----------------------------*/
+.AuthWarningIcon {
+    width: 40px;
+    margin-top:5px;
+}
+
+.AuthErrorMessage {
+    width: 100%;
+    text-align: center;
+    background-color: white;
+    font-family: 'GothamPro', sans-serif;
+}
+
+.AuthCollapsedLine {
+    height: 0;
+    margin-bottom: 24px;
+    color: transparent;
+}
+
+.AuthCollapseLine {
+    animation: AuthCollapseLine 500ms linear 0s 1 normal forwards;
+}
+
+@keyframes AuthCollapseLine {
+    from {
+        height: 24px;
+        margin-bottom: 0;
+        color: #2665b8;
+    }
+    50% {
+        height: 24px;
+        margin-bottom: 0;
+        color: transparent;
+    }
+    to {
+        height: 0;
+        margin-bottom: 24px;
+        color: transparent;
+    }
+}
+
+.AuthExpandLine {
+    animation: AuthExpandLine 500ms linear 0s 1 normal forwards;
+}
+
+@keyframes AuthExpandLine {
+    from {
+        height: 0;
+        margin-bottom: 24px;
+        color: transparent;
+    }
+    50% {
+        height: 24px;
+        margin-bottom: 0;
+        color: transparent;
+    }
+    to {
+        height: 24px;
+        margin-bottom: 0;
+        color: #2665b8;
+    }
+}
+
+/*---------------------Чекбоксы---------------------*/
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: url(/images/controls/checkbox.png)center no-repeat;
+    background-size: 20px;
+    vertical-align: text-bottom;
+}
+
+    input[type="checkbox"]:checked {
+        background: url(/images/controls/checkbox_checked.png)center no-repeat;
+        background-size: 20px;
+    }
+
+    input[type="checkbox"]:hover {
+        filter: contrast(110%) brightness(110%);
+        background-size: 20px;
+        cursor: pointer;
+    }
+
+    input[type="checkbox"]:checked:hover {
+        filter: contrast(110%) brightness(110%);
+        background-size: 20px;
+        cursor: pointer;
+    }
+
+.AuthCheckboxText {
+    color: white;
+    border: 0;
+    font-family: 'GothamPro', sans-serif;
+    font-size: 16px;
+}

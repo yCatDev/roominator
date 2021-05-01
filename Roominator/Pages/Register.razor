@@ -1,0 +1,71 @@
+﻿@page "/register"
+
+<div class="BluePrintWindow">
+
+    <img src="/images/logo/logo_shadow.png" alt="Roominator logo" class="AuthLogo">
+    <p class="AuthTitle Unselectable">Реєстрація</p>
+
+    <p class="AuthErrorMessage @MessageLine Unselectable">@ErrorMessage</p>
+
+    <div class="Constructor AuthMainBlock">
+        <div class="Constructor AuthSigns">
+        </div>
+        <div class="Constructor AuthForm">
+            <div class="Constructor AuthFormLine">
+
+                <button class="BlueButton AuthSocial">
+                    <img src="/images/icons/login/google.png" alt="Google" class="AuthSocialIcon">| Google
+                </button>
+                <button class="BlueButton AuthSocial">
+                    <img src="/images/icons/login/facebook.png" alt="Facebook" class="AuthSocialIcon">| Facebook
+                </button>
+
+            </div>
+
+            <input type="email" placeholder="Пошта" id="SignupMail" class="AuthInput" @bind="email">
+            <input type="password" placeholder="Пароль" id="SignupPassword" class="AuthInput" @bind="password">
+            <input type="password" placeholder="Повтор паролю" id="SignupConfirmPassword" class="AuthInput" @bind="password_copy">
+
+            <div class="Constructor AuthFormLine">
+                <p class="AuthCheckboxText"><input type="checkbox" value="agree" name="TermsAgree" id="TermsAgree"> Я погоджуюсь з умовами </p>
+                <button class="BlueButton" id="SignupButton" @onclick="register"> Реєстрація </button>
+            </div>
+        </div>
+        <div class="Constructor AuthSigns">
+            <img src="/images/icons/login/attention.png" alt="X" class="AuthWarningIcon @MailWarning" id="SignupMailWarning">
+            <img src="/images/icons/login/attention.png" alt="X" class="AuthWarningIcon @PasswordWarning" id="SignupPassworfWarning">
+            <img src="/images/icons/login/attention.png" alt="X" class="AuthWarningIcon @ConfirmPasswordWarning" id="SignupConfirmPasswordWarning">
+        </div>
+        <input @bind="res"/>
+    </div>
+
+    <a href="/login" class="LinkButton AuthFooter">Є аккаунт? Вхід</a>
+</div>
+
+@code{
+    //========>  Вывод и анимация ошибок  <============//
+
+    private string ErrorMessage = ""; //Сообщение ошибки
+    //AuthCollapseLine - скрыть  // AuthExpandLine - показать
+    //AuthCollapsedLine - начальное состояние / скрыто / без анимаций
+    private string MessageLine = "AuthCollapsedLine"; //Состояние полосы
+
+    //Show - показать // Hide-скрыть 
+    //Hidden-начальное состояние / скрыто / без анимаций
+    private string MailWarning = "Hidden"; //Иконка логина
+    private string PasswordWarning = "Hidden"; //Иконка пароля
+    private string ConfirmPasswordWarning = "Hidden"; //Иконка подтверждения
+    //Для запуска анимации нужно присвоить соответствующее значени переменной
+    //Меняйте текст ошибки ДО показа, и ПОСЛЕ скрытия
+
+    string email = "";
+    string password = "";
+    string password_copy = "";
+    string res = "";
+    public void register() {
+        res = ($"{email} {password} {password_copy}");
+        Authorization authorization = new Authorization(email, password, password_copy);
+        Console.WriteLine(authorization.register());
+    }
+}
+

@@ -5,6 +5,17 @@
     <TargetFramework>net5.0</TargetFramework>
      <EnvironmentName>Development</EnvironmentName>
   </PropertyGroup>
+
+ 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\controls\" />
+  </ItemGroup>
+
+ 
+  <ItemGroup>
+    <PackageReference Include="Npgsql" Version="5.0.4" />
+    <PackageReference Include="System.Net.Http.Json" Version="5.0.0" />
+  </ItemGroup>
   
     
   </Project>

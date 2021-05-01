@@ -91,7 +91,7 @@ using Roominator.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 9 "C:\Users\ycatdev\RiderProjects\roominator\Roominator\Pages\Counter.razor"
+#line 10 "C:\Users\ycatdev\RiderProjects\roominator\Roominator\Pages\Counter.razor"
        
     private int currentCount = 0;
 

@@ -1,0 +1,60 @@
+﻿@page "/login"
+
+<div class="BluePrintWindow">
+
+    <img src="/images/logo/logo_shadow.png" alt="Roominator logo" class="AuthLogo">
+    <p class="AuthTitle Unselectable">Вхід</p>
+
+    <p class="AuthErrorMessage @MessageLine Unselectable">@ErrorMessage</p>
+
+    <div class="Constructor AuthMainBlock">
+        <div class="Constructor AuthSigns">
+        </div>
+        <div class="Constructor AuthForm">
+            <div class="Constructor AuthFormLine">
+
+                <button class="BlueButton AuthSocial">
+                    <img src="/images/icons/login/google.png" alt="Google" class="AuthSocialIcon">| Google
+                </button>
+                <button class="BlueButton AuthSocial">
+                    <img src="/images/icons/login/facebook.png" alt="Facebook" class="AuthSocialIcon">| Facebook
+                </button>
+
+            </div>
+
+            <input type="email" placeholder="Пошта" id="SigninMail" class="AuthInput">
+            <input type="password" placeholder="Пароль" id="SigninPassword" class="AuthInput">
+
+            <div class="Constructor AuthFormLine">
+                <button class="LinkButton" id="ForgetPass"> Забули пароль? </button>
+                <button class="BlueButton" id="SigninButton"> Вхід </button>
+            </div>
+        </div>
+        <div class="Constructor AuthSigns">
+            <img src="/images/icons/login/attention.png" alt="X" class="AuthWarningIcon @MailWarning" id="SigninMailWarning">
+            <img src="/images/icons/login/attention.png" alt="X" class="AuthWarningIcon @PasswordWarning" id="SigninPassworfWarning">
+        </div>
+
+    </div>
+
+    <a href="/register" class="LinkButton AuthFooter" >Немає аккаунту? Реєстрація</a>
+</div>
+
+@code{
+    //========>  Вывод и анимация ошибок  <============//
+
+    private string ErrorMessage = ""; //Сообщение ошибки
+    //AuthCollapseLine - скрыть  // AuthExpandLine - показать
+    //AuthCollapsedLine - начальное состояние / скрыто / без анимаций
+    private string MessageLine = "AuthCollapsedLine"; //Состояние полосы
+
+    //Show - показать // Hide-скрыть 
+    //Hidden-начальное состояние / скрыто / без анимаций
+    private string MailWarning = "Hidden"; //Иконка логина
+    private string PasswordWarning = "Hidden"; //Иконка пароля
+
+    //Для запуска анимации нужно присвоить соответствующее значени переменной
+    //Меняйте текст ошибки ДО показа, и ПОСЛЕ скрытия
+
+    
+}
