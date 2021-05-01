@@ -64,7 +64,7 @@
     string res = "";
     public void register() {
         res = ($"{email} {password} {password_copy}");
-        Authorization authorization = new Authorization(email, password, password_copy);
+        Authorization authorization = new Authorization(password, password_copy, email);
         Console.WriteLine(authorization.register());
     }
 }

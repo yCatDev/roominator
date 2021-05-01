@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "gCu+Dwt2PzHcuqMaeTJDTIQdTkKrzlXQo1FcaYP/Q33ULvP6A8WxYrc2Ja/ZxiBvb0SD51vMIKUljs8oLlY7Uw==",
+  "dgSpecHash": "sqwnqROSHF/8NO3Gref8eTWbCxWtiYKbXpCkgh0XWvWcyCrnV/G8JLA9r+5lnEnIct0MHx+LBtFFWfiqeXyvHA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Артем\\Documents\\GitHub\\roominator\\Roominator\\Roominator.csproj",
+  "projectFilePath": "C:\\Users\\balan\\Documents\\GitHub\\roominator\\Roominator\\Roominator.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Артем\\.nuget\\packages\\npgsql\\5.0.4\\npgsql.5.0.4.nupkg.sha512",
-    "C:\\Users\\Артем\\.nuget\\packages\\system.net.http.json\\5.0.0\\system.net.http.json.5.0.0.nupkg.sha512",
-    "C:\\Users\\Артем\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.6.0\\system.runtime.compilerservices.unsafe.4.6.0.nupkg.sha512"
+    "C:\\Users\\balan\\.nuget\\packages\\npgsql\\5.0.4\\npgsql.5.0.4.nupkg.sha512",
+    "C:\\Users\\balan\\.nuget\\packages\\system.net.http.json\\5.0.0\\system.net.http.json.5.0.0.nupkg.sha512",
+    "C:\\Users\\balan\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.6.0\\system.runtime.compilerservices.unsafe.4.6.0.nupkg.sha512"
   ],
   "logs": []
 }

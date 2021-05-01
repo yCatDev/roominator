@@ -340,7 +340,11 @@
           "lib/net5.0/Npgsql.dll": {}
         }
       },
-      "System.Net.Http.Json/5.0.0": {},
+      "System.Net.Http.Json/5.0.0": {
+        "compile": {
+          "lib/net5.0/System.Net.Http.Json.dll": {}
+        }
+      },
       "System.Runtime.CompilerServices.Unsafe/4.6.0": {},
       "Microsoft.AspNetCore.Antiforgery/5.0.0.0": {
         "compile": {
