@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -42,6 +43,15 @@ namespace Roominator
                 app.UseExceptionHandler("/Error");
             }
 
+            app.UseHttpsRedirection();
+            var provider = new FileExtensionContentTypeProvider();
+            provider.Mappings.Remove(".data");
+            provider.Mappings[".data"] = "application/octet-stream";
+            provider.Mappings.Remove(".wasm");
+            provider.Mappings[".wasm"] = "application/wasm";
+            provider.Mappings.Remove(".symbols.json");
+            provider.Mappings[".symbols.json"] = "application/octet-stream";
+            app.UseStaticFiles(new StaticFileOptions { ContentTypeProvider = provider });
             app.UseStaticFiles();
 
             app.UseRouting();
