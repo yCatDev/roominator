@@ -11,6 +11,7 @@ namespace Roominator
 {
     public class Program
     {
+        public static DatabaseManager databaseManager = new DatabaseManager();
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
