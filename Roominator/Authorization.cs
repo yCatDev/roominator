@@ -1,5 +1,6 @@
 using System.Runtime.InteropServices;
 using System;
+using System.Threading.Tasks;
 
 namespace Roominator {
     class Authorization {
@@ -15,8 +16,8 @@ namespace Roominator {
             validationResult = new ValidationResult(password, password_copy, email);
         }
 
-        public bool register() {
-            if (!validationResult.validate() || validationResult.userExists())
+        public async Task<bool> Register() {
+            if (!validationResult.validate() || await validationResult.UserExists())
                 return false;
             Program.databaseManager.InsertData("user", "user_email, user_password", $"'{email}', '{password}'");
             return true;

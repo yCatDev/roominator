@@ -1,6 +1,7 @@
 using System.Runtime.InteropServices;
 using System;
 using System.Data;
+using System.Threading.Tasks;
 
 namespace Roominator
 {
@@ -28,12 +29,12 @@ namespace Roominator
             return false;
         }
 
-        public bool isEverythingCorrect() {
-            DataTable res = Program.databaseManager.ExecQuery($"SELECT * FROM public.user WHERE public.user.user_email = '{email}'");
+        public async Task<bool> IsEverythingCorrect() {
+            DataTable res = await Program.databaseManager.ExecQuery($"SELECT * FROM public.user WHERE public.user.user_email = '{email}'");
             if (res.Rows.Count == 1)
             {
                 correctEmail = true;
-                res = Program.databaseManager.ExecQuery($"SELECT user_password FROM public.user WHERE public.user.user_email = '{email}'");
+                res = await Program.databaseManager.ExecQuery($"SELECT user_password FROM public.user WHERE public.user.user_email = '{email}'");
                 if (res.Rows[0][0].ToString() == password)
                 {
                     correctPassword = true;
@@ -43,8 +44,8 @@ namespace Roominator
             return false;
         }
 
-        public bool userExists() {
-            DataTable res  = Program.databaseManager.ExecQuery($"SELECT * FROM public.user WHERE public.user.user_email = '{email}'");
+        public async Task<bool> UserExists() {
+            DataTable res  = await Program.databaseManager.ExecQuery($"SELECT * FROM public.user WHERE public.user.user_email = '{email}'");
             if (res.Rows.Count == 0)
                 return false;
             return true;

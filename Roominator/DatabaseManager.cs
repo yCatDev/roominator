@@ -1,7 +1,6 @@
 using System;
 using System.Runtime.InteropServices;
-
-
+using System.Threading.Tasks;
 
 
 namespace Roominator {
@@ -21,20 +20,26 @@ namespace Roominator {
                 "Password=a59a3aaea385ae55734f1dcf1442c731df76ea594bb4e7e838ad369899d8e3ae;" +
                 "sslmode = Require;Trust Server Certificate = true;");
         }
-
-        public DataTable ExecQuery(string sqlCommand)
+        
+        
+        public async Task<DataTable> ExecQuery(string sqlCommand/*, params string[] parameters*/)
         {
-            Connection.Open();
-            using var cmd = new NpgsqlCommand(sqlCommand, Connection);
-            cmd.Prepare();
-
+            /*foreach (var parameter in parameters)
+            {
+                sqlCommand = sqlCommand.ReplaceFirst("'$'", parameter);
+            }*/
+            await Connection.WaitAsync();
+            await Connection.OpenAsync();
+            await using var cmd = new NpgsqlCommand(sqlCommand, Connection);
+            await cmd.PrepareAsync();
+				
             var da = new NpgsqlDataAdapter(cmd);
-
+				
             var dataSet = new DataSet();
             var dataTable = new DataTable();
 
             da.Fill(dataSet);
-
+				
             try
             {
                 dataTable = dataSet.Tables[0];
@@ -43,19 +48,21 @@ namespace Roominator {
             {
                 Console.WriteLine("Error: " + ex.Message);
             }
-
-            Connection.Close();
+                
+            await Connection.CloseAsync();
             return dataTable;
         }
-        public void UpdateData(string tableName, string querySetData, int id)
+
+        public async Task UpdateData(string tableName, string querySetData, int id)
         {
-            Connection.Open();
+            await Connection.WaitAsync();
+            await Connection.OpenAsync();
             var cmd = $"UPDATE {tableName} SET {querySetData} WHERE id = {id};";
             NpgsqlCommand command = new NpgsqlCommand(cmd, Connection);
             try
             {
-                command.Prepare();
-                command.ExecuteNonQuery();
+                await command.PrepareAsync();
+                await command.ExecuteNonQueryAsync();
             }
             catch (Exception e)
             {
@@ -64,18 +71,19 @@ namespace Roominator {
                 throw;
             }
 
-            Connection.Close();
+            await Connection.CloseAsync();
         }
 
-        public void InsertData(string tableName, string fields, string values)
+        public async Task InsertData(string tableName, string fields, string values)
         {
-            Connection.Open();
+            await Connection.WaitAsync();
+            await Connection.OpenAsync();
             var cmd = $"INSERT INTO public.{tableName} ({fields}) VALUES ({values});";
             NpgsqlCommand command = new NpgsqlCommand(cmd, Connection);
             try
             {
-                command.Prepare();
-                command.ExecuteNonQuery();
+                await command.PrepareAsync();
+                await command.ExecuteNonQueryAsync();
             }
             catch (Exception e)
             {
@@ -84,18 +92,19 @@ namespace Roominator {
                 throw;
             }
 
-            Connection.Close();
+            await Connection.CloseAsync();
         }
 
-        public void DeleteData(string tableName, int id)
+        public async Task DeleteData(string tableName, int id)
         {
-            Connection.Open();
+            await Connection.WaitAsync();
+            await Connection.OpenAsync();
             var cmd = $"DELETE FROM public.{tableName} WHERE id = {id};";
             NpgsqlCommand command = new NpgsqlCommand(cmd, Connection);
             try
             {
-                command.Prepare();
-                command.ExecuteNonQuery();
+                await command.PrepareAsync();
+                await command.ExecuteNonQueryAsync();
             }
             catch (Exception e)
             {
@@ -104,7 +113,7 @@ namespace Roominator {
                 throw;
             }
 
-            Connection.Close();
+            await Connection.CloseAsync();
         }
     }
 }
