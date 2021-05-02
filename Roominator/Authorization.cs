@@ -16,7 +16,7 @@ namespace Roominator {
         }
 
         public bool register() {
-            if (validationResult.validate() && validationResult.userExists())
+            if (!validationResult.validate() || validationResult.userExists())
                 return false;
             Program.databaseManager.InsertData("user", "user_email, user_password", $"'{email}', '{password}'");
             return true;
