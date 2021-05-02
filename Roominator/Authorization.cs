@@ -15,14 +15,10 @@ namespace Roominator {
             validationResult = new ValidationResult(password, password_copy, email);
         }
 
-
         public bool register() {
-            if (validationResult.validate())
-            {
-                if (validationResult.userExists())
-                    return false;
-                Program.databaseManager.InsertData("User", "user_email, user_password", $"\"{email}\", \"{password}\"");
-            }
+            if (validationResult.validate() && validationResult.userExists())
+                return false;
+            Program.databaseManager.InsertData("user", "user_email, user_password", $"'{email}', '{password}'");
             return true;
         }
     }

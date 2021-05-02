@@ -22,12 +22,12 @@
 
             </div>
 
-            <input type="email" placeholder="Пошта" id="SigninMail" class="AuthInput">
-            <input type="password" placeholder="Пароль" id="SigninPassword" class="AuthInput">
+            <input type="email" placeholder="Пошта" id="SigninMail" class="AuthInput" @bind="email">
+            <input type="password" placeholder="Пароль" id="SigninPassword" class="AuthInput" @bind="password">
 
             <div class="Constructor AuthFormLine">
                 <button class="LinkButton" id="ForgetPass"> Забули пароль? </button>
-                <button class="BlueButton" id="SigninButton"> Вхід </button>
+                <button class="BlueButton" id="SigninButton" @onclick="validation"> Вхід </button>
             </div>
         </div>
         <div class="Constructor AuthSigns">
@@ -56,5 +56,41 @@
     //Для запуска анимации нужно присвоить соответствующее значени переменной
     //Меняйте текст ошибки ДО показа, и ПОСЛЕ скрытия
 
-    
+    string email = "";
+    string password = "";
+    ValidationResult validationResult;
+
+    public void hideEverything()
+    {
+        MailWarning = "Hide";
+        PasswordWarning = "Hide";
+        MessageLine = "AuthCollapseLine";
+        ErrorMessage = "";
+    }
+
+    public void validation()
+    {
+        validationResult = new ValidationResult(password, "", email);
+        validationResult.isEverythingCorrect();
+        hideEverything();
+        if (!validationResult.correctEmail)
+        {
+            ErrorMessage = "Не існує користувача з такою електронною поштою";
+            MailWarning = "Show";
+            MessageLine = "AuthExpandLine";
+        }
+        else
+        {
+            if (!validationResult.correctPassword)
+            {
+                ErrorMessage = "Невірний пароль";
+                PasswordWarning = "Show";
+                MessageLine = "AuthExpandLine";
+            }
+            else
+            {
+                //Вход
+            }
+        }
+    }
 }

@@ -18,7 +18,8 @@ namespace Roominator {
         {
             _connection = new NpgsqlConnection("Host=ec2-34-203-255-149.compute-1.amazonaws.com;Port=5432;Database=de66qfduidsjeq;" +
                 "Username=myemokdpaypchi;" +
-                "Password=a59a3aaea385ae55734f1dcf1442c731df76ea594bb4e7e838ad369899d8e3ae;");
+                "Password=a59a3aaea385ae55734f1dcf1442c731df76ea594bb4e7e838ad369899d8e3ae;" +
+                "sslmode = Require;Trust Server Certificate = true;");
         }
 
         public DataTable ExecQuery(string sqlCommand)

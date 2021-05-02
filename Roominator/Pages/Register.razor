@@ -36,7 +36,6 @@
             <img src="/images/icons/login/attention.png" alt="X" class="AuthWarningIcon @PasswordWarning" id="SignupPassworfWarning">
             <img src="/images/icons/login/attention.png" alt="X" class="AuthWarningIcon @ConfirmPasswordWarning" id="SignupConfirmPasswordWarning">
         </div>
-        <input @bind="res"/>
     </div>
 
     <a href="/login" class="LinkButton AuthFooter">Є аккаунт? Вхід</a>
@@ -64,7 +63,7 @@
     string res = "";
     public void register() {
         res = ($"{email} {password} {password_copy}");
-        Authorization authorization = new Authorization(email, password, password_copy);
+        Authorization authorization = new Authorization(password, password_copy, email);
         Console.WriteLine(authorization.register());
     }
 }
