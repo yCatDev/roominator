@@ -68,12 +68,12 @@
         ErrorMessage = "";
     }
 
-    public void validation()
+    async public void validation()
     {
         validationResult = new ValidationResult(password, "", email);
-        validationResult.IsEverythingCorrect();
+        await validationResult.IsEverythingCorrect();
         hideEverything();
-        if (!validationResult.correctEmail)
+        if (!validationResult.getCorrectEmail())
         {
             ErrorMessage = "Не існує користувача з такою електронною поштою";
             MailWarning = "Show";
@@ -81,7 +81,7 @@
         }
         else
         {
-            if (!validationResult.correctPassword)
+            if (!validationResult.getCorrectPassword())
             {
                 ErrorMessage = "Невірний пароль";
                 PasswordWarning = "Show";

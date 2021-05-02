@@ -21,7 +21,6 @@ namespace Roominator {
                 "sslmode = Require;Trust Server Certificate = true;");
         }
         
-        
         public async Task<DataTable> ExecQuery(string sqlCommand/*, params string[] parameters*/)
         {
             /*foreach (var parameter in parameters)

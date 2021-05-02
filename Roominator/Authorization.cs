@@ -18,9 +18,7 @@ namespace Roominator {
         }
 
         public async Task<bool> Register() {
-            if (!validationResult.validate() || await validationResult.UserExists())
-                return false;
-            Program.databaseManager.InsertData("user", "user_email, user_password", $"'{email}', '{password}'");
+            await Program.databaseManager.InsertData("user", "user_email, user_password", $"'{email}', '{password}'");
                 Console.WriteLine($"Registring user with mail {email}");
             return true;
         }
