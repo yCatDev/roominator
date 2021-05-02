@@ -1,5 +1,6 @@
 using System.Runtime.InteropServices;
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace Roominator {
@@ -20,6 +21,7 @@ namespace Roominator {
             if (!validationResult.validate() || await validationResult.UserExists())
                 return false;
             Program.databaseManager.InsertData("user", "user_email, user_password", $"'{email}', '{password}'");
+                Console.WriteLine($"Registring user with mail {email}");
             return true;
         }
     }

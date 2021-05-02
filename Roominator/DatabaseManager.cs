@@ -28,7 +28,7 @@ namespace Roominator {
             {
                 sqlCommand = sqlCommand.ReplaceFirst("'$'", parameter);
             }*/
-            await Connection.WaitAsync();
+           // await Connection.WaitAsync();
             await Connection.OpenAsync();
             await using var cmd = new NpgsqlCommand(sqlCommand, Connection);
             await cmd.PrepareAsync();
@@ -55,7 +55,7 @@ namespace Roominator {
 
         public async Task UpdateData(string tableName, string querySetData, int id)
         {
-            await Connection.WaitAsync();
+           // await Connection.WaitAsync();
             await Connection.OpenAsync();
             var cmd = $"UPDATE {tableName} SET {querySetData} WHERE id = {id};";
             NpgsqlCommand command = new NpgsqlCommand(cmd, Connection);
@@ -76,7 +76,7 @@ namespace Roominator {
 
         public async Task InsertData(string tableName, string fields, string values)
         {
-            await Connection.WaitAsync();
+            //await Connection.WaitAsync();
             await Connection.OpenAsync();
             var cmd = $"INSERT INTO public.{tableName} ({fields}) VALUES ({values});";
             NpgsqlCommand command = new NpgsqlCommand(cmd, Connection);
@@ -97,7 +97,7 @@ namespace Roominator {
 
         public async Task DeleteData(string tableName, int id)
         {
-            await Connection.WaitAsync();
+           // await Connection.WaitAsync();
             await Connection.OpenAsync();
             var cmd = $"DELETE FROM public.{tableName} WHERE id = {id};";
             NpgsqlCommand command = new NpgsqlCommand(cmd, Connection);
