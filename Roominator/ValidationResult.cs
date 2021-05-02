@@ -23,22 +23,25 @@ namespace Roominator
 
         public async Task<RegistrationErrors> Validate() {
             RegistrationErrors registrationError = RegistrationErrors.Correct;
-                if (email.Length == 0)
-                    registrationError = RegistrationErrors.EmailIsEmpty;
-                else if (!email.Contains('@'))
-                    registrationError = RegistrationErrors.EmailFormat;
-                else if (password.Length == 0)
-                    registrationError = RegistrationErrors.PasswordIsEmpty;
-                else if (password.Length < 8 || password.Length > 50)
-                    registrationError = RegistrationErrors.PasswordLength;
-                else if (password.Equals(email))
-                    registrationError = RegistrationErrors.PasswordEqualsEmail;
-                else if (password_copy.Length == 0)
-                    registrationError = RegistrationErrors.PasswordCopyIsEmpty;
-                else if (!password_copy.Equals(password))
-                    registrationError = RegistrationErrors.PasswordCopyNotEqualsPassword;
-                else if (await UserExists())
-                    registrationError = RegistrationErrors.EmailAlreadyExists;
+            if (email.Length == 0)
+                registrationError = RegistrationErrors.EmailIsEmpty;
+            else if (!email.Contains('@'))
+                registrationError = RegistrationErrors.EmailFormat;
+            else if (password.Length == 0)
+                registrationError = RegistrationErrors.PasswordIsEmpty;
+            else if (password.Length < 8 || password.Length > 50)
+                registrationError = RegistrationErrors.PasswordLength;
+            else if (password.Equals(email))
+                registrationError = RegistrationErrors.PasswordEqualsEmail;
+            else if (password_copy.Length == 0)
+                registrationError = RegistrationErrors.PasswordCopyIsEmpty;
+            else if (!password_copy.Equals(password))
+                registrationError = RegistrationErrors.PasswordCopyNotEqualsPassword;
+            else if (await UserExists())
+            {
+                Task.WaitAll();
+                registrationError = RegistrationErrors.EmailAlreadyExists;
+            }
             return registrationError;
         }
 
@@ -57,21 +60,22 @@ namespace Roominator
             return false;
         }
 
-        public bool getCorrectEmail() {
+        public bool GetCorrectEmail() {
             return correctEmail;
         }
 
-        public bool getCorrectPassword() {
+        public bool GetCorrectPassword() {
             return correctPassword;
         }
 
         public async Task<bool> UserExists() {
             DataTable res  = await Program.databaseManager.ExecQuery($"SELECT * FROM public.user WHERE public.user.user_email = '{email}'");
-            if (res.Rows.Count == 0)
+            if (res == null || res.Rows.Count == 0)
                 return false;
             return true;
         }
     }
+
     public enum RegistrationErrors{ 
         EmailIsEmpty,
         EmailAlreadyExists,

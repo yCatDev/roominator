@@ -27,10 +27,26 @@ namespace Roominator {
             {
                 sqlCommand = sqlCommand.ReplaceFirst("'$'", parameter);
             }*/
-           // await Connection.WaitAsync();
-            await Connection.OpenAsync();
+            //await Connection.WaitAsync();
+            try
+            {
+                await Connection.OpenAsync();
+            }
+            catch (InvalidOperationException) { Console.WriteLine("InvalidOperationException"); return null; }
+            catch (NpgsqlOperationInProgressException) { Console.WriteLine("NpgsqlOperationInProgressException"); return null; }
             await using var cmd = new NpgsqlCommand(sqlCommand, Connection);
-            await cmd.PrepareAsync();
+            try
+            {
+                await cmd.PrepareAsync();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(cmd);
+                Console.WriteLine(e);
+                //throw;
+                return null;
+            }
+            //await cmd.PrepareAsync();
 				
             var da = new NpgsqlDataAdapter(cmd);
 				
@@ -57,9 +73,10 @@ namespace Roominator {
            // await Connection.WaitAsync();
             await Connection.OpenAsync();
             var cmd = $"UPDATE {tableName} SET {querySetData} WHERE id = {id};";
-            NpgsqlCommand command = new NpgsqlCommand(cmd, Connection);
+            //NpgsqlCommand command = new NpgsqlCommand(cmd, Connection);
             try
             {
+                NpgsqlCommand command = new NpgsqlCommand(cmd, Connection);
                 await command.PrepareAsync();
                 await command.ExecuteNonQueryAsync();
             }
@@ -73,14 +90,20 @@ namespace Roominator {
             await Connection.CloseAsync();
         }
 
-        public async Task InsertData(string tableName, string fields, string values)
+        public async Task<bool> InsertData(string tableName, string fields, string values)
         {
             //await Connection.WaitAsync();
-            await Connection.OpenAsync();
-            var cmd = $"INSERT INTO public.{tableName} ({fields}) VALUES ({values});";
-            NpgsqlCommand command = new NpgsqlCommand(cmd, Connection);
             try
             {
+                await Connection.OpenAsync();
+            }
+            catch (InvalidOperationException) { Console.WriteLine("InvalidOperationException"); return false; }
+            catch (NpgsqlOperationInProgressException) { Console.WriteLine("NpgsqlOperationInProgressException"); return false; }
+            var cmd = $"INSERT INTO public.{tableName} ({fields}) VALUES ({values});";
+            //NpgsqlCommand command = new NpgsqlCommand(cmd, Connection);
+            try
+            {
+                NpgsqlCommand command = new NpgsqlCommand(cmd, Connection);
                 await command.PrepareAsync();
                 await command.ExecuteNonQueryAsync();
             }
@@ -88,10 +111,11 @@ namespace Roominator {
             {
                 Console.WriteLine(cmd);
                 Console.WriteLine(e);
-                throw;
+                //throw;
             }
 
             await Connection.CloseAsync();
+            return true;
         }
 
         public async Task DeleteData(string tableName, int id)

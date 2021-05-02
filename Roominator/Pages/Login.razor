@@ -60,7 +60,7 @@
     string password = "";
     ValidationResult validationResult;
 
-    public void hideEverything()
+    public void HideEverything()
     {
         MailWarning = "Hide";
         PasswordWarning = "Hide";
@@ -72,8 +72,8 @@
     {
         validationResult = new ValidationResult(password, "", email);
         await validationResult.IsEverythingCorrect();
-        hideEverything();
-        if (!validationResult.getCorrectEmail())
+        HideEverything();
+        if (!validationResult.GetCorrectEmail())
         {
             ErrorMessage = "Не існує користувача з такою електронною поштою";
             MailWarning = "Show";
@@ -81,7 +81,7 @@
         }
         else
         {
-            if (!validationResult.getCorrectPassword())
+            if (!validationResult.GetCorrectPassword())
             {
                 ErrorMessage = "Невірний пароль";
                 PasswordWarning = "Show";

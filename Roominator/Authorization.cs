@@ -8,7 +8,6 @@ namespace Roominator {
 
         string email;
         string password;
-        string password_copy;
         ValidationResult validationResult;
 
         public Authorization(string password, string password_copy, string email) {
@@ -18,8 +17,9 @@ namespace Roominator {
         }
 
         public async Task<bool> Register() {
-            await Program.databaseManager.InsertData("user", "user_email, user_password", $"'{email}', '{password}'");
-                Console.WriteLine($"Registring user with mail {email}");
+            if (!await Program.databaseManager.InsertData("user", "user_email, user_password", $"'{email}', '{password}'"))
+                return false;
+            Console.WriteLine($"Registring user with mail {email}");
             return true;
         }
     }

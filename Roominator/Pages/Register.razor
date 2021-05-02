@@ -60,10 +60,11 @@
     string email = "";
     string password = "";
     string password_copy = "";
-    string res = "";
     ValidationResult validationResult;
     RegistrationErrors error;
-    
+    Authorization authorization;
+
+
     async public Task<bool> Validate() {
         validationResult = new ValidationResult(password, password_copy, email);
         error = await validationResult.Validate();
@@ -134,11 +135,13 @@
 
     async void RegisterProcess() {
         HideEverything();
-        Authorization authorization = new Authorization(password, password_copy, email);
+        authorization = new Authorization(password, password_copy, email);
         if (await Validate())
         {
-            await authorization.Register();
+            if(await authorization.Register())
+            {
+                //Регистрация успешна
+            }
         }
     }
-}
 }
