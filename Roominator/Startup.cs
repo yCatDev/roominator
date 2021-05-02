@@ -52,7 +52,7 @@ namespace Roominator
                 app.UseExceptionHandler("/Error");
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             var provider = new FileExtensionContentTypeProvider();
             provider.Mappings.Remove(".data");
             provider.Mappings[".data"] = "application/octet-stream";
