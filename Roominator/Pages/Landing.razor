@@ -1,0 +1,184 @@
+﻿@page "/landing"
+<div class="LandingHeader">
+    <a href="/login" class="LinkButton" id="LendingLogin"> Вхід </a>
+    <a href="/register" class="BlueButton " id="LendingRegister"> Реєстрація </a>
+</div>
+<div class="LandingBlock" id="LandingBlockMain">
+    <img src="/images/logo/logo_flat.png" alt="Roominator logo" class="LandingLogo">
+    <div class="LandingMainContainer">
+        <div class="LandingMainInfo">
+            <p class="LandingMainTitle Unselectable">
+                Створіть дім своєї мрії <br />
+                за кілька хвилин
+            </p>
+            <p class="LandingMainText Unselectable">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.
+            </p>
+
+            <button class="BlueButton" id="LandingCreateButton"> Створити проект </button>
+        </div>
+        <img src="/images/landing/pictures/clipboard.png" alt="Picture" class="LandingMainPicture">
+    </div>
+</div>
+
+<div class="LandingBlock" id="LandingBlockInterior">
+    <p class="LandingInteriorTitle Unselectable">Комфортний інтер'єр</p>
+    <p class="LandingInteriorText Unselectable">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+    </p>
+    <img src="/images/landing/pictures/interior.png" alt="Interior" class="LandingInteriorPicture">
+</div>
+
+<div class="LandingBlock" id="LandingBlockPlane">
+    <p class="LandingPlaneTitle Unselectable">Планування</p>
+    <p class="LandingPlaneText Unselectable">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+    </p>
+</div>
+
+<div class="LandingBlock" id="LandingBlockAlgorithm">
+    <p class="LandingAlgorithmTitle Unselectable">Потужні алгоритми</p>
+    <p class="LandingAlgorithmText Unselectable">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco dolore magna aliqua. Ut enim ad minim veniam.
+    </p>
+</div>
+
+<div class="LandingBlock" id="LandingBlockAdvantages">
+    <div class="Constructor LandingBlockAdvantagesColumn">
+        <img src="/images/landing/icons/bolt_white.png" alt="Fast" class="LandingAdvantagesIcon">
+        <p class="LandingAdvantagesTitle">Швидко</p>
+        <p class="LandingAdvantagesText">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        </p>
+    </div>
+
+    <div class="Constructor LandingBlockAdvantagesColumn">
+        <img src="/images/landing/icons/lamp_white.png" alt="Creative" class="LandingAdvantagesIcon">
+        <p class="LandingAdvantagesTitle">Креативно</p>
+        <p class="LandingAdvantagesText">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        </p>
+    </div>
+
+    <div class="Constructor LandingBlockAdvantagesColumn">
+        <img src="/images/landing/icons/wand_white.png" alt="Wonderful" class="LandingAdvantagesIcon">
+        <p class="LandingAdvantagesTitle">Чарівно</p>
+        <p class="LandingAdvantagesText">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        </p>
+    </div>
+</div>
+
+<div class="LandingBlock" id="LandingBlockCarousel">
+    <p class="LandingCarouselTitle Unselectable">Плани створені у нас</p>
+    <div class="Constructor LandingCarouselContainer">
+        <img src="/images/icons/prev.png" alt="Prev" class="CarouselButton" @onclick="CaroucelPrev">
+        <div class="Carousel">
+            <img src="/images/landing/carousel/photo1.jpg" alt="Photo" class="CarouselTemplate">
+
+            <img src="/images/landing/carousel/photo1.jpg" alt="Photo" class="CarouselPhoto @Photo1">
+            <img src="/images/landing/carousel/photo2.jpg" alt="Photo" class="CarouselPhoto @Photo2">
+            <img src="/images/landing/carousel/photo3.jpg" alt="Photo" class="CarouselPhoto @Photo3">
+        </div>
+        <img src="/images/icons/next.png" alt="Next" class="CarouselButton" @onclick="CaroucelNext">
+    </div>
+</div>
+
+<footer>
+    <div class="FooterInfo">
+        <img src="/images/logo/logo_project.png" alt="Roominaror Project" class="FooterLogo">
+        <p class="FooterLegal">
+            Copyright ©  2010-2021 Roominator Company.<br />
+            All rights reserved.
+        </p>
+    </div>
+    <div class="FooterSocial">
+        <p class="FooterSocialTitle">
+            Соціальні мережі
+        </p>
+        <a href="https://www.instagram.com">
+            <img src="/images/icons/social/instagram.png" alt="Instagram" class="FooterSocialIcon">
+        </a>
+        <a href="https://www.facebook.com/">
+            <img src="/images/icons/social/facebook.png" alt="Facebook" class="FooterSocialIcon">
+        </a>
+        <a href="https://www.youtube.com/">
+            <img src="/images/icons/social/youtube.png" alt="Youtube" class="FooterSocialIcon">
+        </a>
+        <a href="https://twitter.com/">
+            <img src="/images/icons/social/twitter.png" alt="Twitter" class="FooterSocialIcon">
+        </a>
+    </div>
+</footer>
+@code{
+    //Карусель
+    private string Photo1 = "Visible";
+    private string Photo2 = "Hidden";
+    private string Photo3 = "Hidden";
+
+    private int DisplayedPhoto = 1;
+
+    private void CaroucelNext()
+    {
+        switch (DisplayedPhoto)
+        {
+            case 1:
+                {
+                    Photo1 = "CarouselMoveLeftOut";
+                    Photo2 = "CarouselMoveLeftIn";
+                    Photo3 = "Hidden";
+                    DisplayedPhoto = 2;
+                    break;
+                }
+            case 2:
+                {
+                    Photo2 = "CarouselMoveLeftOut";
+                    Photo3 = "CarouselMoveLeftIn";
+                    Photo1 = "Hidden";
+                    DisplayedPhoto = 3;
+                    break;
+                }
+            case 3:
+                {
+                    Photo3 = "CarouselMoveLeftOut";
+                    Photo1 = "CarouselMoveLeftIn";
+                    Photo2 = "Hidden";
+                    DisplayedPhoto = 1;
+                    break;
+                }
+        }
+    }
+
+
+    private void CaroucelPrev()
+    {
+        switch (DisplayedPhoto)
+        {
+            case 1:
+                {
+                    Photo1 = "CarouselMoveRightOut";
+                    Photo3 = "CarouselMoveRightIn";
+                    Photo2 = "Hidden";
+                    DisplayedPhoto = 3;
+                    break;
+                }
+            case 2:
+                {
+                    Photo2 = "CarouselMoveRightOut";
+                    Photo1 = "CarouselMoveRightIn";
+                    Photo3 = "Hidden";
+                    DisplayedPhoto = 1;
+                    break;
+                }
+            case 3:
+                {
+                    Photo3 = "CarouselMoveRightOut";
+                    Photo2 = "CarouselMoveRightIn";
+                    Photo1 = "Hidden";
+                    DisplayedPhoto = 2;
+                    break;
+                }
+        }
+    }
+
+}

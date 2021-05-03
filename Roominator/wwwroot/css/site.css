@@ -49,10 +49,10 @@ a, .btn-link {
         top: 0.5rem;
 }
 
-/*=================================  CSS BEGIN ================================*/
+/*===============================/ CSS BEGIN /================================*/
 
-/*=====================================  пїЅпїЅпїЅпїЅпїЅ ===================================*/
-/*------------------------------------  пїЅпїЅпїЅпїЅпїЅпїЅ -----------------------------------*/
+/*=================================/ MAIN /===================================*/
+/*--------------------------------> Fonts <-----------------------------------*/
 @font-face {
     font-family: 'GothamPro';
     src: url('/fonts/GothamPro.eot');
@@ -61,7 +61,7 @@ a, .btn-link {
     font-style: normal;
 }
 
-/*----------------  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ -------------------*/
+/*-----------------------------> Disable Waste <-------------------------------*/
 input {
     outline: none;
 }
@@ -78,7 +78,16 @@ p{
     margin: 0;
     padding: 0;
 }
-/*--------------------------  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ  --------------------------------*/
+
+a{
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+.page {display: block !important;}
+/*-------------------------------> Special <----------------------------------*/
 
 
 .Constructor {
@@ -95,7 +104,10 @@ p{
     user-select: none;
 }
 
-/*---------------------------------  пїЅпїЅпїЅпїЅпїЅпїЅ  ---------------------------------*/
+.Scrollable {
+    overflow: auto;
+}
+/*-------------------------------> Buttons <----------------------------------*/
 .BlueButton {
     background-color: #2665b8;
     color: white;
@@ -129,7 +141,7 @@ p{
 .LinkButton:visited {
     color: white;
 }
-/*---------------------------------  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ  ---------------------------------*/
+/*-------------------------------> Animation <---------------------------------*/
 .Hidden { opacity: 0 }
 .Invisible { opacity: 0 }
 .Showed { opacity: 0 }
@@ -163,10 +175,10 @@ p{
     }
 }
 
-/*================================ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ========================*/
-/*-------------------------------------> пїЅпїЅпїЅпїЅпїЅ <-----------------------------*/
+/*==========================/ LOGIN & REGISTRATION /==========================*/
+/*--------------------------------> Style <-----------------------------------*/
 .BluePrintWindow {
-    /*пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ*/
+    /*position*/
     position: fixed;
     top: 0;
     left: 0;
@@ -174,9 +186,10 @@ p{
     height: 100%;
     padding: 0;
     margin: 0;
-    /*пїЅпїЅпїЅпїЅпїЅ*/
+    /*style*/
     border: solid black 0px;
     background-image: url(/images/background/tile_blue.png);
+    overflow: auto;
 }
 
 .AuthLogo {
@@ -202,7 +215,7 @@ p{
     border: solid white 0px;
     padding: 3px 15px;
     display: block;
-    /* пїЅпїЅпїЅпїЅпїЅ*/
+    /*text*/
     color: #2665b8;
     font-family: 'GothamPro', sans-serif;
     font-size: 20px;
@@ -215,7 +228,7 @@ p{
     color: #b4b9bf;
 }
 
-/*-------------------------------------> пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ <-----------------------------*/
+/*-------------------------------> Structure <---------------------------------*/
 .AuthFormLine {
     width: 100%;
     display: flex ;
@@ -256,7 +269,7 @@ p{
     margin-bottom: 2px;
 }
 
-/*-------------------------------------> пїЅпїЅпїЅпїЅпїЅ <-----------------------------*/
+/*--------------------------------> Footer <-----------------------------------*/
 
 .AuthFooter {
     position: fixed;
@@ -265,7 +278,7 @@ p{
     text-align: center;
 }
 
-/*-------------------------------------> пїЅпїЅпїЅпїЅпїЅпїЅ <-----------------------------*/
+/*-----------------------------> Error Animation <-----------------------------*/
 .AuthWarningIcon {
     width: 40px;
     margin-top:5px;
@@ -328,7 +341,7 @@ p{
     }
 }
 
-/*---------------------пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ---------------------*/
+/*--------------------------------> Checkbox <-----------------------------------*/
 input[type="checkbox"] {
     -webkit-appearance: none;
     width: 20px;
@@ -361,8 +374,355 @@ input[type="checkbox"] {
     font-family: 'GothamPro', sans-serif;
     font-size: 16px;
 }
-#unity-container
-{
+/*=================================/ LANDING /=================================*/
+
+.LandingHeader {
+    background-color: #2665b8;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 50px;
+    padding: 0 10px;
+}
+
+.LandingBlock {
+    width: 100%;
+    min-height: 100vh;
+}
+#LendingLogin{
+    margin: 0 10px;
+}
+#LendingRegister {
+    margin: 0 10px;
+}
+/*-----------------------------------> Main <----------------------------------*/
+#LandingBlockMain {
+    background: radial-gradient(ellipse at right 0% bottom 100%, rgba(130,189,253,1) 0%, rgba(38,101,184,1) 100%);
+    padding: 2% 5% 0 5%;
+}
+
+.LandingLogo {
+    display: block;
+    width: 50%;
+    margin: 0 auto 20px;
+}
+
+.LandingMainContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.LandingMainInfo{
+    width: 60%;
+    height: 50px;
+}
+
+.LandingMainPicture {
+    width: 25%;
+    margin: 0 5%;
+}
+
+.LandingMainTitle {
+    color: white;
+    font-family: 'GothamPro', sans-serif;
+    font-size: 45px;
+    margin: 20px 0;
+    line-height: 50px;
+}
+
+.LandingMainText {
+    color: white;
+    font-family: 'GothamPro', sans-serif;
+    font-size: 20px;
+    margin-bottom: 3%;
+
+}
+
+#LandingCreateButton {
+    display: block;
+    margin: auto;
+    font-size: 30px;
+    padding: 5px;
+    width: 60%;
+    border-radius: 20px;
+    margin-top: 6%;
+}
+/*---------------------------------> Interior <---------------------------------*/
+#LandingBlockInterior {
+    background-color: #f1f4f6;
+    padding: 2% 5% 0 5%;
+}
+
+.LandingInteriorTitle {
+    color: #455d6d;
+    font-family: 'GothamPro', sans-serif;
+    font-size: 40px;
+    margin: 20px 0;
+}
+
+.LandingInteriorText {
+    color: #455d6d;
+    font-family: 'GothamPro', sans-serif;
+    font-size: 20px;
+    margin-bottom: 3%;
+}
+
+.LandingInteriorPicture{
+    display: block;
+    width: 90%;
+    margin: auto;
+}
+/*-----------------------------------> Plane <----------------------------------*/
+
+#LandingBlockPlane {
+    background: radial-gradient(ellipse at right 0% bottom 100%, rgba(130,189,253,1) 0%, rgba(38,101,184,1) 100%);
+    background-image: url(/images/landing/pictures/plan_background.png);
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-size: 80%;
+    padding: 2% 5% 0 5%;
+    background-size: cover;
+}
+
+.LandingPlaneTitle {
+    color: white;
+    font-family: 'GothamPro', sans-serif;
+    font-size: 40px;
+    margin: 20px 0;
+}
+
+.LandingPlaneText {
+    color: white;
+    font-family: 'GothamPro', sans-serif;
+    font-size: 20px;
+    margin-bottom: 3%;
+    width: 50%;
+}
+/*---------------------------------> Algorithm <--------------------------------*/
+
+#LandingBlockAlgorithm {
+    background-color: #f1f4f6;
+    background-image: url(/images/landing/pictures/algorithm.png);
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-size: 80%;
+    padding: 2% 5% 0 5%;
+}
+
+.LandingAlgorithmTitle {
+    color: #455d6d;
+    font-family: 'GothamPro', sans-serif;
+    font-size: 40px;
+    margin: 20px 0;
+}
+
+.LandingAlgorithmText {
+    color: #455d6d;
+    font-family: 'GothamPro', sans-serif;
+    font-size: 20px;
+    margin-bottom: 3%;
+    width: 50%;
+}
+
+/*--------------------------------> Advantages <-------------------------------*/
+
+#LandingBlockAdvantages {
+    background: linear-gradient(0deg, rgb(130, 189, 253), rgb(38, 101, 184));
+    display: flex;
+    justify-content: space-around;
+}
+
+.LandingBlockAdvantagesColumn{
+    width: 20%;
+    text-align: center;
+}
+
+.LandingAdvantagesIcon{
+    width: 40%;
+    margin: 20%
+}
+.LandingAdvantagesTitle {
+    color: white;
+    font-family: 'GothamPro', sans-serif;
+    font-size: 40px;
+    text-align: center;
+}
+.LandingAdvantagesText {
+    color: white;
+    font-family: 'GothamPro', sans-serif;
+    font-size: 20px;
+    text-align: center;
+}
+/*---------------------------------> Carousel <--------------------------------*/
+#LandingBlockCarousel {
+    background-color: #f1f4f6;
+    height: 100vh;
+    padding: 1%;
+}
+
+.LandingCarouselTitle {
+    color: #455d6d;
+    font-family: 'GothamPro', sans-serif;
+    font-size: 40px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.LandingCarouselContainer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 80%;
+}
+
+.CarouselButton {
+    width: 7%;
+    box-sizing: content-box;
+    padding: 40px;
+}
+
+    .CarouselButton:hover {
+        -webkit-filter: brightness(120%);
+        cursor: pointer;
+    }
+
+.Carousel {
+    max-height: calc(100vw / 2.7); /*Подбирается в зависимости от картинки*/
+    border-radius: 20px;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.CarouselTemplate {
+    opacity: 0;
+    height: 100%;
+}
+
+.CarouselPhoto {
+    position: absolute;
+    height: 100%;
+    left: 0;
+    transition-property: left;
+}
+
+.CarouselMoveRightIn {
+    animation: CarouselMoveRightIn 500ms linear 0s 1 normal forwards;
+}
+.CarouselMoveRightOut {
+    animation: CarouselMoveRightOut 500ms linear 0s 1 normal forwards;
+}
+.CarouselMoveLeftIn {
+    animation: CarouselMoveLeftIn 500ms linear 0s 1 normal forwards;
+}
+.CarouselMoveLeftOut {
+    animation: CarouselMoveLeftOut 500ms linear 0s 1 normal forwards;
+}
+@keyframes CarouselMoveRightIn{
+    from{
+        left: -100%
+    }
+    to {
+        left: 0
+    }
+}
+@keyframes CarouselMoveRightOut {
+    from {
+        left: 0
+    }
+    to {
+        left: 100%
+    }
+}
+@keyframes CarouselMoveLeftIn {
+    from {
+        left: 100%
+    }
+    to {
+        left: 0
+    }
+}
+@keyframes CarouselMoveLeftOut {
+    from {
+        left: 0
+    }
+    to {
+        left: -100%
+    }
+}
+/*================================/ FOOTER /================================*/
+footer {
+    background-color: #2665b8;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+}
+.FooterInfo {
+    width: 30%;
+}
+.FooterLogo {
+    width: 25vw;
+}
+.FooterLegal {
+    color: white;
+    font-family: 'GothamPro', sans-serif;
+    font-size: 14px;
+    margin-left: 22px;
+}
+
+.FooterSocial {
+    width: 20%;
+    text-align: center
+}
+.FooterSocialTitle {
+    color: white;
+    font-family: 'GothamPro', sans-serif;
+    font-size: 22px;
+    margin: 5px 0;
+    text-align: center;
+}
+
+.FooterSocialIcon {
+    width: 15%;
+    margin: 3% 1%;
+}
+/*================================/ NOT FOUND /================================*/
+#NotFoundTitle {
+    color: white;
+    font-family: 'GothamPro', sans-serif;
+    font-size: 150px;
+    text-align: center;
+    line-height: 180px;
+    text-shadow: 4px 4px 4px rgba(11,29,53,0.77);
+}
+
+#NotFoundMessage {
+    color: white;
+    font-family: 'GothamPro', sans-serif;
+    font-size: 40px;
+    text-align: center;
+    margin-bottom: 30px;
+    text-shadow: 3px 3px 4px rgba(11,29,53,0.77);
+}
+
+#NotFoundLink {
+    color: white;
+    font-family: 'GothamPro', sans-serif;
+    font-size: 20px;
+    text-align: center;
+    display: block;
+    text-shadow: 3px 3px 4px rgba(11,29,53,0.77);
+}
+
+#NotFoundBlock {
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+/*==================================/ UNITY /==================================*/
+#unity-container {
     display: none;
     position: absolute;
     width: 100%;
