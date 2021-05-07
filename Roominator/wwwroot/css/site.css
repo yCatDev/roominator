@@ -88,7 +88,15 @@ a:hover {
 }
 .page {display: block !important;}
 /*-------------------------------> Special <----------------------------------*/
-
+:root {
+    --MainBlue: #2665b8 ;        
+    --HighlightBlue: #548cd2 ;        
+    --BackgroundBlue: #92c2f6 ;        
+    --BackgroundGray: #f1f4f6 ;       
+    --ShadowGray: #cad0d7 ;      
+    --TextGray: #424852 ;
+    --TextAsphalt: #455d6d;
+}
 
 .Constructor {
     border: solid black 0px;
@@ -340,6 +348,37 @@ a:hover {
         color: #2665b8;
     }
 }
+/*----------------------------> Loading animation <------------------------------*/
+
+#SigninButton {
+    position: relative;
+}
+.AuthLoading {
+    display: block;
+    position: absolute;
+    width: 22px;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.Rotation {
+    animation: 1s linear 0s normal none infinite running Rotation;
+}
+
+@keyframes Rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
 
 /*--------------------------------> Checkbox <-----------------------------------*/
 input[type="checkbox"] {
