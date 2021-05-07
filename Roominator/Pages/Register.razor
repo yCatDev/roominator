@@ -28,7 +28,7 @@
 
             <div class="Constructor AuthFormLine">
                 <p class="AuthCheckboxText"><input type="checkbox" value="agree" name="TermsAgree" id="TermsAgree"> Я погоджуюсь з умовами </p>
-                <button class="BlueButton" id="SignupButton" @onclick="RegisterProcess"> Реєстрація </button>
+                <button class="BlueButton @Processing" id="SignupButton" @onclick="RegisterProcess"> Реєстрація </button>
             </div>
         </div>
         <div class="Constructor AuthSigns">
@@ -54,8 +54,13 @@
     private string MailWarning = "Hidden"; //Иконка логина
     private string PasswordWarning = "Hidden"; //Иконка пароля
     private string ConfirmPasswordWarning = "Hidden"; //Иконка подтверждения
-                                                      //Для запуска анимации нужно присвоить соответствующее значени переменной
-                                                      //Меняйте текст ошибки ДО показа, и ПОСЛЕ скрытия
+    
+    //ButtonLoading - анимация загрузки 
+    // <Пустая строка> / Visible - убрать анимацию
+    private string Processing = " ";//Анимация загрузки кнопки
+    
+    //Для запуска анимации нужно присвоить соответствующее значени переменной
+    //Меняйте текст ошибки ДО показа, и ПОСЛЕ скрытия
 
     string email = "";
     string password = "";

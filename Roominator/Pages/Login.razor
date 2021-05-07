@@ -27,7 +27,7 @@
 
             <div class="Constructor AuthFormLine">
                 <button class="LinkButton" id="ForgetPass"> Забули пароль? </button>
-                <button class="BlueButton" id="SigninButton" @onclick="validation"> Вхід </button>
+                <button class="BlueButton @Processing" id="SigninButton" @onclick="validation"> Вхід </button>
             </div>
         </div>
         <div class="Constructor AuthSigns">
@@ -55,6 +55,10 @@
 
     //Для запуска анимации нужно присвоить соответствующее значени переменной
     //Меняйте текст ошибки ДО показа, и ПОСЛЕ скрытия
+
+    //ButtonLoading - анимация загрузки 
+    // <Пустая строка> / Visible - убрать анимацию
+    private string Processing = " ";//Анимация загрузки кнопки
 
     string email = "";
     string password = "";

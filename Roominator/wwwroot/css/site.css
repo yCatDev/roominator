@@ -350,35 +350,17 @@ a:hover {
 }
 /*----------------------------> Loading animation <------------------------------*/
 
-#SigninButton {
-    position: relative;
+.ButtonLoading {
+    color: transparent;
+    background-image: url(/images/animation/loading.gif);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto 150%;
 }
-.AuthLoading {
-    display: block;
-    position: absolute;
-    width: 22px;
-    margin: auto;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-}
-
-.Rotation {
-    animation: 1s linear 0s normal none infinite running Rotation;
-}
-
-@keyframes Rotation {
-    0% {
-        transform: rotate(0deg);
+    .ButtonLoading:hover {
+        color: transparent;
+        background-color: var(--MainBlue);
     }
-
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-
 
 /*--------------------------------> Checkbox <-----------------------------------*/
 input[type="checkbox"] {
