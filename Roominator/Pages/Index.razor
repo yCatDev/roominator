@@ -1,4 +1,5 @@
 @page "/"
+@inject NavigationManager NavManager
 
 <div><h1>Menu</h1></div>
 
@@ -7,4 +8,13 @@
 <div><a href="/landing">Landing</a></div>
 <div><a href="/menu">Menu</a></div>
 <div><a href="/plans">Plans</a></div>
+<button @onclick="redirect">Click to magic</button>
 <SurveyPrompt Title="How is Blazor working for you?" />
+
+@code{
+    void redirect() {
+        APIManager manager = new APIManager();
+        string request = manager.createRequest();
+        NavManager.NavigateTo(request);
+    }
+}
