@@ -1,0 +1,56 @@
+﻿@page "/plans"
+
+<div class="Header">
+    <a href="/login" class="LinkButton" id="LendingLogin"> Вхід </a>
+    <a href="/register" class="BlueButton " id="LendingRegister"> Реєстрація </a>
+</div>
+
+<div class="MenuWindow" id="PlansMenu">
+    <div class="PlanCard" id="PlanCardFree">
+        <p class="PlanCardHeader">Стандарт</p>
+
+        <div class="PlanCardItemList">
+            <p class="PlanCardItem">Доступно 3 кімнати</p>
+            <p class="PlanCardItem">Прості плани</p>
+            <p class="PlanCardItem">Водяний знак</p>
+        </div>
+        <div class="PlanCardButton PlanButtonWhiteDisabled @FreeSelected">Ваш план</div>
+        <div class="PlanCardButton PlanButtonWhiteDisabled @FreeUnselected">Є преміум</div>
+
+        <p class="PlanCardPrice">Безкоштовно</p>
+        <div class="PlanCardCorner WhiteCorner"></div>
+        <div class="PlanCardCornerShadow"></div>
+    </div>
+
+    <div class="PlanCard" id="PlanCardPro">
+        <p class="PlanCardHeader">Преміум</p>
+
+        <div class="PlanCardItemList">
+            <p class="PlanCardItem">Безліч кімнат</p>
+            <p class="PlanCardItem">Складні плани</p>
+            <p class="PlanCardItem">Немає водяного знаку</p>
+        </div>
+
+        <button class="PlanCardButton BlueButton @PremiumBuyButton">Придбати</button>
+        <div class="PlanCardButton PlanButtonBlueDisabled @PremiumSelected">Ваш план</div>
+        <p class="PlanCardPrice ">$5 - Назавжди</p>
+
+        <div class="PlanCardCorner BlueCorner"></div>
+        <div class="PlanCardCornerShadow"></div>
+    </div>
+</div>
+
+
+@code{
+
+    //Visible - показать // Eliminate - скрыть
+    private string FreeSelected = "Visible"; // Показать если бесплатная
+    private string FreeUnselected = "Eliminate"; // Показать если премиум
+
+    private string PremiumBuyButton = "Visible"; // Показать если бесплатная
+    private string PremiumSelected = "Eliminate"; // Показать если премиум
+
+    //Для последней переменной важно использвать 
+    //именно Eliminate а не Hidden или Invesible
+
+}

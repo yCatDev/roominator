@@ -115,6 +115,10 @@ a:hover {
 .Scrollable {
     overflow: auto;
 }
+
+.Eliminate{
+    display: none;
+}
 /*-------------------------------> Buttons <----------------------------------*/
 .BlueButton {
     background-color: #2665b8;
@@ -446,7 +450,7 @@ input[type="checkbox"] {
 .LandingMainTitle {
     color: white;
     font-family: 'GothamPro', sans-serif;
-    font-size: 45px;
+    font-size: 7.2vh;
     margin: 20px 0;
     line-height: 50px;
 }
@@ -454,15 +458,14 @@ input[type="checkbox"] {
 .LandingMainText {
     color: white;
     font-family: 'GothamPro', sans-serif;
-    font-size: 20px;
+    font-size: 3.2vh;
     margin-bottom: 3%;
-
 }
 
 #LandingCreateButton {
     display: block;
     margin: auto;
-    font-size: 30px;
+    font-size: 4.3vh;
     padding: 5px;
     width: 60%;
     border-radius: 20px;
@@ -477,14 +480,14 @@ input[type="checkbox"] {
 .LandingInteriorTitle {
     color: #455d6d;
     font-family: 'GothamPro', sans-serif;
-    font-size: 40px;
+    font-size: 6.4vh;
     margin: 20px 0;
 }
 
 .LandingInteriorText {
     color: #455d6d;
     font-family: 'GothamPro', sans-serif;
-    font-size: 20px;
+    font-size: 3.2vh;
     margin-bottom: 3%;
 }
 
@@ -508,14 +511,14 @@ input[type="checkbox"] {
 .LandingPlaneTitle {
     color: white;
     font-family: 'GothamPro', sans-serif;
-    font-size: 40px;
+    font-size: 6.4vh;
     margin: 20px 0;
 }
 
 .LandingPlaneText {
     color: white;
     font-family: 'GothamPro', sans-serif;
-    font-size: 20px;
+    font-size: 3.2vh;
     margin-bottom: 3%;
     width: 50%;
 }
@@ -533,14 +536,14 @@ input[type="checkbox"] {
 .LandingAlgorithmTitle {
     color: #455d6d;
     font-family: 'GothamPro', sans-serif;
-    font-size: 40px;
+    font-size: 6.4vh;
     margin: 20px 0;
 }
 
 .LandingAlgorithmText {
     color: #455d6d;
     font-family: 'GothamPro', sans-serif;
-    font-size: 20px;
+    font-size: 3.2vh;
     margin-bottom: 3%;
     width: 50%;
 }
@@ -565,13 +568,13 @@ input[type="checkbox"] {
 .LandingAdvantagesTitle {
     color: white;
     font-family: 'GothamPro', sans-serif;
-    font-size: 40px;
+    font-size: 6.4vh;
     text-align: center;
 }
 .LandingAdvantagesText {
     color: white;
     font-family: 'GothamPro', sans-serif;
-    font-size: 20px;
+    font-size: 3.2vh;
     text-align: center;
 }
 /*---------------------------------> Carousel <--------------------------------*/
@@ -584,7 +587,7 @@ input[type="checkbox"] {
 .LandingCarouselTitle {
     color: #455d6d;
     font-family: 'GothamPro', sans-serif;
-    font-size: 40px;
+    font-size: 6.4vh;
     text-align: center;
     margin-bottom: 10px;
 }
@@ -670,6 +673,126 @@ input[type="checkbox"] {
         left: -100%
     }
 }
+/*==========================/ HEADER AND WINDOW  /==========================*/
+
+.Header {
+    background-color: var(--MainBlue);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 50px;
+    padding: 0 10px;
+}
+
+.MenuWindow {
+    height: calc(100vh - 50px);
+    background-color: var(--BackgroundBlue);
+}
+
+/*================================/ PLANS /===============================*/
+#PlansMenu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.PlanCard {
+    position: relative;
+    background-color: white;
+    height: 70vh;
+    width: 48vh;
+    background-size: 17vh;
+    background-position: -2vh;
+    margin: 0 10vh;
+    border-radius: 20px;
+    padding: 2vh 5vh;
+    /*Shadow*/
+    /*clip-path: polygon(0 0, 100% 0, 100% calc(100% - 9vh), calc(100% - 9vh) 100%, 0 100%);*/
+    box-shadow: 3px 3px 10px 4px rgb(34 60 80 / 30%);
+}
+.PlanCardHeader {
+    text-align: center;
+    font-family: 'GothamPro', sans-serif;
+    font-size: 6vh;
+    margin-bottom: 4vh;
+}
+
+.PlanCardItem {
+    font-family: 'GothamPro', sans-serif;
+    font-size: 3.3vh;
+}
+.PlanCardPrice {
+    font-family: 'GothamPro', sans-serif;
+    font-size: 2.5vh;
+    line-height: 4.5vh;
+    position: absolute;
+    bottom: 2vh;
+}
+
+.PlanCardButton {
+    width: 80%;
+    font-family: 'GothamPro', sans-serif;
+    font-size: 4vh;
+    margin: auto;
+    text-align: center;
+    position: absolute;
+    bottom: 12vh;
+    left: 0;
+    right: 0;
+    width: 70%;
+    border-radius: 2vh;
+}
+.PlanCardButton:hover {
+    font-size: 4vh;
+}
+
+.PlanCardCorner {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 9vh;
+    height: 9vh;
+    border-radius: 20px 0 0 0;
+    box-sizing: content-box;
+}
+
+.PlanCardCornerShadow {
+    position: absolute;
+    right: -2.5vh;
+    bottom: -2.5vh;
+    width: 14vh;
+    height: 14vh;
+    box-sizing: content-box;
+    background: linear-gradient( 135deg, rgba(202,208,215,0) 50%, rgba(146,194,246,1) 60%);
+}
+/*Версии*/
+.PlanButtonWhiteDisabled {
+    border: dashed #aaaaaa 2px;
+    color: #aaaaaa;
+    background: #f4f6f8;
+}
+.PlanButtonBlueDisabled {
+    border: dashed #749bcb 2px;
+    color: #749bcb;
+    background: var(--MainBlue);
+}
+
+#PlanCardFree {
+    background-image: url(/images/background/tile_white.png);
+    color: var(--TextGray);
+}
+
+#PlanCardPro {
+    background-image: url(/images/background/tile_blue.png);
+    color: #ffffff;
+}
+
+.WhiteCorner {
+    background: linear-gradient(135deg, rgba(202,208,215,1) 50%, #759fcb 50%);
+}
+.BlueCorner {
+    background: linear-gradient(135deg, rgba(25,66,121,1) 50%, #759fcb 50%);
+}
 /*================================/ FOOTER /================================*/
 footer {
     background-color: #2665b8;
@@ -681,29 +804,30 @@ footer {
     width: 30%;
 }
 .FooterLogo {
-    width: 25vw;
+    height: 10vh;
 }
 .FooterLegal {
     color: white;
     font-family: 'GothamPro', sans-serif;
-    font-size: 14px;
-    margin-left: 22px;
+    font-size: 2.3vh;
+    margin-left: 3.5vh;
 }
 
 .FooterSocial {
-    width: 20%;
+    width: 40vh;
     text-align: center
 }
+
 .FooterSocialTitle {
     color: white;
     font-family: 'GothamPro', sans-serif;
-    font-size: 22px;
+    font-size: 3.5vh;
     margin: 5px 0;
     text-align: center;
 }
 
 .FooterSocialIcon {
-    width: 15%;
+    width: 7vh;
     margin: 3% 1%;
 }
 /*================================/ NOT FOUND /================================*/
