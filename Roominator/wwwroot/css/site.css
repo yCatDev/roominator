@@ -706,8 +706,7 @@ input[type="checkbox"] {
     margin: 0 10vh;
     border-radius: 20px;
     padding: 2vh 5vh;
-    /*Shadow*/
-    /*clip-path: polygon(0 0, 100% 0, 100% calc(100% - 9vh), calc(100% - 9vh) 100%, 0 100%);*/
+
     box-shadow: 3px 3px 10px 4px rgb(34 60 80 / 30%);
 }
 .PlanCardHeader {
