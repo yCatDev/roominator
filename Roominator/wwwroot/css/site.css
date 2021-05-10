@@ -206,7 +206,8 @@ a:hover {
 
 .AuthLogo {
     display: block;
-    width: 40%;
+    width: 40vw;
+    min-width: 400px;
     padding: 0;
     margin: auto;
     margin-top: 4%;
@@ -262,7 +263,8 @@ a:hover {
 }
 
 .AuthMainBlock {
-    width: 40%;
+    width: 40vw;
+    min-width: 500px;
     margin: auto;
 }
 .AuthForm {
@@ -452,7 +454,7 @@ input[type="checkbox"] {
     font-family: 'GothamPro', sans-serif;
     font-size: 7.2vh;
     margin: 20px 0;
-    line-height: 50px;
+    line-height: 8vh;
 }
 
 .LandingMainText {
@@ -601,7 +603,6 @@ input[type="checkbox"] {
 .CarouselButton {
     width: 7%;
     box-sizing: content-box;
-    padding: 40px;
 }
 
     .CarouselButton:hover {
@@ -833,32 +834,32 @@ footer {
 #NotFoundTitle {
     color: white;
     font-family: 'GothamPro', sans-serif;
-    font-size: 150px;
+    font-size: 24vh;
     text-align: center;
-    line-height: 180px;
+    line-height: 28vh;
     text-shadow: 4px 4px 4px rgba(11,29,53,0.77);
 }
 
 #NotFoundMessage {
     color: white;
     font-family: 'GothamPro', sans-serif;
-    font-size: 40px;
+    font-size: 6.4vh;
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 4.8vh;
     text-shadow: 3px 3px 4px rgba(11,29,53,0.77);
 }
 
 #NotFoundLink {
     color: white;
     font-family: 'GothamPro', sans-serif;
-    font-size: 20px;
+    font-size: 3.2vh;
     text-align: center;
     display: block;
     text-shadow: 3px 3px 4px rgba(11,29,53,0.77);
 }
 
 #NotFoundBlock {
-    height: 80%;
+    height: 85%;
     display: flex;
     flex-direction: column;
     justify-content: center;
