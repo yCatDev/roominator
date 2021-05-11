@@ -674,8 +674,11 @@ input[type="checkbox"] {
         left: -100%
     }
 }
-/*==========================/ HEADER AND WINDOW  /==========================*/
 
+.LandingMobilePhotos{
+    display: none;
+}
+/*==========================/ HEADER AND WINDOW  /==========================*/
 .Header {
     background-color: var(--MainBlue);
     display: flex;
