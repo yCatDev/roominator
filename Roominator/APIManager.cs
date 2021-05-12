@@ -19,6 +19,7 @@ namespace Roominator {
         HttpClient client = new HttpClient();
         [Inject]
         public NavigationManager NavManager { get; set; }
+        public object HttpServerUtility { get; private set; }
 
         public string getRedirectURL(string uri) {
             redirect_uri = uri + "menu";
@@ -27,11 +28,12 @@ namespace Roominator {
                 $"client_id={CLIENT_ID}&" +
                 $"scope={SCOPE}&" +
                 $"response_type=code";
+
             return request;
         }
 
         public void getCode(string uri) {
-            Console.WriteLine(uri);
+            uri = HttpUtility.UrlDecode(uri);
             string code = "";
             Regex regex = new("(code=)(.+?)&");
             MatchCollection matches = regex.Matches(uri);
