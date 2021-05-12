@@ -12,6 +12,7 @@ namespace Roominator
     public class Program
     {
         public static DatabaseManager databaseManager = new DatabaseManager();
+        public static APIManager manager = new APIManager();
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();

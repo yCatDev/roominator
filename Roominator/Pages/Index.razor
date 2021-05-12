@@ -13,8 +13,6 @@
 
 @code{
     void redirect() {
-        APIManager manager = new APIManager();
-        string request = manager.createRequest(NavManager.Uri);
-        NavManager.NavigateTo(request);
+        NavManager.NavigateTo(Program.manager.getRedirectURL(NavManager.Uri));
     }
 }
