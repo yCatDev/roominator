@@ -28,7 +28,7 @@
 
             <div class="Constructor AuthFormLine">
                 <p class="AuthCheckboxText"><input type="checkbox" value="agree" name="TermsAgree" id="TermsAgree"> Я погоджуюсь з умовами </p>
-                <button class="BlueButton @Processing" id="SignupButton" @onclick="RegisterProcess"> Реєстрація </button>
+                <button class="BlueButton @Processing" id="SignupButton" @onclick="Validate"> Реєстрація </button>
             </div>
         </div>
         <div class="Constructor AuthSigns">
@@ -54,23 +54,25 @@
     private string MailWarning = "Hidden"; //Иконка логина
     private string PasswordWarning = "Hidden"; //Иконка пароля
     private string ConfirmPasswordWarning = "Hidden"; //Иконка подтверждения
-    
+
     //ButtonLoading - анимация загрузки 
     // <Пустая строка> / Visible - убрать анимацию
     private string Processing = " ";//Анимация загрузки кнопки
-    
+
     //Для запуска анимации нужно присвоить соответствующее значени переменной
     //Меняйте текст ошибки ДО показа, и ПОСЛЕ скрытия
 
-    string email = "";
-    string password = "";
-    string password_copy = "";
-    ValidationResult validationResult;
-    RegistrationErrors error;
-    Authorization authorization;
+    private string email = "";
+    private string password = "";
+    private string password_copy = "";
+    private ValidationResult validationResult;
+    private RegistrationErrors error;
+    private Authorization authorization;
 
 
-    async public Task<bool> Validate() {
+    async private Task<bool> Validate() {
+        HideEverything();
+        Processing = "ButtonLoading";
         validationResult = new ValidationResult(password, password_copy, email);
         error = await validationResult.Validate();
         switch (error)
@@ -84,7 +86,7 @@
                 ShowEmailIconWarning();
                 break;
             case RegistrationErrors.EmailFormat:
-                ErrorMessage = "Електронна пошта повинна містити знак @";
+                ErrorMessage = "Невірний формат електронної пошти";
                 ShowEmailIconWarning();
                 break;
             case RegistrationErrors.PasswordIsEmpty:
@@ -108,45 +110,47 @@
                 ShowConfirmPasswordIconWarning();
                 break;
             case RegistrationErrors.Correct:
-                //Перекидывает в кабинет пользователя
+                Processing = "";
+                RegisterProcess();
                 return true;
         }
+        Processing = "";
         return false;
     }
 
-    void ShowEmailIconWarning() {
+    private void ShowEmailIconWarning() {
         MailWarning = "Show";
         MessageLine = "AuthExpandLine";
     }
 
-    void ShowConfirmPasswordIconWarning() {
+    private void ShowConfirmPasswordIconWarning() {
         ConfirmPasswordWarning = "Show";
         MessageLine = "AuthExpandLine";
     }
 
-    void ShowPasswordIconWarning() {
+    private void ShowPasswordIconWarning() {
         PasswordWarning = "Show";
         MessageLine = "AuthExpandLine";
     }
 
-    public void HideEverything()
+    private void HideEverything()
     {
-        MailWarning = "Hide";
-        PasswordWarning = "Hide";
-        ConfirmPasswordWarning = "Hide";
-        MessageLine = "AuthCollapseLine";
+        if (MailWarning == "Show")
+            MailWarning = "Hide";
+        if (PasswordWarning == "Show")
+            PasswordWarning = "Hide";
+        if (ConfirmPasswordWarning == "Show")
+            ConfirmPasswordWarning = "Hide";
+        if (MessageLine == "AuthExpandLine")
+            MessageLine = "AuthCollapseLine";
         ErrorMessage = "";
     }
 
-    async void RegisterProcess() {
-        HideEverything();
+    private async void RegisterProcess() {
         authorization = new Authorization(password, password_copy, email);
-        if (await Validate())
+        if (await authorization.Register())
         {
-            if(await authorization.Register())
-            {
-                //Регистрация успешна
-            }
+            //Регистрация успешна
         }
     }
 }

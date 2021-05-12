@@ -11,7 +11,7 @@ namespace Roominator {
         ValidationResult validationResult;
 
         public Authorization(string password, string password_copy, string email) {
-            this.email = email;
+            this.email = email.ToLower();
             this.password = password;
             validationResult = new ValidationResult(password, password_copy, email);
         }

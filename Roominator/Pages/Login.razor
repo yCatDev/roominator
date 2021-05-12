@@ -27,7 +27,7 @@
 
             <div class="Constructor AuthFormLine">
                 <button class="LinkButton" id="ForgetPass"> Забули пароль? </button>
-                <button class="BlueButton @Processing" id="SigninButton" @onclick="validation"> Вхід </button>
+                <button class="BlueButton @Processing" id="SigninButton" @onclick="Validate"> Вхід </button>
             </div>
         </div>
         <div class="Constructor AuthSigns">
@@ -60,41 +60,50 @@
     // <Пустая строка> / Visible - убрать анимацию
     private string Processing = " ";//Анимация загрузки кнопки
 
-    string email = "";
-    string password = "";
-    ValidationResult validationResult;
+    private string email = "";
+    private string password = "";
+    private ValidationResult validationResult;
 
-    public void HideEverything()
+    private void HideEverything()
     {
-        MailWarning = "Hide";
-        PasswordWarning = "Hide";
-        MessageLine = "AuthCollapseLine";
+        if (MailWarning == "Show")
+            MailWarning = "Hide";
+        if (PasswordWarning == "Show")
+            PasswordWarning = "Hide";
+        if (MessageLine == "AuthExpandLine")
+            MessageLine = "AuthCollapseLine";
         ErrorMessage = "";
     }
 
-    async public void validation()
+    private async Task<bool> Validate()
     {
-        validationResult = new ValidationResult(password, "", email);
-        await validationResult.IsEverythingCorrect();
         HideEverything();
-        if (!validationResult.GetCorrectEmail())
+        Processing = "ButtonLoading";
+        validationResult = new ValidationResult(password, "", email);
+        if (await validationResult.IsEverythingCorrect())
         {
-            ErrorMessage = "Не існує користувача з такою електронною поштою";
-            MailWarning = "Show";
-            MessageLine = "AuthExpandLine";
-        }
-        else
+            Processing = "";
+            //Вход
+            return true;
+        } else
         {
-            if (!validationResult.GetCorrectPassword())
+            if (!validationResult.GetCorrectEmail())
             {
-                ErrorMessage = "Невірний пароль";
-                PasswordWarning = "Show";
+                ErrorMessage = "Не існує користувача з такою електронною поштою";
+                MailWarning = "Show";
                 MessageLine = "AuthExpandLine";
             }
             else
             {
-                //Вход
+                if (!validationResult.GetCorrectPassword())
+                {
+                    ErrorMessage = "Невірний пароль";
+                    PasswordWarning = "Show";
+                    MessageLine = "AuthExpandLine";
+                }
             }
+            Processing = "";
+            return false;
         }
     }
 }

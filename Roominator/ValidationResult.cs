@@ -2,6 +2,7 @@ using System.Runtime.InteropServices;
 using System;
 using System.Data;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace Roominator
 {
@@ -16,17 +17,27 @@ namespace Roominator
         public ValidationResult(string password, string password_copy, string email) {
             this.password = password;
             this.password_copy = password_copy;
-            this.email = email;
-            this.correctEmail = false;
-            this.correctPassword = false;
+            this.email = email.ToLower();
+            correctEmail = false;
+            correctPassword = false;
+        }
+
+        private bool EmailValidate(string email)
+        {
+            string pattern = @"^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$";
+            if (Regex.IsMatch(email, pattern, RegexOptions.IgnoreCase))
+                return true;
+            return false;
         }
 
         public async Task<RegistrationErrors> Validate() {
             RegistrationErrors registrationError = RegistrationErrors.Correct;
             if (email.Length == 0)
                 registrationError = RegistrationErrors.EmailIsEmpty;
-            else if (!email.Contains('@'))
+            else if (!EmailValidate(email))
                 registrationError = RegistrationErrors.EmailFormat;
+            else if (await UserExists())
+                registrationError = RegistrationErrors.EmailAlreadyExists;
             else if (password.Length == 0)
                 registrationError = RegistrationErrors.PasswordIsEmpty;
             else if (password.Length < 8 || password.Length > 50)
@@ -36,17 +47,14 @@ namespace Roominator
             else if (password_copy.Length == 0)
                 registrationError = RegistrationErrors.PasswordCopyIsEmpty;
             else if (!password_copy.Equals(password))
-                registrationError = RegistrationErrors.PasswordCopyNotEqualsPassword;
-            else if (await UserExists())
-            {
-                Task.WaitAll();
-                registrationError = RegistrationErrors.EmailAlreadyExists;
-            }
+                registrationError = RegistrationErrors.PasswordCopyNotEqualsPassword; 
             return registrationError;
         }
 
         public async Task<bool> IsEverythingCorrect() {
             DataTable res = await Program.databaseManager.ExecQuery($"SELECT * FROM public.user WHERE public.user.user_email = '{email}'");
+            if (res == null || res.Rows.Count == 0 || email.Length == 0)
+                return false;
             if (res.Rows.Count == 1)
             {
                 correctEmail = true;
