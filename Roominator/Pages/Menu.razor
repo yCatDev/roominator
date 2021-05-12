@@ -1,9 +1,21 @@
 ﻿@page "/menu"
-
+@inject NavigationManager NavManager
 <div>
-
+    <button @onclick="SomeStartupMethod">BUTTON</button>
 </div>
 
 @code{
-   
+
+    string uri = "";
+    Task SomeStartupMethod()
+    {
+
+        uri = NavManager.Uri;
+        APIManager manager = new APIManager();
+        string code = manager.getCode(uri);
+        Console.WriteLine("check");
+        Console.WriteLine(manager.sendRequestToExchangeAccessTokenAsync(code));
+        return Task.CompletedTask;
+    }
+
 }

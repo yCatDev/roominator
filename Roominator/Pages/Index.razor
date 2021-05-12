@@ -14,7 +14,7 @@
 @code{
     void redirect() {
         APIManager manager = new APIManager();
-        string request = manager.createRequest();
+        string request = manager.createRequest(NavManager.Uri);
         NavManager.NavigateTo(request);
     }
 }
