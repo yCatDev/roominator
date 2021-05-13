@@ -8,6 +8,7 @@
     async Task SomeStartupMethod()
     {
         Program.manager.getCode(NavManager.Uri);
-        await Program.manager.sendRequestToExchangeAccessTokenAsync();
+        Program.manager.getInfoFromGoogleAnswer(await Program.manager.sendRequestToExchangeCodeForAccessTokenAsync());
+        await Program.manager.sendRequestAsync();
     }
 }

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System;
 using System.Text.Json.Serialization;
 using Newtonsoft.Json;
+using System.Text.Json;
 
 namespace Roominator {
     public class APIManager
@@ -15,6 +16,9 @@ namespace Roominator {
         private  string redirect_uri = "";
         private const string CLIENT_ID = "636057004195-qufc1kso44du6lpbp191vdmdvogco237.apps.googleusercontent.com";
         private const string CLIENT_SECRET = "QNn_2SkcZkqgmCItvB-0Lb7N";
+        string access_token = "";
+        string refresh_token = "";
+        string expires_in = "";
         string code = "";
         HttpClient client = new HttpClient();
         [Inject]
@@ -28,7 +32,6 @@ namespace Roominator {
                 $"client_id={CLIENT_ID}&" +
                 $"scope={SCOPE}&" +
                 $"response_type=code";
-
             return request;
         }
 
@@ -43,7 +46,7 @@ namespace Roominator {
             this.code =  code;
         }
 
-        public async System.Threading.Tasks.Task<HttpResponseMessage> sendRequestToExchangeAccessTokenAsync() {
+        public async System.Threading.Tasks.Task<HttpResponseMessage> sendRequestToExchangeCodeForAccessTokenAsync() {
             var values = new Dictionary<string, string>
                 {
                     { "code", $"{code}"},
@@ -56,11 +59,27 @@ namespace Roominator {
                 Console.WriteLine(pair.Key + ": " + pair.Value);
             }
             var answer = await client.PostAsync("https://oauth2.googleapis.com/token", new FormUrlEncodedContent(values));
-            string json = answer.Content.ReadAsStringAsync().Result;
-            object obj = JsonConvert.DeserializeObject(json);
-            string res = JsonConvert.SerializeObject(obj);
-            Console.WriteLine(res);
             return answer;
+        }
+
+        public void getInfoFromGoogleAnswer(HttpResponseMessage answer) {
+            string json = answer.Content.ReadAsStringAsync().Result;
+            var doc = JsonDocument.Parse(json);
+            var root = doc.RootElement;
+            var obj = root.EnumerateObject();
+            Dictionary<string, string> dict = new Dictionary<string, string>();
+            while (obj.MoveNext()) {
+                dict.Add(obj.Current.Name, obj.Current.Value.ToString());
+            }
+            access_token = dict["access_token"];
+            expires_in = dict["expires_in"];
+            Console.WriteLine($"ACCESS TOKEN: {access_token}");
+        }
+
+        public async System.Threading.Tasks.Task sendRequestAsync() {
+            var request = $"?access_token={access_token}";
+            var answer = await client.GetAsync(request);
+            Console.WriteLine(answer.Content.ReadAsStringAsync().Result);
         }
     }
 }
