@@ -83,6 +83,16 @@
         if (await validationResult.IsEverythingCorrect())
         {
             Processing = "";
+
+            //if (await validationResult.CheckPremium())
+            //{
+            //    Program.havePremium = true;
+            //}
+            //else
+            //{
+            //    Program.havePremium = false;
+            //}
+
             //Вход
             return true;
         } else

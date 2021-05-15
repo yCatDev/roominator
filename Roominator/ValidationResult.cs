@@ -40,8 +40,10 @@ namespace Roominator
                 registrationError = RegistrationErrors.EmailAlreadyExists;
             else if (password.Length == 0)
                 registrationError = RegistrationErrors.PasswordIsEmpty;
-            else if (password.Length < 8 || password.Length > 50)
-                registrationError = RegistrationErrors.PasswordLength;
+            else if (password.Length < 8)
+                registrationError = RegistrationErrors.PasswordLengthTooShort;
+            else if (password.Length > 50)
+                registrationError = RegistrationErrors.PasswordLengthTooLong;
             else if (password.Equals(email))
                 registrationError = RegistrationErrors.PasswordEqualsEmail;
             else if (password_copy.Length == 0)
@@ -62,6 +64,7 @@ namespace Roominator
                 if (res.Rows[0][0].ToString() == password)
                 {
                     correctPassword = true;
+                    Program.currentEmail = email;
                     return true;
                 }
             }
@@ -82,6 +85,12 @@ namespace Roominator
                 return false;
             return true;
         }
+
+        public async Task<bool> CheckPremium()
+        {
+            // Проверка наличия премиума в базе
+            return true;
+        }
     }
 
     public enum RegistrationErrors{ 
@@ -89,7 +98,8 @@ namespace Roominator
         EmailAlreadyExists,
         EmailFormat,
         PasswordIsEmpty,
-        PasswordLength,
+        PasswordLengthTooShort,
+        PasswordLengthTooLong,
         PasswordEqualsEmail,
         PasswordCopyNotEqualsPassword,
         PasswordCopyIsEmpty,

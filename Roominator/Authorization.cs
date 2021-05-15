@@ -22,5 +22,10 @@ namespace Roominator {
             Console.WriteLine($"Registring user with mail {email}");
             return true;
         }
+
+        public string GetEmail()
+        {
+            return email;
+        }
     }
 }
