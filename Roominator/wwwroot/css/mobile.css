@@ -276,6 +276,8 @@ a:hover {
     display: inline-block;
     width: 11%;
     vertical-align: middle;
+    padding-top: 10vw;
+    vertical-align: top;
 }
 
 .AuthSocialIcon {
@@ -303,12 +305,12 @@ a:hover {
     text-align: center;
     background-color: white;
     font-family: 'GothamPro', sans-serif;
-    font-size: 2.5vh;
+    font-size: 4.5vw;
 }
 
 .AuthCollapsedLine {
     height: 0;
-    margin-bottom: 4vh;
+    margin-bottom: 7vw;
     color: transparent;
 }
 
@@ -318,18 +320,18 @@ a:hover {
 
 @keyframes AuthCollapseLine {
     from {
-        height: 4vh;
+        height: 7vw;
         margin-bottom: 0;
         color: #2665b8;
     }
     50% {
-        height: 4vh;
+        height: 7vw;
         margin-bottom: 0;
         color: transparent;
     }
     to {
         height: 0;
-        margin-bottom: 4vh;
+        margin-bottom: 7vw;
         color: transparent;
     }
 }
@@ -341,16 +343,16 @@ a:hover {
 @keyframes AuthExpandLine {
     from {
         height: 0;
-        margin-bottom: 4vh;
+        margin-bottom: 7vw;
         color: transparent;
     }
     50% {
-        height: 4vh;
+        height: 7vw;
         margin-bottom: 0;
         color: transparent;
     }
     to {
-        height: 4vh;
+        height: 7vw;
         margin-bottom: 0;
         color: #2665b8;
     }
@@ -417,11 +419,14 @@ input[type="checkbox"] {
     width: 100%;
     min-height: 100vh;
 }
-#LendingLogin{
+#LendingLogin {
     margin: 0 10px;
+    font-size: 3.2vh;
 }
 #LendingRegister {
     margin: 0 10px;
+    font-size: 3.2vh;
+    border-radius: 2.4vh;
 }
 /*-----------------------------------> Main <----------------------------------*/
 #LandingBlockMain {
@@ -468,7 +473,7 @@ input[type="checkbox"] {
 #LandingCreateButton {
     display: block;
     position: absolute;
-    bottom: 10vw;
+    bottom: 30vw;
     left: 0;
     right: 0;
     margin: auto;
@@ -619,12 +624,12 @@ input[type="checkbox"] {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    height: 50px;
+    height: 8vh;
     padding: 0 10px;
 }
 
 .MenuWindow {
-    height: calc(100vh - 50px);
+    height: calc(100vh - 8vh);
     background-color: var(--BackgroundBlue);
     overflow: auto;
 }

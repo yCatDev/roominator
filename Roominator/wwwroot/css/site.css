@@ -418,9 +418,12 @@ input[type="checkbox"] {
 }
 #LendingLogin{
     margin: 0 10px;
+    font-size: 3.2vh;
 }
 #LendingRegister {
     margin: 0 10px;
+    font-size: 3.2vh;
+    border-radius: 2.4vh;
 }
 /*-----------------------------------> Main <----------------------------------*/
 #LandingBlockMain {
@@ -684,12 +687,12 @@ input[type="checkbox"] {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    height: 50px;
+    height: 8vh;
     padding: 0 10px;
 }
 
 .MenuWindow {
-    height: calc(100vh - 50px);
+    height: calc(100vh - 8vh);
     background-color: var(--BackgroundBlue);
 }
 
