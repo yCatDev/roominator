@@ -1,14 +1,58 @@
 ﻿@page "/menu"
 @inject NavigationManager NavManager
-<div>
+<div style="display: none">
     <button @onclick="SomeStartupMethod">BUTTON</button>
 </div>
 
-@code{
-    async Task SomeStartupMethod()
-    {
-        Program.manager.getCode(NavManager.Uri);
-        Program.manager.getInfoFromGoogleAnswer(await Program.manager.sendRequestToExchangeCodeForAccessTokenAsync());
-        await Program.manager.sendRequestAsync();
+<!---------------------------------- Page ------------------------------------->
+<div class="Header">
+    <a href="/plans" class="LinkButton HeaderLink"> Плани </a>
+    <button class="AccountLink">
+        <img src="/images/icons/account.png" alt="UserPic" class="HeaderUserPic">
+        <p>Sasha@mail.ru</p>
+    </button>
+</div>
+
+<div class="MenuWindow" id="RoomsMenu">
+    <div class="RoomsContainer Constructor">
+        <!-- Код 1 кнопки  -->
+        <div class="RoomCard">
+            <img src="/images/room_placeholder.png" alt="Room" class="RoomImage">
+            <p class="RoomTitle">Гостинная</p>
+
+            <button class="RoomShare RoomCardButton">
+                <img src="/images/icons/plan/share.png" alt="Share" class="RoomCardIcon">
+            </button>
+            <button class="RoomDelete RoomCardButton">
+                <img src="/images/icons/plan/delete.png" alt="Delete" class="RoomCardIcon">
+            </button>
+        </div>
+        <!-- Кнопки вставлять сюда -->
+
+        <button class="AddRoom">
+            <img src="/images/icons/plus.png" alt="Add Room" class="AddRoomIcon">
+            <p class="AddRoomSign">Новий план</p>
+        </button>
+        <div class="CardSpace"></div><div class="CardSpace"></div>
+
+
+    </div>
+
+
+    <div class="LimitMessage">
+        <p class="LimitTitle">Ви досягли ліміту безкоштовної версії</p>
+        <button class="LimitButton">Придбати преміум</button>
+    </div>
+
+</div>
+
+
+
+    @code{
+        async Task SomeStartupMethod()
+        {
+            Program.manager.getCode(NavManager.Uri);
+            Program.manager.getInfoFromGoogleAnswer(await Program.manager.sendRequestToExchangeCodeForAccessTokenAsync());
+            await Program.manager.sendRequestAsync();
+        }
     }
-}

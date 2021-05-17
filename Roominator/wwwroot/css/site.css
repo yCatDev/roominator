@@ -685,16 +685,47 @@ input[type="checkbox"] {
 .Header {
     background-color: var(--MainBlue);
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     height: 8vh;
     padding: 0 10px;
 }
+.HeaderLink {
+    margin: 0 10px;
+    font-size: 3.2vh;
+}
+.AccountLink {
+    color: white;
+    border: 0;
+    background: transparent;
+    display: inline;
+}
+.AccountLink p {
+    margin: 0 10px;
+    font-size: 3.2vh;
+    margin-top: 0.3vw;
+
+    font-family: 'GothamPro', sans-serif;
+    display: inline-block;
+}
+
+    .AccountLink:hover p{
+        color: white;
+        text-decoration: underline;
+    }
+
+.HeaderUserPic {
+    width: 6vh;
+    margin-bottom: 0.2vw;
+}
+
+
 
 .MenuWindow {
     height: calc(100vh - 8vh);
     background-color: var(--BackgroundBlue);
 }
+
 
 /*================================/ PLANS /===============================*/
 #PlansMenu {
@@ -799,6 +830,132 @@ input[type="checkbox"] {
 .BlueCorner {
     background: linear-gradient(135deg, rgba(25,66,121,1) 50%, #759fcb 50%);
 }
+
+/*=================================/ MENU /================================*/
+#RoomsMenu {
+    overflow: hidden;
+}
+/*------------------------------> Rooms Card <-----------------------------*/
+.RoomsContainer {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+.RoomCard {
+    position: relative;
+    width: 25vw;
+    height: 17vw;
+    margin: 2vw 1vw 0;
+    background-image: url(/images/background/tile_white.png);
+    background-size: 17vh;
+    background-position: -2vh;
+    border-radius: 1.5vw;
+    box-shadow: 3px 3px 10px 4px rgb(34 60 80 / 30%);
+    text-align: center;
+}
+.RoomImage {
+    height: 60%;
+    margin: 10% 0 3%;
+}
+.RoomTitle {
+    color: #424852;
+    font-family: 'GothamPro', sans-serif;
+    font-size: 1.7vw;
+    line-height: 3vw;
+}
+
+.RoomCard:hover {
+    filter: brightness(0.95)
+}
+/* - - - - - - - - - - Êíîïêè - - - - - - - - */
+.RoomShare {
+    left: 0.5vw;
+    top: 0.3vw;
+}
+
+.RoomDelete {
+    right: 0.5vw;
+    top: 0.3vw;
+}
+.RoomCardButton {
+    width: 2.5vw;
+    height: 2.5vw;
+    position: absolute;
+    border: none;
+    background: none;
+}
+.RoomShare .RoomCardIcon {
+    width: 1.5vw;
+}
+.RoomDelete .RoomCardIcon {
+    width: 1.3vw;
+}
+.RoomCardButton:hover {
+    background: #00000024;
+    border-radius: 50%;
+}
+/*---------------------------------> Add Room <--------------------------------*/
+.AddRoom {
+    background: transparent;
+    border: solid white 3px;
+    position: relative;
+    width: 25vw;
+    height: 17vw;
+    margin: 2vw 1vw 0;
+    border-radius: 1.5vw;
+    box-shadow: 3px 3px 10px 4px rgb(34 60 80 / 30%);
+}
+    .AddRoom:hover {
+        background-color: #74a8e0;
+    }
+.AddRoomIcon {
+    width: 7vw;
+    margin: 1.2vw;
+    filter: drop-shadow(4px 4px 3px #00000052);
+}
+
+.AddRoomSign {
+    color: white;
+    font-family: 'GothamPro', sans-serif;
+    font-size: 2vw;
+    filter: drop-shadow(3px 3px 2px #0000006b);
+}
+.CardSpace {
+    width: 25vw;
+    height: 0;
+    margin: 0 1vw;
+}
+
+/*-----------------------------> Limit Message <----------------------------*/
+.LimitMessage {
+    position: relative;
+    width: 50vw;
+    height: 8vw;
+    margin: 7vw auto 0;
+    background-image: url(/images/background/tile_white.png);
+    background-size: 17vh;
+    background-position: 0 -2vh;
+    border-radius: 1.5vw;
+    box-shadow: 3px 3px 10px 4px rgb(34 60 80 / 30%);
+    text-align: center;
+}
+.LimitTitle {
+    color: #424852;
+    font-family: 'GothamPro', sans-serif;
+    font-size: 1.8vw;
+    line-height: 4vw;
+}
+.LimitButton {
+    border: solid #424852 2px;
+    color: #424852;
+    font-family: 'GothamPro', sans-serif;
+    font-size: 1.7vw;
+    border-radius: 1vw;
+    background-color: white ;
+}
+    .LimitButton:hover {
+        background-color: #e6e6e6;
+    }
 /*================================/ FOOTER /================================*/
 footer {
     background-color: #2665b8;
