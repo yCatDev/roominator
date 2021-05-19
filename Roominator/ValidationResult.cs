@@ -3,6 +3,7 @@ using System;
 using System.Data;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using System.Net;
 
 namespace Roominator
 {
@@ -13,6 +14,15 @@ namespace Roominator
         string email;
         bool correctEmail;
         bool correctPassword;
+
+        public ValidationResult()
+        {
+            this.password = "";
+            this.password_copy = "";
+            this.email = "";
+            correctEmail = false;
+            correctPassword = false;
+        }
 
         public ValidationResult(string password, string password_copy, string email) {
             this.password = password;

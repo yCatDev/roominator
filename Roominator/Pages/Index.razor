@@ -1,5 +1,6 @@
 @page "/"
 @inject NavigationManager NavManager
+@inject IJSRuntime JsRuntime
 
 <div><h1>Menu</h1></div>
 
@@ -9,10 +10,34 @@
 <div><a href="/menu">Menu</a></div>
 <div><a href="/plans">Plans</a></div>
 <button @onclick="redirect">Click to magic</button>
+<br />
+<button @onclick="CheckDevice">Check device</button>
+<br />
+<input @bind="device" />
 <SurveyPrompt Title="How is Blazor working for you?" />
 
 @code{
-    void redirect() {
+
+    private MobileHelper mobileHelper;
+    private string device;
+    private string userAgent;
+
+    void redirect()
+    {
         NavManager.NavigateTo(Program.manager.getRedirectURL(NavManager.Uri));
+    }
+
+    private async Task<bool> CheckDevice()
+    {
+        await OnAfterRenderAsync(false);
+        return true;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        userAgent = await JsRuntime.InvokeAsync<string>("getUserAgent");
+        mobileHelper = new MobileHelper();
+        device = mobileHelper.CheckDevice(userAgent);
+        StateHasChanged();
     }
 }
