@@ -1,0 +1,29 @@
+﻿@page "/apppage"
+@inject NavigationManager NavManager
+@code {
+
+    private void StartupMethod()
+    {
+        Program.mobileHelper.SetEntry(Entry.APK);
+        if (NavManager.Uri.Contains("localhost"))
+        {
+            NavManager.NavigateTo("https://localhost:5000/login");
+        }
+        else
+        {
+            NavManager.NavigateTo("https://roominator-nure.herokuapp.com/login");
+        }
+    }
+
+    private Task StartupTask()
+    {
+        return Task.CompletedTask;
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        StartupMethod();
+        await StartupTask();
+    }
+
+}

@@ -1,5 +1,6 @@
 ﻿@page "/menu"
 @inject NavigationManager NavManager
+@inject IJSRuntime JsRuntime
 <div style="display: none">
     <button @onclick="SomeStartupMethod">BUTTON</button>
 </div>
@@ -48,11 +49,41 @@
 
 
 
-    @code{
-        async Task SomeStartupMethod()
-        {
-            Program.manager.getCode(NavManager.Uri);
-            Program.manager.getInfoFromGoogleAnswer(await Program.manager.sendRequestToExchangeCodeForAccessTokenAsync());
-            await Program.manager.sendRequestAsync();
-        }
+@code{
+    async Task SomeStartupMethod()
+    {
+        Program.manager.getCode(NavManager.Uri);
+        Program.manager.getInfoFromGoogleAnswer(await Program.manager.sendRequestToExchangeCodeForAccessTokenAsync());
+        await Program.manager.sendRequestAsync();
     }
+
+    private async Task<bool> CheckDevice()
+    {
+        await OnAfterRenderAsync(true);
+        return true;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        string userAgent = await JsRuntime.InvokeAsync<string>("getUserAgent");
+        Program.mobileHelper.CheckDevice(userAgent);
+        StateHasChanged();
+    }
+
+    private async Task<bool> StartupMethod()
+    {
+        await CheckDevice();
+        return true;
+    }
+
+    private Task StartupTask()
+    {
+        return Task.CompletedTask;
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await StartupMethod();
+        await StartupTask();
+    }
+}

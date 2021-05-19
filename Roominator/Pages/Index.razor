@@ -1,6 +1,5 @@
 @page "/"
 @inject NavigationManager NavManager
-@inject IJSRuntime JsRuntime
 
 <div><h1>Menu</h1></div>
 
@@ -17,8 +16,7 @@
 <SurveyPrompt Title="How is Blazor working for you?" />
 
 @code{
-
-    private MobileHelper mobileHelper;
+   
     private string device;
     private string userAgent;
 
@@ -27,17 +25,8 @@
         NavManager.NavigateTo(Program.manager.getRedirectURL(NavManager.Uri));
     }
 
-    private async Task<bool> CheckDevice()
+    private void CheckDevice()
     {
-        await OnAfterRenderAsync(false);
-        return true;
-    }
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        userAgent = await JsRuntime.InvokeAsync<string>("getUserAgent");
-        mobileHelper = new MobileHelper();
-        device = mobileHelper.CheckDevice(userAgent);
-        StateHasChanged();
+        device = Program.mobileHelper.GetEntryToString();
     }
 }

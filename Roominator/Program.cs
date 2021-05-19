@@ -13,6 +13,7 @@ namespace Roominator
     {
         public static DatabaseManager databaseManager = new DatabaseManager();
         public static APIManager manager = new APIManager();
+        public static MobileHelper mobileHelper = new MobileHelper();
         public static string currentEmail;
         //public static bool havePremium;
         public static void Main(string[] args)

@@ -11,6 +11,8 @@ namespace Roominator
 {
     public class MobileHelper
     {
+        private Entry entry = Entry.Unknown;
+
         private static string[] mobileDevices = new string[] {"iphone","ppc",
                                                       "windows ce","blackberry",
                                                       "opera mini","mobile","palm",
@@ -22,16 +24,39 @@ namespace Roominator
             return mobileDevices.Any(x => userAgent.Contains(x));
         }
 
-        public string CheckDevice(string userAgent)
+        public Entry CheckDevice(string userAgent)
         {
-            if (IsMobileDevice(userAgent))
+            if (entry == Entry.Unknown)
             {
-                return "mobile";
+                if (IsMobileDevice(userAgent))
+                    entry = Entry.Mobile;
+                else
+                    entry = Entry.PC;
             }
-            else
-            {
-                return "pc";
-            }
+            return entry;
         }
+
+        public void SetEntry(Entry entry)
+        {
+            this.entry = entry;
+        }
+
+        public Entry GetEntry()
+        {
+            return entry;
+        }
+
+        public string GetEntryToString()
+        {
+            return entry.ToString();
+        }
+    }
+
+    public enum Entry
+    {
+        Unknown, 
+        Mobile,
+        PC,
+        APK
     }
 }
