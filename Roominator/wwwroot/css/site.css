@@ -120,6 +120,7 @@ a:hover {
     display: none;
 }
 /*-------------------------------> Buttons <----------------------------------*/
+
 .BlueButton {
     background-color: #2665b8;
     color: white;
@@ -131,12 +132,12 @@ a:hover {
     transition-duration: 0.2s;
 }
 
-.BlueButton:hover {
-    background-color: #548cd2;
-    color: white;
-    font-family: 'GothamPro', sans-serif;
-    font-size: 20px;
-}
+    .BlueButton:hover {
+        background-color: #548cd2;
+        color: white;
+        font-family: 'GothamPro', sans-serif;
+        font-size: 20px;
+    }
 
 .LinkButton {
     color: white;
