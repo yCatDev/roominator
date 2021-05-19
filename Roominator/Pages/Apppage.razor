@@ -2,9 +2,9 @@
 @inject NavigationManager NavManager
 @code {
 
-    private void StartupMethod()
+    private async void StartupMethod()
     {
-        Program.mobileHelper.SetEntry(Entry.APK);
+        await OnAfterRenderAsync(true);
         if (NavManager.Uri.Contains("localhost"))
         {
             NavManager.NavigateTo("https://localhost:5000/login");
@@ -18,6 +18,12 @@
     private Task StartupTask()
     {
         return Task.CompletedTask;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        Program.mobileHelper.SetEntry(Entry.APK);
+        StateHasChanged();
     }
 
     protected override async Task OnInitializedAsync()
