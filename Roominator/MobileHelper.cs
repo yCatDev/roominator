@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.JSInterop;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace Roominator
 {
@@ -13,17 +16,15 @@ namespace Roominator
                                                       "opera mini","mobile","palm",
                                                       "portable","opera mobi" };
 
-        public static bool IsMobileDevice(string userAgent)
+        private static bool IsMobileDevice(string userAgent)
         {
             userAgent = userAgent.ToLower();
             return mobileDevices.Any(x => userAgent.Contains(x));
         }
 
-        public string CheckDevice()
+        public string CheckDevice(string userAgent)
         {
-            HttpWebRequest req = (HttpWebRequest)WebRequest.Create("https://roominator-nure.herokuapp.com/");
-            return req.UserAgent;
-            if (IsMobileDevice("https://roominator-nure.herokuapp.com/"))
+            if (IsMobileDevice(userAgent))
             {
                 return "mobile";
             }
