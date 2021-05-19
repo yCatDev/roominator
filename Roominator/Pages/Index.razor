@@ -8,11 +8,23 @@
 <div><a href="/landing">Landing</a></div>
 <div><a href="/menu">Menu</a></div>
 <div><a href="/plans">Plans</a></div>
-<button @onclick="redirect">Click to magic</button>
+<button @onclick="redirect">Click to magic</button><br />
+<button @onclick="CheckDevice">Check device</button><br />
+<input @bind="device"/>
 <SurveyPrompt Title="How is Blazor working for you?" />
 
 @code{
+
+    private MobileHelper mobileHelper;
+    private string device;
+
     void redirect() {
         NavManager.NavigateTo(Program.manager.getRedirectURL(NavManager.Uri));
+    }
+
+    void CheckDevice()
+    {
+        mobileHelper = new MobileHelper();
+        device = mobileHelper.CheckDevice();
     }
 }
