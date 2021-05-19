@@ -4,13 +4,14 @@
 
     private async void StartupMethod()
     {
-        await OnAfterRenderAsync(true);
         if (NavManager.Uri.Contains("localhost"))
         {
             NavManager.NavigateTo("https://localhost:5000/login");
         }
         else
         {
+            if (NavManager.Uri.Equals("https://roominator-nure.herokuapp.com/apppage"))
+                Program.mobileHelper.SetEntry(Entry.APK);
             NavManager.NavigateTo("https://roominator-nure.herokuapp.com/login");
         }
     }
