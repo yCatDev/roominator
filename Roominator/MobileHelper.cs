@@ -56,7 +56,6 @@ namespace Roominator
     {
         Unknown, 
         Mobile,
-        PC,
-        APK
+        PC
     }
 }
