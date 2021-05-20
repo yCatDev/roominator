@@ -11,17 +11,12 @@
     <title>@ViewData["Title"] - Roominator</title>
     <link href="@Url.Content("~/wwwroot/css/site.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/wwwroot/css/designerLoading.css")" rel="stylesheet" type="text/css" />
+    <link href="~/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-light navbar-toggleable-sm bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" href="~/">Roominator</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <div>
                     @{
                         var result = Engine.FindView(ViewContext, "_LoginPartial", isMainPage: true);
                     }
@@ -37,7 +32,6 @@
                     }
                 </div>
             </div>
-        </nav>
     </header>
 
     <div class="container">

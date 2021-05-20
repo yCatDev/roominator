@@ -8,7 +8,6 @@
 <div><a href="/landing">Landing</a></div>
 <div><a href="/menu">Menu</a></div>
 <div><a href="/plans">Plans</a></div>
-<button @onclick="redirect">Click to magic</button>
 <br />
 <button @onclick="CheckDevice">Check device</button>
 <br />
@@ -19,11 +18,6 @@
    
     private string device;
     private string userAgent;
-
-    void redirect()
-    {
-        NavManager.NavigateTo(Program.manager.getRedirectURL(NavManager.Uri));
-    }
 
     private void CheckDevice()
     {

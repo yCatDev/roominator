@@ -11,10 +11,14 @@
 <meta name="google-signin-client_id" content="636057004195-qufc1kso44du6lpbp191vdmdvogco237.apps.googleusercontent.com">
 
 <div class="BluePrintWindow Scrollable">
+
+    <img src="/images/logo/logo_shadow.png" alt="Roominator logo" class="AuthLogo">
     <p class="AuthTitle Unselectable">Реєстрація</p>
 
-    <div class="col-md-4">
-        <div class="Constructor AuthForm">
+    <div class="Constructor AuthMainBlock">
+        <div class="Constructor AuthSigns">
+        </div>
+        <form class="Constructor AuthForm" method="post">
             <div class="Constructor AuthFormLine">
                 <button class="BlueButton AuthSocial">
                     <img src="/images/icons/login/google.png" alt="Google" class="AuthSocialIcon">| Google
@@ -23,54 +27,22 @@
                     <img src="/images/icons/login/facebook.png" alt="Facebook" class="AuthSocialIcon">| Facebook
                 </button>
             </div>
-            <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
-                <h4>Create a new account.</h4>
-                <hr />
-                <div asp-validation-summary="All" class="text-danger"></div>
-                    <label asp-for="Input.Email"></label>
-                    <input asp-for="Input.Email" class="form-control" />
-                    <span asp-validation-for="Input.Email" class="text-danger"></span>
-                    <label asp-for="Input.Password"></label>
-                    <input asp-for="Input.Password" class="form-control" />
-                    <span asp-validation-for="Input.Password" class="text-danger"></span>
-                    <label asp-for="Input.ConfirmPassword"></label>
-                    <input asp-for="Input.ConfirmPassword" class="form-control" />
-                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-                <button type="submit" class="btn btn-primary">Register</button>
-            </form>
-        </div>
-        <div class="col-md-6 col-md-offset-2">
-            <section>
-                <h4>Use another service to register.</h4>
-                <hr />
-                @{
-                    if ((Model.ExternalLogins?.Count ?? 0) == 0)
-                    {
-                        <div>
-                            <p>
-                                There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
-                                for details on setting up this ASP.NET application to support logging in via external services.
-                            </p>
-                        </div>
-                    }
-                    else
-                    {
-                        <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                            <div>
-                                <p>
-                                    @foreach (var provider in Model.ExternalLogins)
-                                    {
-                                        <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                                    }
-                                </p>
-                            </div>
-                        </form>
-                    }
-                }
-            </section>
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input asp-for="Input.Email" type="email" placeholder="Пошта" id="SignupMail" class="AuthInput" />
+            <span asp-validation-for="Input.Email" class="text-danger"></span>
+            <input asp-for="Input.Password" type="password" placeholder="Пароль" id="SignupPassword" class="AuthInput" />
+            <span asp-validation-for="Input.Password" class="text-danger"></span>
+            <input asp-for="Input.ConfirmPassword" type="password" placeholder="Повтор паролю" id="SignupConfirmPassword" class="AuthInput" />
+            <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            <div class="Constructor AuthFormLine">
+                <p class="AuthCheckboxText"><input type="checkbox" value="agree" name="TermsAgree" id="TermsAgree"> Я погоджуюсь з умовами </p>
+                <button class="BlueButton btn" id="SignupButton" type="submit"> Реєстрація </button>
+            </div>
             <script src="https://apis.google.com/js/platform.js" async defer></script>
-        </div>
+        </form>
     </div>
+    <a class="LinkButton AuthFooter" asp-route-returnUrl="@Model.ReturnUrl" asp-page="./Login">Є аккаунт? Вхід</a>
+</div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

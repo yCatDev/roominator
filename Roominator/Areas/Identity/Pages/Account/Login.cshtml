@@ -8,10 +8,10 @@
 <link media="(orientation: landscape)" href="~/css/site.css" rel="stylesheet" />
 <link media="(orientation: portrait)" href="~/css/mobile.css" rel="stylesheet" />
 <meta name="google-signin-client_id" content="636057004195-qufc1kso44du6lpbp191vdmdvogco237.apps.googleusercontent.com">
-src: url('/fonts/GothamPro.eot');
-    src: url('/fonts/GothamPro.eot?#iefix') format('embedded-opentype'), url('/fonts/GothamPro.woff') format('woff'), url('/fonts/GothamPro.ttf') format('truetype');
+
 <script src="https://apis.google.com/js/api:client.js"></script>
 <script>
+    
     var googleUser = {};
     var startApp = function () {
         gapi.load('auth2', function () {
@@ -37,11 +37,6 @@ src: url('/fonts/GothamPro.eot');
             });
     }
 </script>
-<style>
-    .BlueButton:hover {
-        cursor: pointer;
-    }
-</style>
 <div class="BluePrintWindow Scrollable">
     <img src="/images/logo/logo_shadow.png" alt="Roominator logo" class="AuthLogo">
 
@@ -52,7 +47,7 @@ src: url('/fonts/GothamPro.eot');
     <div class="Constructor AuthMainBlock">
         <div class="Constructor AuthSigns">
         </div>
-        <div class="Constructor AuthForm">
+        <form class="Constructor AuthForm" method="post">
             <div class="Constructor AuthFormLine">
                 <button id="customBtn" class="BlueButton AuthSocial">
                     <img src="/images/icons/login/google.png" alt="Google" class="AuthSocialIcon">| Google
@@ -69,25 +64,7 @@ src: url('/fonts/GothamPro.eot');
                 <button class="LinkButton" id="ForgetPass"> Забули пароль? </button>
                 <button type="submit" class="BlueButton" id="SigninButton">Вхід</button>
             </div>
-        </div>
-        <!--<div class="checkbox">
-            <label asp-for="Input.RememberMe">
-                <input asp-for="Input.RememberMe" />
-                @Html.DisplayNameFor(m => m.Input.RememberMe)
-            </label>
-        </div>-->
-        <!-- <div class="form-group">
-            <p>
-                <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
-            </p>
-            <p>
-                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl"  class="LinkButton AuthFooter">Register as a new user</a>
-            </p>
-            <p>
-                <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
-            </p>
-        </div>-->
-
+        </form>
     </div>
 
     <a class="LinkButton AuthFooter" asp-route-returnUrl="@Model.ReturnUrl" asp-page="./Register">Немає аккаунту? Реєстрація</a>

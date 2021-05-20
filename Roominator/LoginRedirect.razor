@@ -1,0 +1,8 @@
+@inject NavigationManager NavManager
+@using Microsoft.AspNetCore.Identity
+@code {
+    protected override void OnInitialized()
+    {
+        NavManager.NavigateTo("");
+    }
+} 

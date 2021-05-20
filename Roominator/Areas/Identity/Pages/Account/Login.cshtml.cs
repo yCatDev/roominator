@@ -85,7 +85,7 @@ namespace Roominator.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return LocalRedirect(returnUrl);
+                    return LocalRedirect("/menu");
                 }
                 if (result.RequiresTwoFactor)
                 {
@@ -104,6 +104,7 @@ namespace Roominator.Areas.Identity.Pages.Account
             }
 
             // If we got this far, something failed, redisplay form
+            
             return Page();
         }
     }
