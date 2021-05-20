@@ -69,24 +69,9 @@
         await Program.manager.sendRequestAsync();
     }
 
-    private async Task<bool> CheckDevice()
+    private void StartupMethod()
     {
-        await OnAfterRenderAsync(true);
-        return true;
-    }
-
-    //protected override async Task OnAfterRenderAsync(bool firstRender)
-    //{
-    //    string userAgent = await JsRuntime.InvokeAsync<string>("getUserAgent");
-    //    Program.mobileHelper.CheckDevice(userAgent);
-    //    StateHasChanged();
-    //}
-
-    private async Task<bool> StartupMethod()
-    {
-        
-        await CheckDevice();
-        return true;
+        Program.mobileHelper.CheckDevice(NavManager.Uri);
     }
 
     private Task StartupTask()
@@ -96,8 +81,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-
-        await StartupMethod();
+        StartupMethod();
         await StartupTask();
     }
 

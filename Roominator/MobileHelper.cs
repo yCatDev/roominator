@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 
@@ -24,15 +25,12 @@ namespace Roominator
             return mobileDevices.Any(x => userAgent.Contains(x));
         }
 
-        public Entry CheckDevice(string userAgent)
+        public Entry CheckDevice(string url)
         {
-            if (entry == Entry.Unknown)
-            {
-                if (IsMobileDevice(userAgent))
-                    entry = Entry.Mobile;
-                else
-                    entry = Entry.PC;
-            }
+            if (IsMobileDevice(url) && entry != Entry.Unknown)
+                entry = Entry.Mobile;
+            else
+                entry = Entry.PC;
             return entry;
         }
 
@@ -56,6 +54,7 @@ namespace Roominator
     {
         Unknown, 
         Mobile,
+        APK,
         PC
     }
 }

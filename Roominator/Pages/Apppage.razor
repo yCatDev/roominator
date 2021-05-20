@@ -4,7 +4,7 @@
 
     private void StartupMethod()
     {
-        Program.mobileHelper.SetEntry(Entry.Mobile);
+        Program.mobileHelper.CheckDevice(NavManager.Uri);
         if (NavManager.Uri.Contains("localhost"))
         {
             NavManager.NavigateTo("https://localhost:5000/login");
