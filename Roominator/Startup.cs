@@ -15,6 +15,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Roominator.Data;
+using Microsoft.AspNetCore.Authentication.Facebook;
 
 namespace Roominator
 {
@@ -39,7 +40,21 @@ namespace Roominator
             services.AddScoped<AuthenticationStateProvider, ServerAuthenticationStateProvider>();
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            
+            services.AddAuthentication().AddFacebook(facebookoptions => { 
+                facebookoptions.AppId=Configuration["Authentication:Facebook:AppId"];
+                facebookoptions.AppSecret=Configuration["Authentication:Facebook:AppSecret"];
+
+                facebookoptions.Events = new Microsoft.AspNetCore.Authentication.OAuth.OAuthEvents()
+                {
+                    OnRemoteFailure = LoginFailureHandler =>
+                    {
+                        var authProperties = facebookoptions.StateDataFormat.Unprotect(LoginFailureHandler.Request.Query["state"]);
+                        LoginFailureHandler.Response.Redirect("/Identity/Account/Login");
+                        return Task.FromResult(0);
+                    }
+                };
+            }
+            );
             services.AddSingleton<WeatherForecastService>();
             services.AddServerSideBlazor().AddCircuitOptions(options => {
                 if (_env.IsDevelopment())

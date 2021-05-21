@@ -36,6 +36,26 @@
                 alert(JSON.stringify(error, undefined, 2));
             });
     }
+
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '{1447677632233389}',
+            cookie: true,
+            xfbml: true,
+            version: '{v10.0}'
+        });
+
+        FB.AppEvents.logPageView();
+
+    };
+
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) { return; }
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
 </script>
 <div class="BluePrintWindow Scrollable">
     <img src="/images/logo/logo_shadow.png" alt="Roominator logo" class="AuthLogo">
@@ -47,24 +67,33 @@
     <div class="Constructor AuthMainBlock">
         <div class="Constructor AuthSigns">
         </div>
-        <form class="Constructor AuthForm" method="post">
+        <div class="Constructor AuthForm">
             <div class="Constructor AuthFormLine">
                 <button id="customBtn" class="BlueButton AuthSocial">
                     <img src="/images/icons/login/google.png" alt="Google" class="AuthSocialIcon">| Google
                 </button>
-                <button class="BlueButton AuthSocial">
-                    <img src="/images/icons/login/facebook.png" alt="Facebook" class="AuthSocialIcon">| Facebook
-                </button>
+                <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                        @foreach (var provider in Model.ExternalLogins)
+                        {
+                        <button type="submit" class="BlueButton AuthSocial" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
+                            <img src="/images/icons/login/facebook.png" alt="Facebook" class="AuthSocialIcon">| Facebook
+                        </button>
+                        }
+                </form>
+                <!--<button class="BlueButton AuthSocial" >
+        <img src="/images/icons/login/facebook.png" alt="Facebook" class="AuthSocialIcon">| Facebook
+    </button>-->
             </div>
+            <form method="post">
+                <input asp-for="Input.Email" type="email" placeholder="Пошта" id="SigninMail" class="AuthInput" />
+                <input asp-for="Input.Password" type="password" placeholder="Пароль" id="SigninPassword" class="AuthInput" />
 
-            <input asp-for="Input.Email" type="password" placeholder="Пароль" id="SigninPassword" class="AuthInput" />
-            <input asp-for="Input.Password" type="password" placeholder="Пароль" id="SigninPassword" class="AuthInput" />
-
-            <div class="Constructor AuthFormLine">
-                <button class="LinkButton" id="ForgetPass"> Забули пароль? </button>
-                <button type="submit" class="BlueButton" id="SigninButton">Вхід</button>
-            </div>
-        </form>
+                <div class="Constructor AuthFormLine">
+                    <button class="LinkButton" id="ForgetPass"> Забули пароль? </button>
+                    <button type="submit" class="BlueButton" id="SigninButton">Вхід</button>
+                </div>
+            </form>
+        </div>
     </div>
 
     <a class="LinkButton AuthFooter" asp-route-returnUrl="@Model.ReturnUrl" asp-page="./Register">Немає аккаунту? Реєстрація</a>

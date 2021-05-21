@@ -104,7 +104,7 @@ namespace Roominator.Areas.Identity.Pages.Account
             }
 
             // If we got this far, something failed, redisplay form
-            
+            Console.WriteLine("Baad");
             return Page();
         }
     }
