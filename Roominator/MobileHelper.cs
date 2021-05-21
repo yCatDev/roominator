@@ -20,7 +20,9 @@ namespace Roominator
         private bool IsMobileDevice(string userAgent)
         {
             if (userAgent.ToLower().Contains("mobile") || userAgent.ToLower().Contains("android"))
+            {
                 return true;
+            }
             return false;
         }
 
@@ -29,9 +31,13 @@ namespace Roominator
             if (entry != Entry.APK)
             {
                 if (IsMobileDevice(userAgent))
+                {
                     entry = Entry.Mobile;
+                }
                 else
+                {
                     entry = Entry.PC;
+                }
             } 
             return entry;
         }
