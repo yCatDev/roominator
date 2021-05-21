@@ -19,14 +19,14 @@ namespace Roominator
 
         private bool IsMobileDevice(string userAgent)
         {
-            if (userAgent.ToLower().Contains("mobile") || userAgent.Contains("android"))
+            if (userAgent.ToLower().Contains("mobile") || userAgent.ToLower().Contains("android"))
                 return true;
             return false;
         }
 
         public Entry CheckDevice(string userAgent)
         {
-            if (entry == Entry.Unknown)
+            if (entry != Entry.APK)
             {
                 if (IsMobileDevice(userAgent))
                     entry = Entry.Mobile;
