@@ -13,15 +13,18 @@
 <button @onclick="CheckDevice">Check device</button>
 <br />
 <input @bind="device" />
+<input @bind="userAgent" />
 <SurveyPrompt Title="How is Blazor working for you?" />
 
 @code{
 
     private string device;
+    private string userAgent;
 
     private void CheckDevice()
     {
         Program.mobileHelper.CheckDevice(@_httpContextAccessor.HttpContext.Request.Headers["User-Agent"].ToString());
         device = Program.mobileHelper.GetEntryToString();
+        userAgent = @_httpContextAccessor.HttpContext.Request.Headers["User-Agent"].ToString();
     }
 }
