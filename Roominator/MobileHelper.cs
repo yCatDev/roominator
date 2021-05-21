@@ -17,9 +17,9 @@ namespace Roominator
     {
         private Entry entry = Entry.Unknown;
 
-        private static bool IsMobileDevice(string userAgent)
+        private bool IsMobileDevice(string userAgent)
         {
-            if (userAgent.Contains("Mobile") || userAgent.Contains("Android"))
+            if (userAgent.ToLower().Contains("mobile") || userAgent.Contains("android"))
                 return true;
             return false;
         }
