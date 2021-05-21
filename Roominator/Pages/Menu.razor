@@ -1,9 +1,9 @@
 ﻿@page "/menu"
 @using Microsoft.AspNetCore.Identity
 @inject NavigationManager NavManager
-@inject IJSRuntime JsRuntime
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor _httpContextAccessor
 
 <div style="display: none">
     <button @onclick="SomeStartupMethod">BUTTON</button>
@@ -71,7 +71,7 @@
 
     private void StartupMethod()
     {
-        Program.mobileHelper.CheckDevice(NavManager.Uri);
+        Program.mobileHelper.CheckDevice(@_httpContextAccessor.HttpContext.Request.Headers["User-Agent"].ToString());
     }
 
     private Task StartupTask()

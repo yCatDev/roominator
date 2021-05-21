@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.JSInterop;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
@@ -25,12 +28,15 @@ namespace Roominator
             return mobileDevices.Any(x => userAgent.Contains(x));
         }
 
-        public Entry CheckDevice(string url)
+        public Entry CheckDevice(string userAgent)
         {
-            if (IsMobileDevice(url) && entry != Entry.Unknown)
-                entry = Entry.Mobile;
-            else
-                entry = Entry.PC;
+            if (entry == Entry.Unknown)
+            {
+                if (IsMobileDevice(userAgent))
+                    entry = Entry.Mobile;
+                else
+                    entry = Entry.PC;
+            } 
             return entry;
         }
 

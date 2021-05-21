@@ -1,5 +1,6 @@
 @page "/"
 @inject NavigationManager NavManager
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor _httpContextAccessor
 
 <div><h1>Menu</h1></div>
 
@@ -15,12 +16,12 @@
 <SurveyPrompt Title="How is Blazor working for you?" />
 
 @code{
-   
+
     private string device;
-    private string userAgent;
 
     private void CheckDevice()
     {
+        Program.mobileHelper.CheckDevice(@_httpContextAccessor.HttpContext.Request.Headers["User-Agent"].ToString());
         device = Program.mobileHelper.GetEntryToString();
     }
 }

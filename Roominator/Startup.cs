@@ -39,6 +39,7 @@ namespace Roominator
             services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<AppDbContext>();
             services.AddScoped<AuthenticationStateProvider, ServerAuthenticationStateProvider>();
             services.AddRazorPages();
+            services.AddHttpContextAccessor();
             services.AddServerSideBlazor();
             services.AddAuthentication().AddFacebook(facebookoptions => { 
                 facebookoptions.AppId=Configuration["Authentication:Facebook:AppId"];
