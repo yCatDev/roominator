@@ -10,35 +10,6 @@
 <link media="(orientation: portrait)" href="~/css/mobile.css" rel="stylesheet" />
 <meta name="google-signin-client_id" content="636057004195-qufc1kso44du6lpbp191vdmdvogco237.apps.googleusercontent.com">
 
-<script src="https://apis.google.com/js/api:client.js"></script>
-<script>
-
-    var googleUser = {};
-    var startApp = function () {
-        gapi.load('auth2', function () {
-            // Retrieve the singleton for the GoogleAuth library and set up the client.
-            auth2 = gapi.auth2.init({
-                client_id: '636057004195-qufc1kso44du6lpbp191vdmdvogco237.apps.googleusercontent.com',
-                cookiepolicy: 'single_host_origin',
-                // Request scopes in addition to 'profile' and 'email'
-                //scope: 'additional_scope'
-            });
-            attachSignin(document.getElementById('googleRegBtn'));
-        });
-    };
-
-    function attachSignin(element) {
-        console.log(element.id);
-        auth2.attachClickHandler(element, {},
-            function (googleUser) {
-                document.getElementById('name').innerText = "Signed in: " +
-                    googleUser.getBasicProfile().getName();
-            }, function (error) {
-                alert(JSON.stringify(error, undefined, 2));
-            });
-    }
-</script>
-
 <div class="BluePrintWindow Scrollable">
 
     <img src="/images/logo/logo_shadow.png" alt="Roominator logo" class="AuthLogo">
@@ -47,29 +18,30 @@
     <div class="Constructor AuthMainBlock">
         <div class="Constructor AuthSigns">
         </div>
-        <form class="Constructor AuthForm" method="post">
-            <div class="Constructor AuthFormLine">
-                <button id="googleRegBtn" class="BlueButton AuthSocial" onclick="">
+        <div class="Constructor AuthForm">
+            <form class="Constructor AuthFormLine" id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                <button type="submit" class="BlueButton AuthSocial" name="provider" value="Google">
                     <img src="/images/icons/login/google.png" alt="Google" class="AuthSocialIcon">| Google
                 </button>
-                <button class="BlueButton AuthSocial">
+                <button type="submit" class="BlueButton AuthSocial" name="provider" value="Facebook">
                     <img src="/images/icons/login/facebook.png" alt="Facebook" class="AuthSocialIcon">| Facebook
                 </button>
-            </div>
+            </form>
+            <form  method="post">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <input asp-for="Input.Email" type="email" placeholder="Пошта" id="SignupMail" class="AuthInput" />
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+                <input asp-for="Input.Password" type="password" placeholder="Пароль" id="SignupPassword" class="AuthInput" />
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+                <input asp-for="Input.ConfirmPassword" type="password" placeholder="Повтор паролю" id="SignupConfirmPassword" class="AuthInput" />
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
 
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <input asp-for="Input.Email" type="email" placeholder="Пошта" id="SignupMail" class="AuthInput" />
-            <span asp-validation-for="Input.Email" class="text-danger"></span>
-            <input asp-for="Input.Password" type="password" placeholder="Пароль" id="SignupPassword" class="AuthInput" />
-            <span asp-validation-for="Input.Password" class="text-danger"></span>
-            <input asp-for="Input.ConfirmPassword" type="password" placeholder="Повтор паролю" id="SignupConfirmPassword" class="AuthInput" />
-            <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-
-            <div class="Constructor AuthFormLine">
-                <p class="AuthCheckboxText"><input type="checkbox" value="agree" name="TermsAgree" id="TermsAgree"> Я погоджуюсь з умовами </p>
-                <button class="BlueButton btn" id="SignupButton" type="submit"> Реєстрація </button>
-            </div>
-        </form>
+                <div class="Constructor AuthFormLine">
+                    <p class="AuthCheckboxText"><input type="checkbox" value="agree" name="TermsAgree" id="TermsAgree"> Я погоджуюсь з умовами </p>
+                    <button class="BlueButton btn" id="SignupButton" type="submit"> Реєстрація </button>
+                </div>
+            </form>
+        </div>
     </div>
     <a class="LinkButton AuthFooter" asp-route-returnUrl="@Model.ReturnUrl" asp-page="./Login">Є аккаунт? Вхід</a>
     <script>startApp();</script>

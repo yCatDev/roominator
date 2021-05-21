@@ -16,6 +16,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Roominator.Data;
 using Microsoft.AspNetCore.Authentication.Facebook;
+using Microsoft.AspNetCore.Authentication.Google;
 
 namespace Roominator
 {
@@ -41,21 +42,18 @@ namespace Roominator
             services.AddRazorPages();
             services.AddHttpContextAccessor();
             services.AddServerSideBlazor();
-            services.AddAuthentication().AddFacebook(facebookoptions => { 
-                facebookoptions.AppId=Configuration["Authentication:Facebook:AppId"];
-                facebookoptions.AppSecret=Configuration["Authentication:Facebook:AppSecret"];
-
-                facebookoptions.Events = new Microsoft.AspNetCore.Authentication.OAuth.OAuthEvents()
+            services.AddAuthentication().
+                AddFacebook(facebookoptions =>
                 {
-                    OnRemoteFailure = LoginFailureHandler =>
-                    {
-                        var authProperties = facebookoptions.StateDataFormat.Unprotect(LoginFailureHandler.Request.Query["state"]);
-                        LoginFailureHandler.Response.Redirect("/Identity/Account/Login");
-                        return Task.FromResult(0);
-                    }
-                };
-            }
-            );
+                    facebookoptions.AppId = Configuration["Authentication:Facebook:AppId"];
+                    facebookoptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+                }
+            ).
+                AddGoogle(googleoptions => 
+                {
+                    googleoptions.ClientId = Configuration["Authentication:Google:ClientId"];
+                    googleoptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+                });
             services.AddSingleton<WeatherForecastService>();
             services.AddServerSideBlazor().AddCircuitOptions(options => {
                 if (_env.IsDevelopment())
