@@ -63,7 +63,7 @@
         private string email = "";
         private string password = "";
         private string password_copy = "";
-        private ValidationResult validationResult;
+        private ValRes validationResult;
         private RegistrationErrors error;
         private Authorization authorization;
 
@@ -72,7 +72,7 @@
         {
             HideEverything();
             Processing = "ButtonLoading";
-            validationResult = new ValidationResult(password, password_copy, email);
+            validationResult = new ValRes(password, password_copy, email);
             error = await validationResult.Validate();
             switch (error)
             {

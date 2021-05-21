@@ -8,12 +8,12 @@ namespace Roominator {
 
         string email;
         string password;
-        ValidationResult validationResult;
+        ValRes validationResult;
 
         public Authorization(string password, string password_copy, string email) {
             this.email = email.ToLower();
             this.password = password;
-            validationResult = new ValidationResult(password, password_copy, email);
+            validationResult = new ValRes(password, password_copy, email);
         }
 
         public async Task<bool> Register() {

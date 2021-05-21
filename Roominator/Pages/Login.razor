@@ -61,7 +61,7 @@
 
     private string email = "";
     private string password = "";
-    private ValidationResult validationResult;
+    private ValRes validationResult;
 
     private void HideEverything()
     {
@@ -78,7 +78,7 @@
     {
         HideEverything();
         Processing = "ButtonLoading";
-        validationResult = new ValidationResult(password, "", email);
+        validationResult = new ValRes(password, "", email);
         if (await validationResult.IsEverythingCorrect())
         {
             Processing = "";

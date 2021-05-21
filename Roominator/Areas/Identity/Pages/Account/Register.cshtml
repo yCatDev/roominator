@@ -18,6 +18,7 @@
     <div class="Constructor AuthMainBlock">
         <div class="Constructor AuthSigns">
         </div>
+        
         <div class="Constructor AuthForm">
             <form class="Constructor AuthFormLine" id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post">
                 <button type="submit" class="BlueButton AuthSocial" name="provider" value="Google">
@@ -27,8 +28,7 @@
                     <img src="/images/icons/login/facebook.png" alt="Facebook" class="AuthSocialIcon">| Facebook
                 </button>
             </form>
-            <form  method="post">
-                <div asp-validation-summary="All" class="text-danger"></div>
+            <form method="post">
                 <input asp-for="Input.Email" type="email" placeholder="Пошта" id="SignupMail" class="AuthInput" />
                 <span asp-validation-for="Input.Email" class="text-danger"></span>
                 <input asp-for="Input.Password" type="password" placeholder="Пароль" id="SignupPassword" class="AuthInput" />
@@ -38,13 +38,23 @@
 
                 <div class="Constructor AuthFormLine">
                     <p class="AuthCheckboxText"><input type="checkbox" value="agree" name="TermsAgree" id="TermsAgree"> Я погоджуюсь з умовами </p>
-                    <button class="BlueButton btn" id="SignupButton" type="submit"> Реєстрація </button>
+                    <button class="BlueButton btn" id="SignupButton" type="submit" onclick="validate"> Реєстрація </button>
                 </div>
             </form>
         </div>
     </div>
     <a class="LinkButton AuthFooter" asp-route-returnUrl="@Model.ReturnUrl" asp-page="./Login">Є аккаунт? Вхід</a>
-    <script>startApp();</script>
+    <script>
+        function validate() {
+            alert("hi");
+            let email = document.getElementById("SignupMail").textContent;
+            let button = document.getElementById("SignUpButton").className = "BlueButton btn Processing";
+            if (email.match("")) {
+
+            }
+            return;
+        }
+    </script>
 </div>
 
 @section Scripts {

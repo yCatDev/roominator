@@ -7,7 +7,7 @@ using System.Net;
 
 namespace Roominator
 {
-    class ValidationResult
+    class ValRes
     {
         string password;
         string password_copy;
@@ -15,7 +15,7 @@ namespace Roominator
         bool correctEmail;
         bool correctPassword;
 
-        public ValidationResult()
+        public ValRes()
         {
             this.password = "";
             this.password_copy = "";
@@ -24,7 +24,7 @@ namespace Roominator
             correctPassword = false;
         }
 
-        public ValidationResult(string password, string password_copy, string email) {
+        public ValRes(string password, string password_copy, string email) {
             this.password = password;
             this.password_copy = password_copy;
             this.email = email.ToLower();

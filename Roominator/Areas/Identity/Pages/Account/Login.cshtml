@@ -14,11 +14,10 @@
 
     <p class="AuthTitle Unselectable">Вхід</p>
 
-    <p class="AuthErrorMessage Unselectable"></p>
+    <div asp-validation-summary="All" class="AuthErrorMessage Unselectable"></div>
 
     <div class="Constructor AuthMainBlock">
-        <div class="Constructor AuthSigns">
-        </div>
+            
         <div class="Constructor AuthForm">
             <form class="Constructor AuthFormLine" id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post">
                 <button type="submit" class="BlueButton AuthSocial" name="provider" value="Google">
@@ -29,9 +28,11 @@
                 </button>
             </form>
             <form id="account" method="post">
-                <input asp-for="Input.Email" type="email" placeholder="Пошта" id="SigninMail" class="AuthInput" />
-                <input asp-for="Input.Password" type="password" placeholder="Пароль" id="SigninPassword" class="AuthInput" />
-
+                
+                <input class="AuthInput" asp-for="Input.Email" type="email" placeholder="Пошта" id="SigninMail"  />
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+                <input class="AuthInput"  asp-for="Input.Password" type="password" placeholder="Пароль" id="SigninPassword" />
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
                 <div class="Constructor AuthFormLine">
                     <button class="LinkButton" id="ForgetPass"> Забули пароль? </button>
                     <button type="submit" class="BlueButton" id="SigninButton">Вхід</button>

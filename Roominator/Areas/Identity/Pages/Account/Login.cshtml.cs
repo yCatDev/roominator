@@ -98,7 +98,7 @@ namespace Roominator.Areas.Identity.Pages.Account
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, "Невірний логін або пароль");
                     return Page();
                 }
             }
