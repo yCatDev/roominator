@@ -4,14 +4,14 @@
 
     private void StartupMethod()
     {
-        Program.mobileHelper.CheckDevice(NavManager.Uri);
+        Program.mobileHelper.SetEntry(Entry.APK);
         if (NavManager.Uri.Contains("localhost"))
         {
-            NavManager.NavigateTo("https://localhost:5000/login");
+            NavManager.NavigateTo("https://localhost:5000/Identity/Pages/Account/Artemlogin");
         }
         else
         {
-            NavManager.NavigateTo("https://roominator-nure.herokuapp.com/login");
+            NavManager.NavigateTo("https://roominator-nure.herokuapp.com/Identity/Pages/Account/Artemlogin");
         }
     }
 
