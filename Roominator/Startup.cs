@@ -53,7 +53,7 @@ namespace Roominator
                 {
                     googleoptions.ClientId = Configuration["Authentication:Google:ClientId"];
                     googleoptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
-                });
+                }).AddCookie();
             services.AddSingleton<WeatherForecastService>();
             services.AddServerSideBlazor().AddCircuitOptions(options => {
                 if (_env.IsDevelopment())
