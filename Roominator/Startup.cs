@@ -36,6 +36,7 @@ namespace Roominator
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            
             services.AddDbContext<AppDbContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<AppDbContext>();
             services.AddScoped<AuthenticationStateProvider, ServerAuthenticationStateProvider>();
@@ -86,7 +87,7 @@ namespace Roominator
             app.UseStaticFiles(new StaticFileOptions { ContentTypeProvider = provider });
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            
+            app.UseCookiePolicy();
             app.UseRouting();
 
             app.UseAuthentication();
