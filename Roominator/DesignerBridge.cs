@@ -25,10 +25,10 @@ namespace Roominator
             {
                 userRoom = new UserRoom();
                 // заполняем
-                userRoom.Json = (string)dataTable.Rows[i].ItemArray[3];
-                userRoom.Preview = (byte[])dataTable.Rows[i].ItemArray[4];
-                userRoom.Name = (string)dataTable.Rows[i].ItemArray[2];
-                userRoom.RoomId = (int)dataTable.Rows[i].ItemArray[0];
+                userRoom.Json = (string)dataTable.Rows[i]["room_furniture"];
+                userRoom.Preview = (byte[])dataTable.Rows[i]["room_image"];
+                userRoom.Name = (string)dataTable.Rows[i]["room_name"];
+                userRoom.RoomId = (int)dataTable.Rows[i]["room_id"];
 
                 result.Add(userRoom);
             }
@@ -41,7 +41,7 @@ namespace Roominator
         {
             UserRoom userRoom = new UserRoom();
 
-            string query = $"SELECT * FROM public.room WHERE Id = '{userId}' AND room_id = '{roomId}';";
+            string query = $"SELECT * FROM public.room WHERE Id = '{userId}' AND room_id = {roomId}";
             DataTable dataTable = await Program.databaseManager.ExecQuery(query);
 
             if (dataTable.Rows.Count > 0)
@@ -59,29 +59,33 @@ namespace Roominator
         // Метод для создания комнаты. Возрващает ее айди
         public static async Task<int> CreateRoom(string userId)
         {
-            string query = $"INSERT INTO public.room (Id) VALUES ('{userId}');";
+            string query = $"INSERT INTO public.room (id) VALUES ('{userId}')";
             await Program.databaseManager.ExecQuery(query);
-            query = "SELECT room_id, MAX(room_id) FROM public.room GROUP BY room_id;";
+            query = "SELECT room_id FROM public.room ORDER BY room_id DESC";
             DataTable dataTable = await Program.databaseManager.ExecQuery(query);
+            while (dataTable == null) { }
             return (int)dataTable.Rows[0].ItemArray[0];
         }
 
         // Метод для удаления комнаты.
         public static async Task RemoveRoom(string userId, int roomId)
         {
-            string query = $"DELETE FROM public.room WHERE Id = '{userId}' AND room_id = '{roomId}';";
+            string query = $"DELETE FROM public.room WHERE Id = '{userId}' AND room_id = {roomId}";
             await Program.databaseManager.ExecQuery(query);
         }
 
         // Метод который будет сохранять комнату передавая из юнити ид юзера и экземпляр комнаты
         public static async Task SaveUserRoom(string userId, UserRoom userRoom)
         {
+            string img = System.Text.Encoding.Default.GetString(userRoom.Preview);
+            Console.WriteLine(img);
             string query = $"UPDATE public.room SET Id = '{userId}', room_name = '{userRoom.Name}', " +
-                $"room_furniture = '{userRoom.Json}', room_image = {userRoom.Preview} WHERE room_id = '{userRoom.RoomId}';";
+                $"room_furniture = '{userRoom.Json}', room_image = '{img}' WHERE room_id = {userRoom.RoomId}";
+            Console.WriteLine(query);
             await Program.databaseManager.ExecQuery(query);
         }
 
-        // Приблезительный метод для дешифровки байтов в картинку на блазоре. Картинку генерировать будет юнити это нужно только для превью
+        // Приблизительный метод для дешифровки байтов в картинку на блазоре. Картинку генерировать будет юнити это нужно только для превью
         internal static string GetPreviewImage(UserRoom userRoom)
         {
             string base64String = Convert.ToBase64String(userRoom.Preview, 0, userRoom.Preview.Length); // Convert the bytes to base64 string  

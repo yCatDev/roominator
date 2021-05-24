@@ -15,16 +15,46 @@
 <input @bind="device" />
 <input @bind="userAgent" />
 <SurveyPrompt Title="How is Blazor working for you?" />
-
+<button @onclick="removeRoom">CreateRoom</button>
+<input @bind="roomId"/>
 @code{
+    @using System.Drawing;
+    @using Newtonsoft.Json.Linq;
+    @using System.IO;
 
     private string device;
     private string userAgent;
-
+    private int roomId;
     private void CheckDevice()
     {
         Program.mobileHelper.CheckDevice(@_httpContextAccessor.HttpContext.Request.Headers["User-Agent"].ToString());
         device = Program.mobileHelper.GetEntryToString();
         userAgent = @_httpContextAccessor.HttpContext.Request.Headers["User-Agent"].ToString();
     }
+
+    private async Task removeRoom()
+    {
+        await DesignerBridge.RemoveRoom("63902f78-0ffd-4038-84f7-8b39f5ee44d5", 10);
+    }
+
+    private async Task updateRoom() {
+        //byte[] result = reader.ReadBytes((int)binWriter.BaseStream.Length);
+        //string json = "{ }";
+        //ImageConverter converter = new ImageConverter();
+        //UserRoom room = new UserRoom();
+        //room.RoomId = 1;
+        //room.Preview = result;
+        //room.Name = "Rom";
+        //room.Json = json.ToString();
+        //await DesignerBridge.SaveUserRoom("63902f78-0ffd-4038-84f7-8b39f5ee44d5", room);
+    }
+
+    //private async Task getAllRooms()
+    //{
+    //    var arr = await DesignerBridge.GetUserRooms("63902f78-0ffd-4038-84f7-8b39f5ee44d5");
+    //    for (int i = 0; i < arr.Length; i++)
+    //    {
+    //        roomId += arr[i].RoomId + " ";
+    //    }
+    //}
 }
