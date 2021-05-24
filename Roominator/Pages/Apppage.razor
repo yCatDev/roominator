@@ -4,7 +4,7 @@
 
     private void StartupMethod()
     {
-        //Program.mobileHelper.SetEntry(Entry.APK);
+        Program.mobileHelper.SetEntry(Entry.APK);
         if (NavManager.Uri.Contains("localhost"))
         {
             NavManager.NavigateTo("https://localhost:5000/Identity/Pages/Account/Artemlogin");
@@ -20,10 +20,11 @@
         return Task.CompletedTask;
     }
 
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         StartupMethod();
         await StartupTask();
+        await base.OnAfterRenderAsync(firstRender);
     }
 
 }
