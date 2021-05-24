@@ -17,6 +17,7 @@ using Microsoft.Extensions.Hosting;
 using Roominator.Data;
 using Microsoft.AspNetCore.Authentication.Facebook;
 using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.HttpOverrides;
 
 namespace Roominator
 {
@@ -62,6 +63,7 @@ namespace Roominator
                     options.DetailedErrors = true;
                 }
             });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -93,6 +95,18 @@ namespace Roominator
             app.UseAuthentication();
             app.UseAuthorization();
 
+            var forwardOptions = new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto,
+                // Needed because of mixing http and https.
+                RequireHeaderSymmetry = false,
+            };
+
+            // Accept X-Forwarded-* headers from all sources.
+            forwardOptions.KnownNetworks.Clear();
+            forwardOptions.KnownProxies.Clear();
+
+            app.UseForwardedHeaders(forwardOptions);
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
