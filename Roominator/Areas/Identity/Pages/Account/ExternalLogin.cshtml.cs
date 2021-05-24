@@ -104,7 +104,7 @@ namespace Roominator.Areas.Identity.Pages.Account
                         Email = info.Principal.FindFirstValue(ClaimTypes.Email)
                     };
                 }
-                await OnPostConfirmationAsync();
+                //await OnPostConfirmationAsync();
                 return LocalRedirect(returnUrl);
             }
         }

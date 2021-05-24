@@ -29,7 +29,7 @@
                     <img src="/images/room_placeholder.png" alt="Room" class="RoomImage">
                     <p class="RoomTitle">Гостинная</p>
 
-                    <button class="RoomShare RoomCardButton">
+                    <button class="RoomShare RoomCardButton" @onclick="FacebookShare">
                         <img src="/images/icons/plan/share.png" alt="Share" class="RoomCardIcon">
                     </button>
                     <button class="RoomDelete RoomCardButton">
@@ -37,6 +37,7 @@
                     </button>
                 </div>
                 <!-- Кнопки вставлять сюда -->
+
 
                 <button class="AddRoom">
                     <img src="/images/icons/plus.png" alt="Add Room" class="AddRoomIcon">
@@ -62,6 +63,9 @@
 
 
 @code{
+
+    private string userId;
+
     async Task SomeStartupMethod()
     {
         Program.manager.getCode(NavManager.Uri);
@@ -69,7 +73,12 @@
         await Program.manager.sendRequestAsync();
     }
 
-    private void StartupMethod()
+    private void FacebookShare()
+    {
+        NavManager.NavigateTo("https://www.facebook.com/sharer.php?u=http%3A%2F%2Froominator-nure.herokuapp.com/images/background/tile_blue.png");
+    }
+
+    private async Task StartupMethod()
     {
         Program.mobileHelper.CheckDevice(@_httpContextAccessor.HttpContext.Request.Headers["User-Agent"].ToString());
     }
