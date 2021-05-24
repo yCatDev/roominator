@@ -25,24 +25,40 @@
         <div class="MenuWindow" id="RoomsMenu">
             <div class="RoomsContainer Constructor">
                 <!-- Код 1 кнопки  -->
-                <div class="RoomCard">
-                    <img src="/images/room_placeholder.png" alt="Room" class="RoomImage">
-                    <p class="RoomTitle">Гостинная</p>
+                @*<div class="RoomCard">
+            <img src="/images/room_placeholder.png" alt="Room" class="RoomImage">
+            <p class="RoomTitle">Гостинная</p>
 
-                    <button class="RoomShare RoomCardButton" @onclick="FacebookShare">
-                        <img src="/images/icons/plan/share.png" alt="Share" class="RoomCardIcon">
-                    </button>
-                    <button class="RoomDelete RoomCardButton">
-                        <img src="/images/icons/plan/delete.png" alt="Delete" class="RoomCardIcon">
-                    </button>
-                </div>
+            <button class="RoomShare RoomCardButton">
+                <img src="/images/icons/plan/share.png" alt="Share" class="RoomCardIcon">
+            </button>
+            <button class="RoomDelete RoomCardButton">
+                <img src="/images/icons/plan/delete.png" alt="Delete" class="RoomCardIcon">
+            </button>
+        </div>*@
+
                 <!-- Кнопки вставлять сюда -->
+                @foreach (var room in userRooms)
+                {
+                    <div class="RoomCard">
+                        <img src="@DesignerBridge.GetPreviewImage(room)" alt="Room" class="RoomImage">
+                        <p class="RoomTitle">@room.Name</p>
 
-
-                <button class="AddRoom">
-                    <img src="/images/icons/plus.png" alt="Add Room" class="AddRoomIcon">
-                    <p class="AddRoomSign">Новий план</p>
-                </button>
+                        <button class="RoomShare RoomCardButton" @onclick="(()=>FacebookShare(room))">
+                            <img src="/images/icons/plan/share.png" alt="Share" class="RoomCardIcon">
+                        </button>
+                        <button class="RoomDelete RoomCardButton" @onclick="(()=>DeleteRoom(room.RoomId))">
+                            <img src="/images/icons/plan/delete.png" alt="Delete" class="RoomCardIcon">
+                        </button>
+                    </div>
+                }
+                @if (Program.mobileHelper.GetEntry() == Entry.PC)
+                {
+                    <button class="AddRoom" @onclick="CreateRoom">
+                        <img src="/images/icons/plus.png" alt="Add Room" class="AddRoomIcon">
+                        <p class="AddRoomSign">Новий план</p>
+                    </button>
+                }
                 <div class="CardSpace"></div><div class="CardSpace"></div>
 
 
@@ -65,6 +81,7 @@
 @code{
 
     private string userId;
+    private UserRoom[] userRooms = new UserRoom[0];
 
     async Task SomeStartupMethod()
     {
@@ -73,14 +90,35 @@
         await Program.manager.sendRequestAsync();
     }
 
-    private void FacebookShare()
+    private void CreateRoom()
     {
+        // переход в редактор и создание новой комнаты (userId - текущий юзер, его почта)
+    }
+
+    private void FacebookShare(UserRoom room)
+    {
+        string url = DesignerBridge.GetPreviewImage(room);
         NavManager.NavigateTo("https://www.facebook.com/sharer.php?u=http%3A%2F%2Froominator-nure.herokuapp.com/images/background/tile_blue.png");
+    }
+
+    private async void DeleteRoom(int roomId)
+    {
+        await DesignerBridge.RemoveRoom(userId, roomId);
+        await StartupMethod();
+    }
+
+    private async Task Refresh()
+    {
+        userId = _httpContextAccessor.HttpContext.User.Identity.Name;
+        userRooms = await DesignerBridge.GetUserRooms(userId);
+        NavManager.NavigateTo(NavManager.Uri);
     }
 
     private async Task StartupMethod()
     {
         Program.mobileHelper.CheckDevice(@_httpContextAccessor.HttpContext.Request.Headers["User-Agent"].ToString());
+        userId = _httpContextAccessor.HttpContext.User.Identity.Name;
+        userRooms = await DesignerBridge.GetUserRooms(userId);
     }
 
     private Task StartupTask()
@@ -90,7 +128,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        StartupMethod();
+        await StartupMethod();
         await StartupTask();
     }
 

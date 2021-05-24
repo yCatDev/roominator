@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,16 +17,17 @@ namespace Roominator
         public static async Task<UserRoom[]> GetUserRooms(string userId)
         {
             var result = new List<UserRoom>();
-            //берем данные с бд
+            // Берем данные с бд
             string query = $"SELECT * FROM public.room WHERE Id = '{userId}'";
             DataTable dataTable = await Program.databaseManager.ExecQuery(query);
+            while (dataTable == null) { }
 
             UserRoom userRoom;
 
             for (int i = 0; i < dataTable.Rows.Count; i++)
             {
                 userRoom = new UserRoom();
-                // заполняем
+                // Заполняем
                 userRoom.Json = (string)dataTable.Rows[i]["room_furniture"];
                 userRoom.Preview = (byte[])dataTable.Rows[i]["room_image"];
                 userRoom.Name = (string)dataTable.Rows[i]["room_name"];
@@ -36,7 +39,7 @@ namespace Roominator
         }
 
 
-        // метод для получения конкретной комнаты которую выберет пользователь
+        // Метод для получения конкретной комнаты которую выберет пользователь
         public static async Task<UserRoom> GetUserRoomById(string userId, int roomId)
         {
             UserRoom userRoom = new UserRoom();
@@ -46,13 +49,13 @@ namespace Roominator
 
             if (dataTable.Rows.Count > 0)
             {
-                userRoom.Json = (string)dataTable.Rows[0].ItemArray[3];
-                userRoom.Preview = (byte[])dataTable.Rows[0].ItemArray[4];
-                userRoom.Name = (string)dataTable.Rows[0].ItemArray[2];
-                userRoom.RoomId = (int)dataTable.Rows[0].ItemArray[0];
+                userRoom.Json = (string)dataTable.Rows[0]["room_furniture"];
+                userRoom.Preview = (byte[])dataTable.Rows[0]["room_image"];
+                userRoom.Name = (string)dataTable.Rows[0]["room_name"];
+                userRoom.RoomId = (int)dataTable.Rows[0]["room_id"];
                 return userRoom;
             }
-            // вдруг нету
+            // Вдруг нету
             return null;
         }
 
@@ -78,11 +81,17 @@ namespace Roominator
         public static async Task SaveUserRoom(string userId, UserRoom userRoom)
         {
             string img = System.Text.Encoding.Default.GetString(userRoom.Preview);
-            Console.WriteLine(img);
             string query = $"UPDATE public.room SET Id = '{userId}', room_name = '{userRoom.Name}', " +
                 $"room_furniture = '{userRoom.Json}', room_image = '{img}' WHERE room_id = {userRoom.RoomId}";
-            Console.WriteLine(query);
             await Program.databaseManager.ExecQuery(query);
+        }
+
+        // Метод который устанавливает массив байтов для картинки комнаты. Возвращает обновленную комнату
+        public static UserRoom SetImageForUserRoom(UserRoom userRoom, string path)
+        {
+            byte[] imageBytes = File.ReadAllBytes(path);
+            userRoom.Preview = imageBytes;
+            return userRoom;
         }
 
         // Приблизительный метод для дешифровки байтов в картинку на блазоре. Картинку генерировать будет юнити это нужно только для превью
