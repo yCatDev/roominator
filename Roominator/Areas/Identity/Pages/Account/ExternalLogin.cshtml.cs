@@ -68,7 +68,7 @@ namespace Roominator.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnGetCallbackAsync(string returnUrl = null, string remoteError = null)
         {
-            returnUrl = returnUrl ?? Url.Content("~/menu");
+            returnUrl = returnUrl ?? Url.Content("~/");
             if (remoteError != null)
             {
                 ErrorMessage = $"Error from external provider: {remoteError}";
@@ -86,7 +86,7 @@ namespace Roominator.Areas.Identity.Pages.Account
             if (result.Succeeded)
             {
                 _logger.LogInformation("{Name} logged in with {LoginProvider} provider.", info.Principal.Identity.Name, info.LoginProvider);
-                return LocalRedirect("~/menu");
+                return LocalRedirect("~/");
             }
             if (result.IsLockedOut)
             {
@@ -105,13 +105,13 @@ namespace Roominator.Areas.Identity.Pages.Account
                     };
                 }
                 await OnPostConfirmationAsync();
-                return LocalRedirect("~/menu");
+                return LocalRedirect("~/");
             }
         }
 
         public async Task<IActionResult> OnPostConfirmationAsync(string returnUrl = null)
         {
-            returnUrl = returnUrl ?? Url.Content("~/menu");
+            returnUrl = returnUrl ?? Url.Content("~/");
             // Get the information about the user from the external login provider
             var info = await _signInManager.GetExternalLoginInfoAsync();
             if (info == null)
