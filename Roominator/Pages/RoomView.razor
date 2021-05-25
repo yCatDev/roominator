@@ -1,0 +1,107 @@
+﻿@page "/plans"
+@inject NavigationManager NavManager
+
+<div class="Header">
+    <a href="/menu" class="LinkButton HeaderLink"> ❮ Назад </a>
+    <button class="AccountLink">
+        <img src="/images/icons/account.png" alt="UserPic" class="HeaderUserPic">
+        <p>Sasha@mail.ru</p>
+    </button>
+</div>
+
+<div class="MenuWindow" id="PlansMenu">
+    <div class="PlanCard" id="PlanCardFree">
+        <p class="PlanCardHeader">Стандарт</p>
+
+        <div class="PlanCardItemList">
+            <p class="PlanCardItem">Доступно 3 кімнати</p>
+            <p class="PlanCardItem">Прості плани</p>
+            <p class="PlanCardItem">Водяний знак</p>
+        </div>
+        <div class="PlanCardButton PlanButtonWhiteDisabled @FreeSelected">Ваш план</div>
+        <div class="PlanCardButton PlanButtonWhiteDisabled @FreeUnselected">Є преміум</div>
+
+        <p class="PlanCardPrice">Безкоштовно</p>
+        <div class="PlanCardCorner WhiteCorner"></div>
+        <div class="PlanCardCornerShadow"></div>
+    </div>
+
+    <div class="PlanCard" id="PlanCardPro">
+        <p class="PlanCardHeader">Преміум</p>
+
+        <div class="PlanCardItemList">
+            <p class="PlanCardItem">Безліч кімнат</p>
+            <p class="PlanCardItem">Складні плани</p>
+            <p class="PlanCardItem">Немає водяного знаку</p>
+        </div>
+
+        <button type="submit" @onclick="AddPremium" class="PlanCardButton BlueButton @PremiumBuyButton">
+            Придбати
+        </button>
+        <div class="PlanCardButton PlanButtonBlueDisabled @PremiumSelected">Ваш план</div>
+        <p class="PlanCardPrice ">$5 - Назавжди</p>
+
+        <div class="PlanCardCorner BlueCorner"></div>
+        <div class="PlanCardCornerShadow"></div>
+    </div>
+</div>
+
+
+@code{
+
+    //Visible - показать // Eliminate - скрыть
+    private string FreeSelected = "Visible"; // Показать если бесплатная
+    private string FreeUnselected = "Eliminate"; // Показать если премиум
+
+    private string PremiumBuyButton = "Visible"; // Показать если бесплатная
+    private string PremiumSelected = "Eliminate"; // Показать если премиум
+
+    //Для последней переменной важно использвать
+    //именно Eliminate а не Hidden или Invesible
+
+    private string ResultUrl;
+
+    private void StartupMethod()
+    {
+        //if (Program.havePremium)
+        //{
+        //    ShowPremium();
+        //}
+
+        if(NavManager.Uri.Contains("localhost"))
+        {
+            ResultUrl = "https://www.liqpay.ua/api/3/checkout?data=eyJ2ZXJzaW9uIjozLCJhY3Rpb24iOiJwYXkiLCJhbW91bnQiOiI1IiwiY3VycmVuY3kiOiJVU0QiLCJkZXNjcmlwdGlvbiI6IlJvb21pbmF0b3IgcHJlbWl1bSBhY2NvdW50IiwicHVibGljX2tleSI6Imk5MDczMDMwODUxMyIsImxhbmd1YWdlIjoicnUiLCJyZXN1bHRfdXJsIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NTAwMC9wbGFucyJ9&signature=j72xsHX0g5AGHtme9SbO73JPzDc=";
+        }
+        else
+        {
+            ResultUrl = "https://www.liqpay.ua/api/3/checkout?data=eyJ2ZXJzaW9uIjozLCJhY3Rpb24iOiJwYXkiLCJhbW91bnQiOiI1IiwiY3VycmVuY3kiOiJVU0QiLCJkZXNjcmlwdGlvbiI6IlJvb21pbmF0b3IgcHJlbWl1bSBhY2NvdW50IiwicHVibGljX2tleSI6Imk5MDczMDMwODUxMyIsImxhbmd1YWdlIjoidWsiLCJzZXJ2ZXJfdXJsIjoiaHR0cHM6Ly9yb29taW5hdG9yLW51cmUuaGVyb2t1YXBwLmNvbS9sYW5kaW5nIiwicmVzdWx0X3VybCI6Imh0dHBzOi8vcm9vbWluYXRvci1udXJlLmhlcm9rdWFwcC5jb20vcGxhbnMifQ==&signature=lUgvOwLcuq5rjANl28WjXdgqIkI=";
+        }
+    }
+
+    private Task StartupTask()
+    {
+        return Task.CompletedTask;
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        StartupMethod();
+        await StartupTask();
+    }
+
+    private void ShowPremium()
+    {
+        FreeSelected = "Eliminate";
+        FreeUnselected = "Visible";
+        PremiumBuyButton = "Eliminate";
+        PremiumSelected = "Visible";
+    }
+
+    private void AddPremium()
+    {
+        NavManager.NavigateTo(ResultUrl);
+        //Program.havePremium = true;
+        // Добавить юзеру премиум в бд
+    }
+
+}

@@ -15,10 +15,12 @@
     <img src="/images/logo/logo_shadow.png" alt="Roominator logo" class="AuthLogo">
     <p class="AuthTitle Unselectable">Реєстрація</p>
 
+    <p id="RegisterErrLine" class="AuthErrorMessage Unselectable AuthCollapsedLine">test</p>
+
     <div class="Constructor AuthMainBlock">
         <div class="Constructor AuthSigns">
         </div>
-        
+
         <div class="Constructor AuthForm">
             <form class="Constructor AuthFormLine" id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post">
                 <button type="submit" class="BlueButton AuthSocial" name="provider" value="Google">
@@ -28,19 +30,25 @@
                     <img src="/images/icons/login/facebook.png" alt="Facebook" class="AuthSocialIcon">| Facebook
                 </button>
             </form>
-            <form method="post">
+            <form id="RegAcc" method="post">
                 <input asp-for="Input.Email" type="email" placeholder="Пошта" id="SignupMail" class="AuthInput" />
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
+                <span asp-validation-for="Input.Email" class="text-danger Eliminate"></span>
                 <input asp-for="Input.Password" type="password" placeholder="Пароль" id="SignupPassword" class="AuthInput" />
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
+                <span asp-validation-for="Input.Password" class="text-danger Eliminate"></span>
                 <input asp-for="Input.ConfirmPassword" type="password" placeholder="Повтор паролю" id="SignupConfirmPassword" class="AuthInput" />
-                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger Eliminate"></span>
 
                 <div class="Constructor AuthFormLine">
                     <p class="AuthCheckboxText"><input type="checkbox" value="agree" name="TermsAgree" id="TermsAgree"> Я погоджуюсь з умовами </p>
                     <button class="BlueButton btn" id="SignupButton" type="submit" onclick="validate"> Реєстрація </button>
                 </div>
             </form>
+        </div>
+
+        <div class="Constructor AuthSigns">
+            <img src="/images/icons/login/attention.png" alt="X" class="AuthWarningIcon Hidden" id="SignupMailWarning">
+            <img src="/images/icons/login/attention.png" alt="X" class="AuthWarningIcon Hidden" id="SignupPassworfWarning">
+            <img src="/images/icons/login/attention.png" alt="X" class="AuthWarningIcon Hidden" id="SignupConfirmPasswordWarning">
         </div>
     </div>
     <a class="LinkButton AuthFooter" asp-route-returnUrl="@Model.ReturnUrl" asp-page="./Login">Є аккаунт? Вхід</a>
@@ -56,6 +64,9 @@
         }
     </script>
 </div>
+
+<div asp-validation-summary="All" class="Unselectable" id="RegisterSummary"></div>
+<script src="/javascript/Register.js"></script>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
