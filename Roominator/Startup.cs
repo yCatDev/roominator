@@ -63,23 +63,20 @@ namespace Roominator
                 }).AddCookie(options =>
                 {
                     options.CookieManager = new ChunkingCookieManager();
-                    options.Cookie.SameSite = SameSiteMode.Lax;
+                    options.Cookie.SameSite = SameSiteMode.None;
                     options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
                     options.Cookie.IsEssential = true;
                 });
 
             services.AddSession(options =>
             {
-                options.Cookie.SameSite = SameSiteMode.Lax;
+                options.Cookie.SameSite = SameSiteMode.None;
                 options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
                 options.Cookie.IsEssential = true;
             });
             services.AddSingleton<WeatherForecastService>();
             services.AddServerSideBlazor().AddCircuitOptions(options => {
-                if (_env.IsDevelopment())
-                {
                     options.DetailedErrors = true;
-                }
             });
 
         }
