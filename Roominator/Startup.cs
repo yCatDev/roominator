@@ -47,6 +47,8 @@ namespace Roominator
             services.AddRazorPages();
             services.AddHttpContextAccessor();
             services.AddServerSideBlazor();
+
+
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).
                  AddFacebook(facebookoptions =>
                 {
@@ -61,7 +63,7 @@ namespace Roominator
                 }).AddCookie(options =>
                 {
                     options.CookieManager = new ChunkingCookieManager();
-                    options.Cookie.SameSite = SameSiteMode.None;
+                    options.Cookie.SameSite = SameSiteMode.Lax;
                     options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
                     options.Cookie.IsEssential = true;
                 });
