@@ -44,7 +44,7 @@
                         <img src="@DesignerBridge.GetPreviewImage(room)" alt="Room" class="RoomImage">
                         <p class="RoomTitle">@room.Name</p>
 
-                        <button class="RoomShare RoomCardButton" @onclick="(()=>FacebookShare(room))">
+                        <button class="RoomShare RoomCardButton" @onclick="(()=>FacebookShare(room.Preview))">
                             <img src="/images/icons/plan/share.png" alt="Share" class="RoomCardIcon">
                         </button>
                         <button class="RoomDelete RoomCardButton" @onclick="(()=>DeleteRoom(room.RoomId))">
@@ -52,6 +52,7 @@
                         </button>
                     </div>
                 }
+
                 @if (Program.mobileHelper.GetEntry() == Entry.PC)
                 {
                     <button class="AddRoom" @onclick="CreateRoom">
@@ -95,30 +96,29 @@
         // переход в редактор и создание новой комнаты (userId - текущий юзер, его почта)
     }
 
-    private void FacebookShare(UserRoom room)
+    private void FacebookShare(byte[] roomImage)
     {
-        string url = DesignerBridge.GetPreviewImage(room);
-        NavManager.NavigateTo("https://www.facebook.com/sharer.php?u=http%3A%2F%2Froominator-nure.herokuapp.com/images/background/tile_blue.png");
+        //FacebookShareHelper.Share(roomImage);
+        NavManager.NavigateTo("https://www.facebook.com/sharer.php?u=http%3A%2F%2Froominator-nure.herokuapp.com/images/facebookshare/image.png");
     }
 
     private async void DeleteRoom(int roomId)
     {
         await DesignerBridge.RemoveRoom(userId, roomId);
-        await StartupMethod();
+        await Refresh();
     }
 
     private async Task Refresh()
     {
         userId = _httpContextAccessor.HttpContext.User.Identity.Name;
         userRooms = await DesignerBridge.GetUserRooms(userId);
-        NavManager.NavigateTo(NavManager.Uri);
+        StateHasChanged();
     }
 
     private async Task StartupMethod()
     {
         Program.mobileHelper.CheckDevice(@_httpContextAccessor.HttpContext.Request.Headers["User-Agent"].ToString());
-        userId = _httpContextAccessor.HttpContext.User.Identity.Name;
-        userRooms = await DesignerBridge.GetUserRooms(userId);
+        await Refresh();
     }
 
     private Task StartupTask()

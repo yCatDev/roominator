@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Npgsql;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -78,20 +79,24 @@ namespace Roominator
         }
 
         // Метод который будет сохранять комнату передавая из юнити ид юзера и экземпляр комнаты
-        public static async Task SaveUserRoom(string userId, UserRoom userRoom)
+        public static void SaveUserRoom(string userId, UserRoom userRoom)
         {
-            string img = System.Text.Encoding.Default.GetString(userRoom.Preview);
-            string query = $"UPDATE public.room SET Id = '{userId}', room_name = '{userRoom.Name}', " +
-                $"room_furniture = '{userRoom.Json}', room_image = '{img}' WHERE room_id = {userRoom.RoomId}";
-            await Program.databaseManager.ExecQuery(query);
+            NpgsqlConnection connection = Program.databaseManager.Connection;
+            ParameterizedQueryForRoomSave(connection, userId, userRoom);
         }
 
-        // Метод который устанавливает массив байтов для картинки комнаты. Возвращает обновленную комнату
-        public static UserRoom SetImageForUserRoom(UserRoom userRoom, string path)
-        {
-            byte[] imageBytes = File.ReadAllBytes(path);
-            userRoom.Preview = imageBytes;
-            return userRoom;
+        // Параметризованный запрос.
+        private static void ParameterizedQueryForRoomSave(NpgsqlConnection connection, string userId, UserRoom userRoom)
+        { 
+            string query = $"UPDATE public.room SET Id = '{userId}', room_name = '{userRoom.Name}', " +
+                $"room_furniture = '{userRoom.Json}', room_image = @img WHERE room_id = {userRoom.RoomId}";
+            connection.Open();
+            using (NpgsqlCommand cmd = new NpgsqlCommand(query, connection))
+            {
+                cmd.Parameters.AddWithValue("@img", SqlDbType.VarBinary).Value = userRoom.Preview;
+                cmd.ExecuteNonQuery();
+            }
+            connection.Close();
         }
 
         // Приблизительный метод для дешифровки байтов в картинку на блазоре. Картинку генерировать будет юнити это нужно только для превью
@@ -99,24 +104,7 @@ namespace Roominator
         {
             string base64String = Convert.ToBase64String(userRoom.Preview, 0, userRoom.Preview.Length); // Convert the bytes to base64 string  
             return "data:image/png;base64," + base64String;
-
-
-            /*   
-              ... - примерный код для разор пейджа чтобы отобразить все эти превью
-              var rooms = DesignerBridge.GetUserRooms(userId);
-              var preview = new string[rooms.Lenght];
-              for (int i = 0; i<rooms.Lenght; i++)
-              {
-                preview[i] = DesignerBridge.GetPreviewImage(rooms[i]);
-              }  
-              ...
-              @foreach (var src in preview)
-              {
-                <div class="preview"> 
-                  <img src="@src" /> 
-                </div>
-               }
-            */
+            // Работает, не менять
         }
 
     }
