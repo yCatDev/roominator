@@ -18,6 +18,8 @@ using Roominator.Data;
 using Microsoft.AspNetCore.Authentication.Facebook;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
 
 namespace Roominator
 {
@@ -44,8 +46,8 @@ namespace Roominator
             services.AddRazorPages();
             services.AddHttpContextAccessor();
             services.AddServerSideBlazor();
-            services.AddAuthentication().
-                AddFacebook(facebookoptions =>
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).
+                 AddFacebook(facebookoptions =>
                 {
                     facebookoptions.AppId = Configuration["Authentication:Facebook:AppId"];
                     facebookoptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
@@ -55,7 +57,14 @@ namespace Roominator
                 {
                     googleoptions.ClientId = Configuration["Authentication:Google:ClientId"];
                     googleoptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
-                }).AddCookie();
+                }).AddCookie(options =>
+                {
+                    options.CookieManager = new ChunkingCookieManager();
+
+                    options.Cookie.HttpOnly = true;
+                    options.Cookie.SameSite = SameSiteMode.None;
+                    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+                });
             services.AddSingleton<WeatherForecastService>();
             services.AddServerSideBlazor().AddCircuitOptions(options => {
                 if (_env.IsDevelopment())
