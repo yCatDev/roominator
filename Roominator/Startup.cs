@@ -49,7 +49,8 @@ namespace Roominator
             services.AddServerSideBlazor();
 
 
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).
+           // services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).
+           services.AddAuthentication().
                  AddFacebook(facebookoptions =>
                 {
                     facebookoptions.AppId = Configuration["Authentication:Facebook:AppId"];
@@ -68,12 +69,12 @@ namespace Roominator
                     options.Cookie.IsEssential = true;
                 });
 
-            services.AddSession(options =>
-            {
-                options.Cookie.SameSite = SameSiteMode.None;
-                options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-                options.Cookie.IsEssential = true;
-            });
+            //services.AddSession(options =>
+            //{
+            //    options.Cookie.SameSite = SameSiteMode.None;
+            //    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+            //    options.Cookie.IsEssential = true;
+            //});
             services.AddSingleton<WeatherForecastService>();
             services.AddServerSideBlazor().AddCircuitOptions(options => {
                 //if (_env.IsDevelopment())
