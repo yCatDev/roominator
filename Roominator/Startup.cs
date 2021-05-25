@@ -18,6 +18,9 @@ using Roominator.Data;
 using Microsoft.AspNetCore.Authentication.Facebook;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.DataProtection;
 
 namespace Roominator
 {
@@ -44,8 +47,11 @@ namespace Roominator
             services.AddRazorPages();
             services.AddHttpContextAccessor();
             services.AddServerSideBlazor();
-            services.AddAuthentication().
-                AddFacebook(facebookoptions =>
+
+
+           // services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).
+           services.AddAuthentication().
+                 AddFacebook(facebookoptions =>
                 {
                     facebookoptions.AppId = Configuration["Authentication:Facebook:AppId"];
                     facebookoptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
@@ -55,13 +61,26 @@ namespace Roominator
                 {
                     googleoptions.ClientId = Configuration["Authentication:Google:ClientId"];
                     googleoptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
-                }).AddCookie();
+                }).AddCookie(options =>
+                {
+                    options.CookieManager = new ChunkingCookieManager();
+                    options.Cookie.SameSite = SameSiteMode.None;
+                    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+                    options.Cookie.IsEssential = true;
+                });
+
+            //services.AddSession(options =>
+            //{
+            //    options.Cookie.SameSite = SameSiteMode.None;
+            //    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+            //    options.Cookie.IsEssential = true;
+            //});
             services.AddSingleton<WeatherForecastService>();
             services.AddServerSideBlazor().AddCircuitOptions(options => {
-                if (_env.IsDevelopment())
-                {
+                //if (_env.IsDevelopment())
+                //{
                     options.DetailedErrors = true;
-                }
+                //}
             });
 
         }
@@ -69,14 +88,14 @@ namespace Roominator
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
+            //if (env.IsDevelopment())
+            //{
                 app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Error");
-            }
+            //}
+            //else
+            //{
+            //    app.UseExceptionHandler("/Error");
+            //}
 
             //app.UseHttpsRedirection();
             var provider = new FileExtensionContentTypeProvider();
