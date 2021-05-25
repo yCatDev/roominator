@@ -409,7 +409,7 @@ input[type="checkbox"] {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    height: 50px;
+    height: 8vh;
     padding: 0 10px;
 }
 
@@ -686,13 +686,13 @@ input[type="checkbox"] {
 .Header {
     background-color: var(--MainBlue);
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     height: 8vh;
     padding: 0 10px;
 }
 .HeaderLink {
-    margin: 0 10px;
+    margin: 0 0.7vw;
     font-size: 3.2vh;
 }
 .AccountLink {
@@ -701,25 +701,32 @@ input[type="checkbox"] {
     background: transparent;
     display: inline;
 }
-.AccountLink p {
-    margin: 0 10px;
-    font-size: 3.2vh;
-    margin-top: 0.3vw;
+    .AccountLink a {
+        margin: 0 10px;
+        font-size: 3.2vh;
+        /*margin-top: 0.3vw;*/
+        vertical-align: middle;
+        color: white;
+        font-family: 'GothamPro', sans-serif;
+        display: inline-block;
+        text-decoration: none;
+    }
 
-    font-family: 'GothamPro', sans-serif;
-    display: inline-block;
-}
-
-    .AccountLink:hover p{
+    .AccountLink:hover a{
         color: white;
         text-decoration: underline;
     }
 
 .HeaderUserPic {
     width: 6vh;
-    margin-bottom: 0.2vw;
+    vertical-align: middle;
+    /*margin-bottom: 0.2vw;*/
 }
 
+#logout {
+    vertical-align: middle;
+    /*margin-bottom: 0.2vh;*/
+}
 
 
 .MenuWindow {
@@ -993,6 +1000,16 @@ footer {
 .FooterSocialIcon {
     width: 7vh;
     margin: 3% 1%;
+}
+
+/*================================/ ROOM VIEW /================================*/
+.HeaderLinkRight{
+    position: fixed;
+    top: 1.5vh;
+    left: 1vw;
+}
+.RoomViewImage {
+    height: 90%;
 }
 /*================================/ NOT FOUND /================================*/
 #NotFoundTitle {

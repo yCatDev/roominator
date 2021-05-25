@@ -411,7 +411,7 @@ input[type="checkbox"] {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    height: 50px;
+    height: 8vh;
     padding: 0 10px;
 }
 
@@ -619,6 +619,7 @@ input[type="checkbox"] {
     border-radius: 5vw;
 }
 /*==========================/ HEADER AND WINDOW  /==========================*/
+/*==========================/ HEADER AND WINDOW  /==========================*/
 .Header {
     background-color: var(--MainBlue);
     display: flex;
@@ -627,6 +628,46 @@ input[type="checkbox"] {
     height: 8vh;
     padding: 0 10px;
 }
+
+.HeaderLink {
+    margin: 0 0.7vw;
+    font-size: 3.2vh;
+}
+
+.AccountLink {
+    color: white;
+    border: 0;
+    background: transparent;
+    display: inline;
+}
+
+    .AccountLink a {
+        margin: 0 10px;
+        font-size: 3.2vh;
+        /*margin-top: 0.3vw;*/
+        vertical-align: middle;
+        color: white;
+        font-family: 'GothamPro', sans-serif;
+        display: inline-block;
+        text-decoration: none;
+    }
+
+    .AccountLink:hover a {
+        color: white;
+        text-decoration: underline;
+    }
+
+.HeaderUserPic {
+    width: 6vh;
+    /*margin-bottom: 0.2vw;*/
+}
+
+#logout {
+    vertical-align: middle;
+    /*margin-bottom: 0.2vh;*/
+}
+
+
 
 .MenuWindow {
     height: calc(100vh - 8vh);
@@ -770,6 +811,18 @@ footer {
     width: 8vw;
     margin: 1vw 1vw;
 }
+/*================================/ ROOM VIEW /================================*/
+.HeaderLinkRight {
+    position: fixed;
+    top: 1.5vh;
+    left: 1vw;
+}
+
+.RoomViewImage {
+    display: block;
+    width: 90%;
+    margin: 25vh auto;
+}
 /*================================/ NOT FOUND /================================*/
 #NotFoundTitle {
     color: white;
@@ -806,7 +859,7 @@ footer {
 }
 
 /*==================================/ TEMP /==================================*/
-
+/*
 #LendingLogin {
     color: white;
     border: 0;
@@ -828,9 +881,7 @@ footer {
     background-color: #2665b8;
     color: white;
     border: solid white 2px;
-    border-radius: 15px;
     font-family: 'GothamPro', sans-serif;
-    font-size: 20px;
     padding: 1px 15px;
     transition-duration: 0.2s;
 }
@@ -840,7 +891,7 @@ footer {
         color: white;
         font-family: 'GothamPro', sans-serif;
         font-size: 20px;
-    }
+    }*/
 /*==================================/ UNITY /==================================*/
 #unity-container {
     display: none;
