@@ -25,26 +25,15 @@
         <div class="MenuWindow" id="RoomsMenu">
             <div class="RoomsContainer Constructor">
                 <!-- Код 1 кнопки  -->
-                @*<div class="RoomCard">
-            <img src="/images/room_placeholder.png" alt="Room" class="RoomImage">
-            <p class="RoomTitle">Гостинная</p>
-
-            <button class="RoomShare RoomCardButton">
-                <img src="/images/icons/plan/share.png" alt="Share" class="RoomCardIcon">
-            </button>
-            <button class="RoomDelete RoomCardButton">
-                <img src="/images/icons/plan/delete.png" alt="Delete" class="RoomCardIcon">
-            </button>
-        </div>*@
 
                 <!-- Кнопки вставлять сюда -->
                 @foreach (var room in userRooms)
                 {
                     <div class="RoomCard">
-                        <img src="@DesignerBridge.GetPreviewImage(room)" alt="Room" class="RoomImage">
-                        <p class="RoomTitle">@room.Name</p>
+                        <img src="@DesignerBridge.GetPreviewImage(room)" alt="Room" class="RoomImage" @onclick="(()=>EditRoom(room))">
+                        <p class="RoomTitle" @onclick="(()=>EditRoom(room))">@room.Name</p>
 
-                        <button class="RoomShare RoomCardButton" @onclick="(()=>FacebookShare(room.Preview))">
+                        <button class="RoomShare RoomCardButton" @onclick="(()=>FacebookShare(room))">
                             <img src="/images/icons/plan/share.png" alt="Share" class="RoomCardIcon">
                         </button>
                         <button class="RoomDelete RoomCardButton" @onclick="(()=>DeleteRoom(room.RoomId))">
@@ -53,7 +42,7 @@
                     </div>
                 }
 
-                @if (Program.mobileHelper.GetEntry() == Entry.PC)
+                @if (Program.mobileHelper.GetEntry() == Entry.PC && countOfRooms < 3 && refreshDone == true)
                 {
                     <button class="AddRoom" @onclick="CreateRoom">
                         <img src="/images/icons/plus.png" alt="Add Room" class="AddRoomIcon">
@@ -65,11 +54,13 @@
 
             </div>
 
-
-            <div class="LimitMessage">
-                <p class="LimitTitle">Ви досягли ліміту безкоштовної версії</p>
-                <button class="LimitButton">Придбати преміум</button>
-            </div>
+            @if (countOfRooms == 3)
+            {
+                <div class="LimitMessage">
+                    <p class="LimitTitle">Ви досягли ліміту безкоштовної версії</p>
+                    <button class="LimitButton">Придбати преміум</button>
+                </div>
+            }
 
         </div>
     </Authorized>
@@ -83,6 +74,8 @@
 
     private string userId;
     private UserRoom[] userRooms = new UserRoom[0];
+    private int countOfRooms;
+    private bool refreshDone = false;
 
     async Task SomeStartupMethod()
     {
@@ -93,18 +86,32 @@
 
     private void CreateRoom()
     {
-        // переход в редактор и создание новой комнаты (userId - текущий юзер, его почта)
+        // Переход в редактор и создание новой комнаты (userId - текущий юзер, его почта)
+        // Этот метод можна вызвать только с пк
     }
 
-    private void FacebookShare(byte[] roomImage)
+    private void EditRoom(UserRoom room)
     {
-        //FacebookShareHelper.Share(roomImage);
-        NavManager.NavigateTo("https://www.facebook.com/sharer.php?u=http%3A%2F%2Froominator-nure.herokuapp.com/images/facebookshare/image.png");
+        if (Program.mobileHelper.GetEntry() == Entry.PC)
+        {
+            // переход в редактор и редактирование комнаты (userId - текущий юзер, его почта)
+        }
+        else if (Program.mobileHelper.GetEntry() != Entry.Unknown)
+        {
+            // Если метод вызван с мобилки, просто показывает картинку плана
+        }
+    }
+
+    private void FacebookShare(UserRoom room)
+    {
+        string url = DesignerBridge.GetPreviewImage(room);
+        NavManager.NavigateTo("https://www.facebook.com/sharer.php?u=http%3A%2F%2Froominator-nure.herokuapp.com/images/room_placeholder.png");
     }
 
     private async void DeleteRoom(int roomId)
     {
         await DesignerBridge.RemoveRoom(userId, roomId);
+        refreshDone = false;
         await Refresh();
     }
 
@@ -112,7 +119,9 @@
     {
         userId = _httpContextAccessor.HttpContext.User.Identity.Name;
         userRooms = await DesignerBridge.GetUserRooms(userId);
+        countOfRooms = userRooms.Length;
         StateHasChanged();
+        refreshDone = true;
     }
 
     private async Task StartupMethod()

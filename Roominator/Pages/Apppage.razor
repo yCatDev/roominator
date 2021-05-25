@@ -1,5 +1,7 @@
 ﻿@page "/apppage"
+@using System.Threading.Tasks;
 @inject NavigationManager NavManager
+
 @code {
 
     private void StartupMethod()
@@ -7,11 +9,11 @@
         Program.mobileHelper.SetEntry(Entry.APK);
         if (NavManager.Uri.Contains("localhost"))
         {
-            NavManager.NavigateTo("https://localhost:5000/Identity/Pages/Account/Artemlogin");
+            NavManager.NavigateTo("https://localhost:5000/menu");
         }
         else
         {
-            NavManager.NavigateTo("https://roominator-nure.herokuapp.com/Identity/Pages/Account/Artemlogin");
+            NavManager.NavigateTo("https://roominator-nure.herokuapp.com/menu");
         }
     }
 
