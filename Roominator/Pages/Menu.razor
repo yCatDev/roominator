@@ -14,16 +14,12 @@
 <!---------------------------------- Page ------------------------------------->
 <AuthorizeView>
     <NotAuthorized>
-        Необхідно авторизуватися.
+        <div class="MenuWindow" id="RoomsMenu">
+            <p class="UnAuthorizedMessage">Для доступу до цього розділу необхідно авторизуватися</p>
+            <a href="/Identity/Pages/Account/login" class="BlueButton UnAuthorizedButton"> Вхід </a>
+        </div>
     </NotAuthorized>
     <Authorized>
-        <div class="Header">
-            <a href="/plans" class="LinkButton HeaderLink"> Плани </a>
-            <button class="AccountLink">
-                <img src="/images/icons/account.png" alt="UserPic" class="HeaderUserPic">
-                <p>Sasha@mail.ru</p>
-            </button>
-        </div>
         <div class="MenuWindow" id="RoomsMenu">
             <div class="RoomsContainer Constructor">
                 <!-- Код 1 кнопки  -->
@@ -64,6 +60,7 @@
             }
 
         </div>
+        <a href="/plans" class="LinkButton HeaderLink HeaderLinkRight"> Плани </a>
     </Authorized>
 </AuthorizeView>
 

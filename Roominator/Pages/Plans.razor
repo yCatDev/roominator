@@ -1,13 +1,6 @@
 ﻿@page "/plans"
 @inject NavigationManager NavManager
 
-<div class="Header">
-    <a href="/menu" class="LinkButton HeaderLink"> ❮ Назад </a>
-    <button class="AccountLink">
-        <img src="/images/icons/account.png" alt="UserPic" class="HeaderUserPic">
-        <p>Sasha@mail.ru</p>
-    </button>
-</div>
 
 <div class="MenuWindow" id="PlansMenu">
     <div class="PlanCard" id="PlanCardFree">
@@ -45,7 +38,7 @@
         <div class="PlanCardCornerShadow"></div>
     </div>
 </div>
-
+<a href="/menu" class="LinkButton HeaderLink HeaderLinkRight"> ❮ Назад </a>
 
 @code{
 
