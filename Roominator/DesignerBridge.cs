@@ -7,12 +7,21 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.JSInterop;
+using Newtonsoft.Json;
 
 namespace Roominator
 {
     public static class DesignerBridge
     {
 
+        public static string SelectedUserID;
+        public static string GeneratedUserRoom;
+
+        [JSInvokable]
+        public static string GetSelectedUserID() => SelectedUserID;
+        [JSInvokable]
+        public static string GetGeneratedUserRoom() => GeneratedUserRoom;
 
         //Метод который будет показывать все доступные комнаты которые есть у человека, принимает его айди (чем оно будет решайте сами)
         public static async Task<UserRoom[]> GetUserRooms(string userId)
@@ -40,8 +49,9 @@ namespace Roominator
         }
 
 
+    
         // Метод для получения конкретной комнаты которую выберет пользователь
-        public static async Task<UserRoom> GetUserRoomById(string userId, int roomId)
+        public static async Task<string> GetUserRoomById(string userId, int roomId)
         {
             UserRoom userRoom = new UserRoom();
 
@@ -54,12 +64,13 @@ namespace Roominator
                 userRoom.Preview = (byte[])dataTable.Rows[0]["room_image"];
                 userRoom.Name = (string)dataTable.Rows[0]["room_name"];
                 userRoom.RoomId = (int)dataTable.Rows[0]["room_id"];
-                return userRoom;
+                return JsonConvert.SerializeObject(userRoom);
             }
             // Вдруг нету
             return null;
         }
 
+      
         // Метод для создания комнаты. Возрващает ее айди
         public static async Task<int> CreateRoom(string userId)
         {
@@ -71,6 +82,7 @@ namespace Roominator
             return (int)dataTable.Rows[0].ItemArray[0];
         }
 
+     
         // Метод для удаления комнаты.
         public static async Task RemoveRoom(string userId, int roomId)
         {
@@ -78,10 +90,12 @@ namespace Roominator
             await Program.databaseManager.ExecQuery(query);
         }
 
+        [JSInvokable]
         // Метод который будет сохранять комнату передавая из юнити ид юзера и экземпляр комнаты
-        public static void SaveUserRoom(string userId, UserRoom userRoom)
+        public static void SaveUserRoom(string userId, string json)
         {
             NpgsqlConnection connection = Program.databaseManager.Connection;
+            var userRoom = JsonConvert.DeserializeObject<UserRoom>(json);
             ParameterizedQueryForRoomSave(connection, userId, userRoom);
         }
 
@@ -99,6 +113,7 @@ namespace Roominator
             connection.Close();
         }
 
+       
         // Приблизительный метод для дешифровки байтов в картинку на блазоре. Картинку генерировать будет юнити это нужно только для превью
         internal static string GetPreviewImage(UserRoom userRoom)
         {
@@ -111,6 +126,7 @@ namespace Roominator
 
     // Мост между комнатами в БД и конструктором
     // Пердставляет собой набор самых необходимых полей чтобы позволить без костылей передавать базовые данные для сохранения\загрузки
+    [Serializable]
     public class UserRoom
     {
         public string Json; // Сам гсон с данными о комнате
