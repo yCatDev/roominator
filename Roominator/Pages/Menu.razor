@@ -25,7 +25,6 @@
         <div class="MenuWindow" id="RoomsMenu">
             <div class="RoomsContainer Constructor">
                 <!-- Код 1 кнопки  -->
-
                 <!-- Кнопки вставлять сюда -->
                 @foreach (var room in userRooms)
                 {
@@ -71,7 +70,7 @@
 
 
 @code{
-
+    @using Newtonsoft.Json
     private string userId;
     private UserRoom[] userRooms = new UserRoom[0];
     private int countOfRooms;
@@ -84,10 +83,14 @@
         await Program.manager.sendRequestAsync();
     }
 
-    private void CreateRoom()
+    private async void CreateRoom()
     {
         // Переход в редактор и создание новой комнаты (userId - текущий юзер, его почта)
         // Этот метод можна вызвать только с пк
+        int id = await DesignerBridge.CreateRoom(userId);
+        DesignerBridge.SelectedUserID = userId;
+        DesignerBridge.GeneratedUserRoom = await DesignerBridge.GetUserRoomById(userId, id);
+        NavManager.NavigateTo("/designer");
     }
 
     private void EditRoom(UserRoom room)
@@ -95,6 +98,9 @@
         if (Program.mobileHelper.GetEntry() == Entry.PC)
         {
             // переход в редактор и редактирование комнаты (userId - текущий юзер, его почта)
+            DesignerBridge.SelectedUserID = userId;
+            DesignerBridge.GeneratedUserRoom = JsonConvert.SerializeObject(room);
+            NavManager.NavigateTo("/designer");
         }
         else if (Program.mobileHelper.GetEntry() != Entry.Unknown)
         {
