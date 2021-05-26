@@ -305,54 +305,60 @@ a:hover {
     text-align: center;
     background-color: white;
     font-family: 'GothamPro', sans-serif;
-    font-size: 4.5vw;
+    font-size: 3.5vw;
 }
 
 .AuthCollapsedLine {
     height: 0;
-    margin-bottom: 7vw;
+    margin-bottom: 5vw;
     color: transparent;
 }
 
 .AuthCollapseLine {
-    animation: AuthCollapseLine 500ms linear 0s 1 normal forwards;
+    /*animation: AuthCollapseLine 500ms linear 0s 1 normal forwards;*/
+    height: 0;
+    margin-bottom: 5vw;
+    color: transparent;
 }
 
 @keyframes AuthCollapseLine {
     from {
-        height: 7vw;
+        height: auto;
         margin-bottom: 0;
         color: #2665b8;
     }
     50% {
-        height: 7vw;
+        height: auto;
         margin-bottom: 0;
         color: transparent;
     }
     to {
         height: 0;
-        margin-bottom: 7vw;
+        margin-bottom: 5vw;
         color: transparent;
     }
 }
 
 .AuthExpandLine {
-    animation: AuthExpandLine 500ms linear 0s 1 normal forwards;
+    /*animation: AuthExpandLine 500ms linear 0s 1 normal forwards;*/
+    height: auto;
+    margin-bottom: 0;
+    color: #2665b8;
 }
 
 @keyframes AuthExpandLine {
     from {
         height: 0;
-        margin-bottom: 7vw;
+        margin-bottom: 5vw;
         color: transparent;
     }
     50% {
-        height: 7vw;
+        height: auto;
         margin-bottom: 0;
         color: transparent;
     }
     to {
-        height: 7vw;
+        height: auto;
         margin-bottom: 0;
         color: #2665b8;
     }
@@ -411,8 +417,8 @@ input[type="checkbox"] {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    height: 8vh;
-    padding: 0 10px;
+    height: 10vw;
+    padding: 0 2vw;
 }
 
 .LandingBlock {
@@ -420,13 +426,13 @@ input[type="checkbox"] {
     min-height: 100vh;
 }
 #LendingLogin {
-    margin: 0 10px;
-    font-size: 3.2vh;
+    margin: 0 1.6vw;
+    font-size: 4.5vw;
 }
 #LendingRegister {
-    margin: 0 10px;
-    font-size: 3.2vh;
-    border-radius: 2.4vh;
+    margin: 0 1.6vw;
+    font-size: 4.5vw;
+    border-radius: 3vw;
 }
 /*-----------------------------------> Main <----------------------------------*/
 #LandingBlockMain {
@@ -625,8 +631,8 @@ input[type="checkbox"] {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    height: 8vh;
-    padding: 0 10px;
+    height: 10vw;
+    padding: 0 2vw;
 }
 
 .HeaderLink {
@@ -642,8 +648,8 @@ input[type="checkbox"] {
 }
 
     .AccountLink a {
-        margin: 0 10px;
-        font-size: 3.2vh;
+        margin: 0 1.6vw;
+        font-size: 4.5vw;
         /*margin-top: 0.3vw;*/
         vertical-align: middle;
         color: white;
@@ -658,13 +664,14 @@ input[type="checkbox"] {
     }
 
 .HeaderUserPic {
-    width: 6vh;
+    width: 8vw;
     /*margin-bottom: 0.2vw;*/
 }
 
 #logout {
     vertical-align: middle;
-    /*margin-bottom: 0.2vh;*/
+    margin: 0 1.6vw !important;
+    font-size: 4.5vw !important;
 }
 
 
@@ -814,8 +821,9 @@ footer {
 /*================================/ ROOM VIEW /================================*/
 .HeaderLinkRight {
     position: fixed;
-    top: 1.5vh;
-    left: 1vw;
+    top: 1.5vw;
+    left: 2vw;
+    font-size: 4.5vw;
 }
 
 .RoomViewImage {
@@ -857,7 +865,144 @@ footer {
     flex-direction: column;
     justify-content: center;
 }
+/*=================================/ MENU /================================*/
+#RoomsMenu {
+    overflow: hidden;
+}
+/*------------------------------> Rooms Card <-----------------------------*/
+.RoomsContainer {
+    /*display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;*/
+}
 
+.RoomCard {
+    position: relative;
+    width: 70vw;
+    height: 45vw;
+    margin: 5vw auto 0;
+    background-image: url(/images/background/tile_white.png);
+    background-size: 17vh;
+    background-position: -2vh;
+    border-radius: 3vw;
+    box-shadow: 3px 3px 10px 4px rgb(34 60 80 / 30%);
+    text-align: center;
+}
+
+.RoomImage {
+    height: 60%;
+    margin: 10% 0 3%;
+}
+
+.RoomTitle {
+    color: #424852;
+    font-family: 'GothamPro', sans-serif;
+    font-size: 4.5vw;
+    line-height: 6vw;
+}
+
+.RoomCard:hover {
+    filter: brightness(0.95)
+}
+/* - - - - - - - - - - Êíîïêè - - - - - - - - */
+.RoomShare {
+    left: 1.5vw;
+    top: 1vw;
+}
+
+.RoomDelete {
+    right: 1.5vw;
+    top: 1vw;
+}
+
+.RoomCardButton {
+    width: 7vw;
+    height: 7vw;
+    position: absolute;
+    border: none;
+    background: none;
+}
+
+.RoomShare .RoomCardIcon {
+    width: 5vw;
+}
+
+.RoomDelete .RoomCardIcon {
+    width: 4.5vw;
+}
+
+.RoomCardButton:hover {
+    background: #00000024;
+    border-radius: 50%;
+}
+/*---------------------------------> Add Room <--------------------------------*/
+.AddRoom {
+    display: block;
+    background: transparent;
+    border: solid white 3px;
+    position: relative;
+    width: 70vw;
+    height: 45vw;
+    margin: 5vw auto 0;
+    border-radius: 3vw;
+    box-shadow: 3px 3px 10px 4px rgb(34 60 80 / 30%);
+}
+
+    .AddRoom:hover {
+        background-color: #74a8e0;
+    }
+
+.AddRoomIcon {
+    width: 16vw;
+    margin: 4vw;
+    filter: drop-shadow(4px 4px 3px #00000052);
+}
+
+.AddRoomSign {
+    color: white;
+    font-family: 'GothamPro', sans-serif;
+    font-size: 5vw;
+    filter: drop-shadow(3px 3px 2px #0000006b);
+}
+
+.CardSpace {
+    display: none;
+}
+
+/*-----------------------------> Limit Message <----------------------------*/
+.LimitMessage {
+    position: relative;
+    width: 70vw;
+    height: 30vw;
+    margin: 7vw auto 0;
+    background-image: url(/images/background/tile_white.png);
+    background-size: 17vh;
+    background-position: 0 -2vh;
+    border-radius: 3vw;
+    box-shadow: 3px 3px 10px 4px rgb(34 60 80 / 30%);
+    text-align: center;
+}
+
+.LimitTitle {
+    color: #424852;
+    font-family: 'GothamPro', sans-serif;
+    font-size: 5vw;
+    line-height: 7vw;
+    padding: 2vw 0;
+}
+
+.LimitButton {
+    border: solid #424852 2px;
+    color: #424852;
+    font-family: 'GothamPro', sans-serif;
+    font-size: 5vw;
+    border-radius: 2.5vw;
+    background-color: white;
+}
+
+    .LimitButton:hover {
+        background-color: #e6e6e6;
+    }
 /*==================================/ TEMP /==================================*/
 /*
 #LendingLogin {

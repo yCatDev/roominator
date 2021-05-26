@@ -32,8 +32,9 @@ function funonload() {
             SetWarningIcon("SigninPassworfWarning", false)
         }
 
+        var landscape = window.matchMedia("(orientation: landscape)").matches
         if (errors.length > 0) {
-            SetErrorLine(errors.join(" | "), true)
+            SetErrorLine(errors.join((landscape) ? (" | ") : ("<br>")), true)
         }
         else {
             SetErrorLine(" ", false);
