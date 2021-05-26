@@ -39,9 +39,9 @@ function funonload() {
         else {
             SetWarningIcon("SignupConfirmPasswordWarning", false)
         }
-        var mql = window.matchMedia("(orientation: landscape)")
+        var landscape = window.matchMedia("(orientation: landscape)").matches
         if (errors.length > 0) {
-            SetErrorLine(errors.join( (mql) ? (" | ") : ("<br>")), true)
+            SetErrorLine(errors.join((landscape) ? (" | ") : ("<br>")), true)
         }
         else {
             SetErrorLine(" ", false);

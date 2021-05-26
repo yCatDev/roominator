@@ -59,7 +59,7 @@
             {
                 <div class="LimitMessage">
                     <p class="LimitTitle">Ви досягли ліміту безкоштовної версії</p>
-                    <button class="LimitButton">Придбати преміум</button>
+                    <button class="LimitButton" @onclick="GoToPlans">Придбати преміум</button>
                 </div>
             }
 
@@ -158,6 +158,11 @@
     {
         await StartupMethod();
         await StartupTask();
+    }
+
+    private void GoToPlans()
+    {
+        NavManager.NavigateTo("/plans");
     }
 
 }
