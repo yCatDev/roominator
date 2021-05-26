@@ -20,6 +20,8 @@ using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Roominator
 {
@@ -40,8 +42,43 @@ namespace Roominator
         public void ConfigureServices(IServiceCollection services)
         {
             
-            services.AddDbContext<AppDbContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<AppDbContext>();
+            //services.AddDbContext<AppDbContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+            //services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<AppDbContext>();
+            /*services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<AppDbContext>()
+                .AddDefaultTokenProviders();*/
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+
+            services.AddDbContext<AppDbContext>(options =>
+                options.UseNpgsql(
+                    Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                // services.AddDefaultIdentity<IdentityUser>()
+                .AddEntityFrameworkStores<AppDbContext>()
+                .AddDefaultTokenProviders();
+
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+                .AddRazorPagesOptions(options =>
+                {
+                    //options.AllowAreas = true;
+                    options.Conventions.AuthorizeAreaFolder("Identity", "/Account/Manage");
+                    options.Conventions.AuthorizeAreaPage("Identity", "/Account/Logout");
+                });
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = $"/Identity/Account/Login";
+                options.LogoutPath = $"/Identity/Account/Logout";
+                options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
+            });
+
+            // using Microsoft.AspNetCore.Identity.UI.Services;
+            services.AddSingleton<IEmailSender, EmailSender>();
             services.AddScoped<AuthenticationStateProvider, ServerAuthenticationStateProvider>();
             services.AddRazorPages();
             services.AddHttpContextAccessor();
@@ -63,7 +100,7 @@ namespace Roominator
                     googleoptions.ClientId = Configuration["Authentication:Google:ClientId"];
                     googleoptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
                 }).AddCookie();
-
+         
             //options =>
             //{
             //    options.CookieManager = new ChunkingCookieManager();
@@ -77,7 +114,7 @@ namespace Roominator
             //    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
             //    options.Cookie.IsEssential = true;
             //});
-            services.AddSingleton<WeatherForecastService>();
+          
             services.AddServerSideBlazor().AddCircuitOptions(options => {
                 //if (_env.IsDevelopment())
                 //{
