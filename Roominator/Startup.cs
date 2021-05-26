@@ -62,14 +62,15 @@ namespace Roominator
                 {
                     googleoptions.ClientId = Configuration["Authentication:Google:ClientId"];
                     googleoptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
-                }).AddCookie(options =>
-                {
-                    options.CookieManager = new ChunkingCookieManager();
-                    options.Cookie.SameSite = SameSiteMode.None;
-                    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-                    options.Cookie.IsEssential = true;
-                });
+                }).AddCookie();
 
+            //options =>
+            //{
+            //    options.CookieManager = new ChunkingCookieManager();
+            //    options.Cookie.SameSite = SameSiteMode.None;
+            //    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+            //    options.Cookie.IsEssential = true;
+            //}
             //services.AddSession(options =>
             //{
             //    options.Cookie.SameSite = SameSiteMode.None;
@@ -89,14 +90,16 @@ namespace Roominator
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            //if (env.IsDevelopment())
-            //{
+            if (env.IsDevelopment())
+            {
                 app.UseDeveloperExceptionPage();
-            //}
-            //else
-            //{
-            //    app.UseExceptionHandler("/Error");
-            //}
+
+            }
+            else
+            {
+                app.UseExceptionHandler("/Error");
+                app.UseReverseProxyHttpsEnforcer();
+            }
 
             //app.UseHttpsRedirection();
             var provider = new FileExtensionContentTypeProvider();
