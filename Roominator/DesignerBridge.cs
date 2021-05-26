@@ -18,7 +18,7 @@ namespace Roominator
         public static string SelectedUserID = "none";
         public static string GeneratedUserRoom = "{}";
 
-        [JSInvokable]
+        [JSInvokable]   
         public static string GetSelectedUserID() => SelectedUserID;
         [JSInvokable]
         public static string GetGeneratedUserRoom() => GeneratedUserRoom;
@@ -109,7 +109,7 @@ namespace Roominator
             connection.Open();
             using (NpgsqlCommand cmd = new NpgsqlCommand(query, connection))
             {
-                cmd.Parameters.AddWithValue("@img", SqlDbType.VarBinary).Value = userRoom.Preview;
+                cmd.Parameters.AddWithValue("@img", SqlDbType.Binary).Value = userRoom.Preview;
                 cmd.ExecuteNonQuery();
             }
             connection.Close();

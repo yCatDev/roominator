@@ -47,7 +47,9 @@ namespace Roominator
             services.AddRazorPages();
             services.AddHttpContextAccessor();
             services.AddServerSideBlazor();
-
+            services.AddSignalR(e => {
+                e.MaximumReceiveMessageSize = 102400000;
+            });
 
            // services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).
            services.AddAuthentication().
