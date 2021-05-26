@@ -2,6 +2,15 @@
 @inject NavigationManager NavManager
 
 <div class="MenuWindow" id="PlansMenu">
-    <img src="/images/room_placeholder.png" alt="Image" class="RoomViewImage">
+    <img src="@image" alt="Image" class="RoomViewImage">
     <a href="/menu" class="LinkButton HeaderLink HeaderLinkRight"> ❮ Назад </a>
 </div>
+
+@code{
+    private static string image;
+
+    public static void ShowPlan(string src)
+    {
+        image = src;
+    }
+}

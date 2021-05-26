@@ -6,7 +6,10 @@
 
     private void StartupMethod()
     {
-        Program.mobileHelper.SetEntry(Entry.APK);
+        if (Program.mobileHelper.GetEntry() == Entry.Unknown)
+        {
+            Program.mobileHelper.SetEntry(Entry.APK);
+        }
         if (NavManager.Uri.Contains("localhost"))
         {
             NavManager.NavigateTo("https://localhost:5000/menu");
