@@ -105,6 +105,8 @@
         else if (Program.mobileHelper.GetEntry() != Entry.Unknown)
         {
             // Если метод вызван с мобилки, просто показывает картинку плана
+            RoomView.ShowPlan(DesignerBridge.GetPreviewImage(room));
+            NavManager.NavigateTo("/roomview");
         }
     }
 
