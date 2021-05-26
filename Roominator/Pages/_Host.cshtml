@@ -30,8 +30,38 @@
         <a class="dismiss">🗙</a>
     </div>
 
-<script src="_framework/blazor.server.js"></script>
-<script src="js/DesignerBridge.js"></script>
 
+     <script src="_framework/blazor.server.js" autostart="false"></script>
+         <script>
+         var DotNetBridge = null;
+             function start() {
+                 Blazor.start({ })
+                     .then(() => {                       
+                      window.saveCurrentRoom = function(userId, json)
+                      {
+                          console.log(userId);
+                          console.log(json);
+                          DotNet.invokeMethodAsync('Roominator', 'SaveUserRoom', userId, json);
+                      }
+                      
+                      window.loadCurrentRoom = async function (unityInstance)
+                      {
+                          let userId = await DotNet.invokeMethodAsync('Roominator', 'GetSelectedUserID');
+                          console.log(userId);
+                          unityInstance.SendMessage('SaveManager', 'SetUser', userId);
+                          let json = await DotNet.invokeMethodAsync('Roominator', 'GetGeneratedUserRoom');
+                          console.log(json);
+                          unityInstance.SendMessage('SaveManager', 'LoadRoom', json);
+                      }
+                                  
+                     });
+             }
+             start();
+               function RedirectTo(path) {
+                     window.location = path;
+                   
+                 }
+         </script>
+<script src="js/DesignerBridge.js"></script>
 </body>
 </html>

@@ -15,8 +15,8 @@ namespace Roominator
     public static class DesignerBridge
     {
 
-        public static string SelectedUserID;
-        public static string GeneratedUserRoom;
+        public static string SelectedUserID = "none";
+        public static string GeneratedUserRoom = "{}";
 
         [JSInvokable]
         public static string GetSelectedUserID() => SelectedUserID;
@@ -94,6 +94,8 @@ namespace Roominator
         // Метод который будет сохранять комнату передавая из юнити ид юзера и экземпляр комнаты
         public static void SaveUserRoom(string userId, string json)
         {
+            Console.WriteLine(SelectedUserID);
+            Console.WriteLine(GeneratedUserRoom);
             NpgsqlConnection connection = Program.databaseManager.Connection;
             var userRoom = JsonConvert.DeserializeObject<UserRoom>(json);
             ParameterizedQueryForRoomSave(connection, userId, userRoom);

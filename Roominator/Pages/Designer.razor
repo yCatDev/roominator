@@ -1,0 +1,38 @@
+﻿@page "/designer"
+@inject IJSRuntime JS
+
+<link href="css/site.css" rel="stylesheet" />
+       <link href="css/designerLoading.css" rel="stylesheet" />
+
+
+
+<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+    <div id="unity-container">
+        <canvas id="unity-canvas" width="800" height="600"></canvas>
+        @*<div id="unity-loading-bar" style="display: block;">
+            <div id="unity-logo"></div>
+            <div id="unity-progress-bar-empty">
+                <div id="unity-progress-bar-full" style="width: 0%;"></div>
+            </div>
+        </div>*@
+      
+    </div>
+
+
+@code {
+    private void LoadDesigner()
+    {
+        JS.InvokeVoidAsync(
+            "window.createDesigner");
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            LoadDesigner();
+        }
+        base.OnAfterRender(firstRender);
+    }
+
+}
