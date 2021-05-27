@@ -70,6 +70,13 @@
                 </div>
             }
 
+            @functions {
+                async void DownloadFile(byte[] image)
+                {
+                    await FileUtil.SaveAs(JS, "HelloWorld.txt", image);
+                }
+            }
+
         </div>
         <a href="/plans" class="LinkButton HeaderLink HeaderLinkRight"> Плани </a>
     </Authorized>
