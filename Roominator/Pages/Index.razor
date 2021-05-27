@@ -16,9 +16,10 @@
 <input @bind="userAgent" />
 <SurveyPrompt Title="How is Blazor working for you?" />
 <button @onclick="CreateRoom">CreateRoom</button>
-<input @bind="roomId"/>
+<input @bind="roomId" />
 
 @code{
+    @using Newtonsoft.Json;
     @using System.Drawing;
     private string device;
     private string userAgent;
@@ -36,15 +37,17 @@
         await DesignerBridge.RemoveRoom("63902f78-0ffd-4038-84f7-8b39f5ee44d5", 10);
     }
 
-    private async Task CreateRoom() {
-        roomId = await DesignerBridge.CreateRoom("balanyuk.m2403@gmail.com");
-        //UserRoom room = await DesignerBridge.GetUserRoomById("balanyuk.m2403@gmail.com", 26);
-        //Image image = Image.FromFile(@"C:\Users\balan\Documents\GitHub\roominator\Roominator\wwwroot\images\room_placeholder.png");
-        //System.IO.MemoryStream memoryStream = new System.IO.MemoryStream();
-        //image.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Png);
-        //byte[] b = memoryStream.ToArray();
-        //room.Preview = b;
+    private async Task CreateRoom()
+    {
+        //roomId = await DesignerBridge.CreateRoom("balanyuk.m2403@gmail.com");
+        UserRoom room = JsonConvert.DeserializeObject<UserRoom>(await DesignerBridge.GetUserRoomById("balanyuk.m2403@gmail.com", 26));
+        Image image = Image.FromFile(@"C:\Users\balan\Documents\GitHub\roominator\Roominator\wwwroot\images\facebookshare\test.png");
+        System.IO.MemoryStream memoryStream = new System.IO.MemoryStream();
+        image.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Png);
+        byte[] b = memoryStream.ToArray();
+        room.Preview = b;
+        string json = JsonConvert.SerializeObject(room);
         //room.Name = "Yes baby";
-        //DesignerBridge.SaveUserRoom("balanyuk.m2403@gmail.com", room);
+        DesignerBridge.SaveUserRoom("balanyuk.m2403@gmail.com", json);
     }
 }

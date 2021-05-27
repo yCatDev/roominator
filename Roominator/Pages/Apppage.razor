@@ -15,8 +15,9 @@
         {
             Program.mobileHelper.SetEntry(Entry.APK);
         }
-        JS.InvokeVoidAsync(
-           "RedirectTo", "/Identity/Pages/Account/login");
+        //JS.InvokeVoidAsync(
+        //"RedirectTo", "/Identity/Pages/Account/login");
+        NavManager.NavigateTo("/menu");
     }
 
     private Task StartupTask()
