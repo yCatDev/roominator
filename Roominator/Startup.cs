@@ -41,7 +41,6 @@ namespace Roominator
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            
             //services.AddDbContext<AppDbContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
             //services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<AppDbContext>();
             /*services.AddIdentity<IdentityUser, IdentityRole>()
@@ -83,60 +82,57 @@ namespace Roominator
             services.AddRazorPages();
             services.AddHttpContextAccessor();
             services.AddServerSideBlazor();
-            services.AddSignalR(e => {
-                e.MaximumReceiveMessageSize = 102400000;
-            });
+            services.AddSignalR(e => { e.MaximumReceiveMessageSize = 102400000; });
 
-           // services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).
-           services.AddAuthentication().
-                 AddFacebook(facebookoptions =>
-                {
-                    facebookoptions.AppId = Configuration["Authentication:Facebook:AppId"];
-                    facebookoptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
-                }
-            ).
-                AddGoogle(googleoptions => 
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).
+                // services.AddAuthentication().
+                AddFacebook(facebookoptions =>
+                    {
+                        facebookoptions.AppId = Configuration["Authentication:Facebook:AppId"];
+                        facebookoptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+                    }
+                ).AddGoogle(googleoptions =>
                 {
                     googleoptions.ClientId = Configuration["Authentication:Google:ClientId"];
                     googleoptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
-                }).AddCookie();
-         
-            //options =>
-            //{
-            //    options.CookieManager = new ChunkingCookieManager();
-            //    options.Cookie.SameSite = SameSiteMode.None;
-            //    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-            //    options.Cookie.IsEssential = true;
-            //}
-            //services.AddSession(options =>
-            //{
-            //    options.Cookie.SameSite = SameSiteMode.None;
-            //    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-            //    options.Cookie.IsEssential = true;
-            //});
-          
-            services.AddServerSideBlazor().AddCircuitOptions(options => {
-                //if (_env.IsDevelopment())
-                //{
-                    options.DetailedErrors = true;
-                //}
+                }).AddCookie(options =>
+                {
+                    options.CookieManager = new ChunkingCookieManager();
+                    options.Cookie.SameSite = SameSiteMode.None;
+                    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+                    options.Cookie.IsEssential = true;
+                });
+
+
+            services.AddSession(options =>
+            {
+                options.Cookie.SameSite = SameSiteMode.None;
+                options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+                options.Cookie.IsEssential = true;
             });
 
+            services.AddServerSideBlazor().AddCircuitOptions(options =>
+            {
+                //if (_env.IsDevelopment())
+                //{
+                options.DetailedErrors = true;
+                //}
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
+            /*if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-
             }
             else
-            {
+            {*/
                 app.UseExceptionHandler("/Error");
-                app.UseReverseProxyHttpsEnforcer();
-            }
+                //app.UseReverseProxyHttpsEnforcer();
+                /*
+            }*/
 
             //app.UseHttpsRedirection();
             var provider = new FileExtensionContentTypeProvider();
@@ -146,7 +142,7 @@ namespace Roominator
             provider.Mappings[".wasm"] = "application/wasm";
             provider.Mappings.Remove(".symbols.json");
             provider.Mappings[".symbols.json"] = "application/octet-stream";
-            app.UseStaticFiles(new StaticFileOptions { ContentTypeProvider = provider });
+            app.UseStaticFiles(new StaticFileOptions {ContentTypeProvider = provider});
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
@@ -173,6 +169,7 @@ namespace Roominator
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
             });
+            
         }
     }
 }
