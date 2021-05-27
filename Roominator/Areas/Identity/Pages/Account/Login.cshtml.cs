@@ -42,8 +42,8 @@ namespace Roominator.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
-            [EmailAddress]
+            [Required(ErrorMessage ="Введіть електронну пошту")]
+            [EmailAddress(ErrorMessage ="Введіть коректну адресу алектронної пошти")]
             public string Email { get; set; }
 
             [Required]
