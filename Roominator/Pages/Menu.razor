@@ -128,7 +128,6 @@
     {
         await DesignerBridge.RemoveRoom(userId, roomId);
         refreshDone = false;
-        userRooms = null;
         await Refresh();
     }
 
@@ -136,7 +135,6 @@
     {
         userId = _httpContextAccessor.HttpContext.User.Identity.Name;
         userRooms = await DesignerBridge.GetUserRooms(userId);
-        while (userRooms == null) { }
         countOfRooms = userRooms.Length;
         StateHasChanged();
         refreshDone = true;

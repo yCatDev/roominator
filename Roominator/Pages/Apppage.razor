@@ -1,7 +1,6 @@
 ﻿@page "/apppage"
 @using System.Threading.Tasks;
 @inject NavigationManager NavManager
-@inject IJSRuntime JS
 <div class="BluePrintWindow">
     <div id="NotFoundBlock">
         <div class="Unselectable" id="NotFoundMessage">Завантаження...</div>
@@ -15,8 +14,6 @@
         {
             Program.mobileHelper.SetEntry(Entry.APK);
         }
-        //JS.InvokeVoidAsync(
-        //"RedirectTo", "/Identity/Pages/Account/login");
         NavManager.NavigateTo("/menu");
     }
 
