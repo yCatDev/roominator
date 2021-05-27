@@ -1016,20 +1016,20 @@ footer {
     font-size: 5vw;
     text-align: center;
     display: block;
-    margin: 30vh 0 0;
+    margin: 20vh 0 0;
     background-color: white;
 }
 
 .UnAuthorizedButton {
     display: block;
-    width: 50vw;
-    font-size: 4vw;
+    width: 55vw;
+    font-size: 5.5vw;
     text-align: center;
     margin: 3vh auto;
 }
 
     .UnAuthorizedButton:hover {
-        font-size: 4vw;
+        font-size: 5.5vw;
     }
 
 /*==================================/ TEMP /==================================*/

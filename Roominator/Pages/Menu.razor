@@ -14,10 +14,21 @@
 <!---------------------------------- Page ------------------------------------->
 <AuthorizeView>
     <NotAuthorized>
-        <div class="MenuWindow" id="RoomsMenu">
+        <style>
+            .LandingHeader{
+                display: none;
+            }
+        </style>
+        <div class="BluePrintWindow" id="RoomsMenu">
+            <img src="/images/logo/logo_shadow.png" alt="Roominator logo" class="AuthLogo">
+            <p class="UnAuthorizedMessage">Будь ласка, авторизуйтесь</p>
+            <a href="/Identity/Pages/Account/login" class="BlueButton UnAuthorizedButton"> Вхід </a>
+            <a href="/Identity/Account/Register" class="BlueButton UnAuthorizedButton"> Реєстрація </a>
+        </div>
+        @*<div class="MenuWindow" id="RoomsMenu">
             <p class="UnAuthorizedMessage">Для доступу до цього розділу необхідно авторизуватися</p>
             <a href="/Identity/Pages/Account/login" class="BlueButton UnAuthorizedButton"> Вхід </a>
-        </div>
+        </div>*@
     </NotAuthorized>
     <Authorized>
         <div class="MenuWindow" id="RoomsMenu">
