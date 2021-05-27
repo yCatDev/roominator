@@ -2,52 +2,57 @@
 @inject NavigationManager NavManager
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor _httpContextAccessor
 
-<div><h1>Menu</h1></div>
+<Landing>
 
-<div><a href="/register">Register</a></div>
-<div><a href="/login">Login</a></div>
-<div><a href="/landing">Landing</a></div>
-<div><a href="/menu">Menu</a></div>
-<div><a href="/plans">Plans</a></div>
-<br />
-<button @onclick="CheckDevice">Check device</button>
-<br />
-<input @bind="device" />
-<input @bind="userAgent" />
-<SurveyPrompt Title="How is Blazor working for you?" />
-<button @onclick="CreateRoom">CreateRoom</button>
-<input @bind="roomId" />
+</Landing>
 
-@code{
-    @using Newtonsoft.Json;
-    @using System.Drawing;
-    private string device;
-    private string userAgent;
-    private int roomId;
+    <div class="Eliminate">
+        <div><h1>Menu</h1></div>
 
-    private void CheckDevice()
-    {
-        Program.mobileHelper.CheckDevice(@_httpContextAccessor.HttpContext.Request.Headers["User-Agent"].ToString());
-        device = Program.mobileHelper.GetEntryToString();
-        userAgent = @_httpContextAccessor.HttpContext.Request.Headers["User-Agent"].ToString();
+        <div><a href="/register">Register</a></div>
+        <div><a href="/login">Login</a></div>
+        <div><a href="/landing">Landing</a></div>
+        <div><a href="/menu">Menu</a></div>
+        <div><a href="/plans">Plans</a></div>
+        <br />
+        <button @onclick="CheckDevice">Check device</button>
+        <br />
+        <input @bind="device" />
+        <input @bind="userAgent" />
+        <SurveyPrompt Title="How is Blazor working for you?" />
+        <button @onclick="CreateRoom">CreateRoom</button>
+        <input @bind="roomId" />
+    </div>
+    @code{
+        @using Newtonsoft.Json;
+        @using System.Drawing;
+        private string device;
+        private string userAgent;
+        private int roomId;
+
+        private void CheckDevice()
+        {
+            Program.mobileHelper.CheckDevice(@_httpContextAccessor.HttpContext.Request.Headers["User-Agent"].ToString());
+            device = Program.mobileHelper.GetEntryToString();
+            userAgent = @_httpContextAccessor.HttpContext.Request.Headers["User-Agent"].ToString();
+        }
+
+        private async Task removeRoom()
+        {
+            await DesignerBridge.RemoveRoom("63902f78-0ffd-4038-84f7-8b39f5ee44d5", 10);
+        }
+
+        private async Task CreateRoom()
+        {
+            //roomId = await DesignerBridge.CreateRoom("balanyuk.m2403@gmail.com");
+            UserRoom room = JsonConvert.DeserializeObject<UserRoom>(await DesignerBridge.GetUserRoomById("balanyuk.m2403@gmail.com", 26));
+            Image image = Image.FromFile(@"C:\Users\balan\Documents\GitHub\roominator\Roominator\wwwroot\images\facebookshare\test.png");
+            System.IO.MemoryStream memoryStream = new System.IO.MemoryStream();
+            image.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Png);
+            byte[] b = memoryStream.ToArray();
+            room.Preview = b;
+            string json = JsonConvert.SerializeObject(room);
+            //room.Name = "Yes baby";
+            DesignerBridge.SaveUserRoom("balanyuk.m2403@gmail.com", json);
+        }
     }
-
-    private async Task removeRoom()
-    {
-        await DesignerBridge.RemoveRoom("63902f78-0ffd-4038-84f7-8b39f5ee44d5", 10);
-    }
-
-    private async Task CreateRoom()
-    {
-        //roomId = await DesignerBridge.CreateRoom("balanyuk.m2403@gmail.com");
-        UserRoom room = JsonConvert.DeserializeObject<UserRoom>(await DesignerBridge.GetUserRoomById("balanyuk.m2403@gmail.com", 26));
-        Image image = Image.FromFile(@"C:\Users\balan\Documents\GitHub\roominator\Roominator\wwwroot\images\facebookshare\test.png");
-        System.IO.MemoryStream memoryStream = new System.IO.MemoryStream();
-        image.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Png);
-        byte[] b = memoryStream.ToArray();
-        room.Preview = b;
-        string json = JsonConvert.SerializeObject(room);
-        //room.Name = "Yes baby";
-        DesignerBridge.SaveUserRoom("balanyuk.m2403@gmail.com", json);
-    }
-}

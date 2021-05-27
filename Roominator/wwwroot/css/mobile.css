@@ -656,6 +656,11 @@ input[type="checkbox"] {
         font-family: 'GothamPro', sans-serif;
         display: inline-block;
         text-decoration: none;
+
+        white-space: nowrap;
+        overflow: hidden;
+        max-width: 35vw;
+        text-overflow: ellipsis;
     }
 
     .AccountLink:hover a {
@@ -828,7 +833,7 @@ footer {
 
 .RoomViewImage {
     display: block;
-    width: 90%;
+    width: 95%;
     margin: 25vh auto;
 }
 /*================================/ NOT FOUND /================================*/
