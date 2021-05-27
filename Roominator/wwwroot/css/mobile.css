@@ -919,7 +919,10 @@ footer {
     right: 1.5vw;
     top: 1vw;
 }
-
+.RoomDownload {
+    left: 9vw;
+    top: 1vw;
+}
 .RoomCardButton {
     width: 7vw;
     height: 7vw;
@@ -935,7 +938,9 @@ footer {
 .RoomDelete .RoomCardIcon {
     width: 4.5vw;
 }
-
+.RoomDownload .RoomCardIcon {
+    width: 5vw;
+}
 .RoomCardButton:hover {
     background: #00000024;
     border-radius: 50%;

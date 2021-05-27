@@ -37,17 +37,21 @@
                 <!-- Кнопки вставлять сюда -->
                 @foreach (var room in userRooms)
                 {
-                    <div class="RoomCard">
-                        <img src="@DesignerBridge.GetPreviewImage(room)" alt="Room" class="RoomImage" @onclick="(()=>EditRoom(room))">
-                        <p class="RoomTitle" @onclick="(()=>EditRoom(room))">Комната</p>
+                <div class="RoomCard">
+                    <img src="@DesignerBridge.GetPreviewImage(room)" alt="Room" class="RoomImage" @onclick="(()=>EditRoom(room))">
+                    <p class="RoomTitle" @onclick="(()=>EditRoom(room))">Комната</p>
 
-                        <button class="RoomShare RoomCardButton" @onclick="(()=>FacebookShare(room))">
-                            <img src="/images/icons/plan/share.png" alt="Share" class="RoomCardIcon">
-                        </button>
-                        <button class="RoomDelete RoomCardButton" @onclick="(()=>DeleteRoom(room.RoomId))">
-                            <img src="/images/icons/plan/delete.png" alt="Delete" class="RoomCardIcon">
-                        </button>
-                    </div>
+                    <button class="RoomShare RoomCardButton" @onclick="(()=>FacebookShare(room))">
+                        <img src="/images/icons/plan/share.png" alt="Share" class="RoomCardIcon">
+                    </button>
+                    <button class="RoomDelete RoomCardButton" @onclick="(()=>DeleteRoom(room.RoomId))">
+                        <img src="/images/icons/plan/delete.png" alt="Delete" class="RoomCardIcon">
+                    </button>
+                    <!--СЮДА-->
+                    <button class="RoomDownload RoomCardButton" )">
+                        <img src="/images/icons/plan/download.png" alt="Download" class="RoomCardIcon">
+                    </button>
+                </div>
                 }
 
                 @if (Program.mobileHelper.GetEntry() == Entry.PC && countOfRooms < 3 && refreshDone == true)

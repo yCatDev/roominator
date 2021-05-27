@@ -885,6 +885,11 @@ input[type="checkbox"] {
     right: 0.5vw;
     top: 0.3vw;
 }
+
+.RoomDownload {
+    left: 3vw;
+    top: 0.3vw;
+}
 .RoomCardButton {
     width: 2.5vw;
     height: 2.5vw;
@@ -897,6 +902,9 @@ input[type="checkbox"] {
 }
 .RoomDelete .RoomCardIcon {
     width: 1.3vw;
+}
+.RoomDownload .RoomCardIcon {
+    width: 1.5vw;
 }
 .RoomCardButton:hover {
     background: #00000024;
