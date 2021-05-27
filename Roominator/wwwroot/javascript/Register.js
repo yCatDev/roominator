@@ -3,6 +3,19 @@
 function funonload() {
     var summary = document.getElementById("RegisterSummary").childNodes[0].childNodes[0].innerHTML;
     if (summary.length != "") {
+        if (summary=="Passwords must have at least one digit ('0'-'9').") {
+            summary = "Пароль повинен мати хоча б одну цифру";
+        }
+        if (summary =="Passwords must have at least one lowercase ('a'-'z').") {
+            summary = "Пароль повинен мати хоча б одну маленьку літеру";
+        }
+
+        if (summary =="Passwords must have at least one uppercase ('A'-'Z').") {
+            summary = "Пароль повинен мати хоча б одну велику літеру";
+        }
+        if (summary == "Passwords must have at least one non alphanumeric character.") {
+            summary = "Пароль повинен мати хоча б один спецсимвол";
+        }
         SetErrorLine(summary, true)
     }
 
@@ -39,6 +52,7 @@ function funonload() {
         else {
             SetWarningIcon("SignupConfirmPasswordWarning", false)
         }
+
         var mql = window.matchMedia("(orientation: landscape)")
         if (errors.length > 0) {
             SetErrorLine(errors.join( (mql) ? (" | ") : ("<br>")), true)

@@ -1,7 +1,12 @@
 ﻿@page "/apppage"
 @using System.Threading.Tasks;
 @inject NavigationManager NavManager
-
+@inject IJSRuntime JS
+<div class="BluePrintWindow">
+    <div id="NotFoundBlock">
+        <div class="Unselectable" id="NotFoundMessage">Завантаження...</div>
+    </div>
+</div>
 @code {
 
     private void StartupMethod()
@@ -10,14 +15,8 @@
         {
             Program.mobileHelper.SetEntry(Entry.APK);
         }
-        if (NavManager.Uri.Contains("localhost"))
-        {
-            NavManager.NavigateTo("https://localhost:5000/menu");
-        }
-        else
-        {
-            NavManager.NavigateTo("https://roominator-nure.herokuapp.com/menu");
-        }
+        JS.InvokeVoidAsync(
+           "RedirectTo", "/Identity/Pages/Account/login");
     }
 
     private Task StartupTask()
